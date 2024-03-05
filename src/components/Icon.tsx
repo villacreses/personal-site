@@ -13,7 +13,7 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 
 import {
-  faFolder, faHourglass,
+  faFolder, faHourglass, faEnvelope,
 } from '@fortawesome/free-regular-svg-icons';
 
 import {
@@ -50,6 +50,7 @@ export const iconMap = {
   caretUp: faCaretUp,
   caretDown: faCaretDown,
   location: faLocationDot,
+  envelope: faEnvelope,
   [ExperienceCategory.JOBS]: faSuitcase,
   [ExperienceCategory.HACKATHON]: faHourglass,
   [ExperienceCategory.EDUCATION]: faGraduationCap,
@@ -89,6 +90,7 @@ export const IconLink: FC<IconLinkProps> = ({ href, label, slug }) => (
     href={href}
     title={label}
     aria-label={label}
+    className="transition duration-300 hover:-translate-y-0.5"
   >
     <Icon iconId={slug} />
   </Link>
