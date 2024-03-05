@@ -1,4 +1,4 @@
-import {ComponentProps, FC} from 'react';
+import {ComponentProps, FC, HTMLProps} from 'react';
 import Link from 'next/link';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {
@@ -23,6 +23,7 @@ import {
   faSuitcase,
   faCaretUp,
   faCaretDown,
+  faLocationDot,
 } from '@fortawesome/free-solid-svg-icons';
 
 export enum ExperienceCategory {
@@ -48,6 +49,7 @@ export const iconMap = {
   hourglass: faHourglass,
   caretUp: faCaretUp,
   caretDown: faCaretDown,
+  location: faLocationDot,
   [ExperienceCategory.JOBS]: faSuitcase,
   [ExperienceCategory.HACKATHON]: faHourglass,
   [ExperienceCategory.EDUCATION]: faGraduationCap,
@@ -55,20 +57,31 @@ export const iconMap = {
 
 export type IconID = keyof typeof iconMap;
 
+type IconIdProps = { iconId: IconID };
 type FAProps = Omit<ComponentProps<typeof FontAwesomeIcon>, 'icon'>
 
 export interface IconProps extends FAProps {
-  id: IconID;
+  containerStyles?: IconProps['style'];
 }
+
+export type IconPropsWithId = IconProps & IconIdProps;
 
 export type IconLinkProps = {
   href: string;
   label: string;
   slug: IconID;
+  iconProps?: IconProps;
 };
 
-export const Icon: FC<IconProps> = ({ id, ...props }) => (
-  <FontAwesomeIcon icon={iconMap[id]} {...props} />
+export const Icon: FC<IconPropsWithId> = ({ iconId, size, style, containerStyles, ...props }) => (
+  <div className="flex justify-center" style={containerStyles}>
+    <FontAwesomeIcon
+      icon={iconMap[iconId]}
+      className="leading-4 block"
+      style={{minHeight: '.875rem', ...style}}
+      {...props}
+    />
+  </div>
 );
 
 export const IconLink: FC<IconLinkProps> = ({ href, label, slug }) => (
@@ -77,6 +90,6 @@ export const IconLink: FC<IconLinkProps> = ({ href, label, slug }) => (
     title={label}
     aria-label={label}
   >
-    <Icon id={slug} />
+    <Icon iconId={slug} />
   </Link>
 );
