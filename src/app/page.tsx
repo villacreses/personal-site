@@ -1,9 +1,8 @@
 import {
-  Icon,
-  IconID,
-  IconLink,
-  IconLinkProps,
+  ExperienceList,
   InlineLink,
+  SocialLinks,
+  StatsList
 } from '@/components';
 import { FC, PropsWithChildren } from 'react';
 
@@ -17,75 +16,6 @@ const SectionHeader: FC<PropsWithChildren<{}>> = ({ children }) => (
   <section className="text-sm font-bold uppercase tracking-widest mb-3">
     {children}
   </section>
-);
-
-type StatsListProps = {
-  items: {
-    icon: IconID;
-    text: string;
-    slug: string;
-    width?: string;
-  }[];
-};
-
-const StatsList: FC<StatsListProps> = ({ items }) => (
-  <ul className="list-none ml-1 mt-2 p-0 text-xs sm:text-sm flex flex-col gap-y-1">
-    {items.map(({ icon, text, slug, width }) => (
-      <li
-        key={slug}
-        className="grid align-center gap-x-3"
-        style={{ gridTemplateColumns: '20px 1fr' }}
-      >
-        <Icon
-          iconId={icon}
-          style={{ width }}
-          containerStyles={{ height: '.875rem', marginTop: '.1875rem' }}
-        />
-        <span>{text}</span>
-      </li>
-    ))}
-  </ul>
-);
-
-const LinksList: FC<{ items: IconLinkProps[] }> = ({ items }) => (
-  <ul className="list-none ml-1 mt-16 p-0 flex gap-x-2">
-    {items.map((props) => (
-      <li
-        key={props.slug}
-        className="grid align-center gap-x-3"
-        style={{ gridTemplateColumns: '20px 1fr' }}
-      >
-        <IconLink
-          iconProps={{
-            containerStyles: { height: '.875rem', marginTop: '.1875rem' },
-          }}
-          {...props}
-        />
-      </li>
-    ))}
-  </ul>
-);
-
-type ExperienceEntryProps = {
-  org: string;
-  role: string;
-  startDate: string;
-  endDate?: string;
-}
-
-const ExperienceList: FC<{items: ExperienceEntryProps[]}> = ({items}) => (
-  <ul>
-    {items.map(({org, role}) => (
-      <li key={org}>
-        <div>
-          <hgroup>
-            <h3>{org}</h3>
-            <p>{role}</p>
-          </hgroup>
-        </div>
-      </li>
-    ))}
-  </ul>
 );
 
 export default function Home() {
@@ -104,16 +34,14 @@ export default function Home() {
           <StatsList
             items={[
               {
-                icon: 'suitcase',
-                slug: 'job',
+                iconId: 'suitcase',
                 text: 'Senior Software Engineer @ Godaddy.com',
               },
               {
-                icon: 'school',
-                slug: 'school',
+                iconId: 'school',
                 text: 'B.A. Applied Math @ CUNY Queens College',
               },
-              { icon: 'location', slug: 'nyc', text: 'New York City' },
+              { iconId: 'location', text: 'New York City' },
             ]}
           />
           <p className="sm:text-lg mt-6 max-w-md leading-normal">
@@ -124,7 +52,7 @@ export default function Home() {
           </p>
         </div>
         <div>
-          <LinksList
+          <SocialLinks
             items={[
               { slug: 'envelope', label: 'MarioVillacreses@outlook.com', href: '#' },
               { slug: 'github', label: 'My GitHub profile', href: '#' },
@@ -161,16 +89,16 @@ export default function Home() {
           <ExperienceList 
             items={[
               {
+                key: 'godaddy',
                 org: 'GoDaddy.com',
                 role: 'Senior Software Engineer',
                 startDate: '',
-                endDate: '',
               },
               {
+                key: 'meta',
                 org: 'Meta (Facebook)',
                 role: 'Software Engineer',
                 startDate: '',
-                endDate: '',
               },
             ]}
           />
