@@ -5,7 +5,7 @@ import {Icon, IconPropsWithId} from './Icon';
 
 type StatProps = IconPropsWithId & { text: string }
 
-type StatsListProps = {
+export type StatsListProps = {
   items: StatProps[],
   textClasses?: string
 } & Pick<ItemListProps<StatProps>, 'listContainerProps'>;

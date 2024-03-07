@@ -5,6 +5,7 @@ import {
   StatsList,
 } from '@/components';
 import { FC, PropsWithChildren } from 'react';
+import { experienceEntries, socialLinkItems, statsListContent } from './content';
 
 const Section: FC<PropsWithChildren<{}>> = ({ children }) => (
   <section className="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24">
@@ -31,23 +32,7 @@ export default function Home() {
               Mario Villacreses
             </strong>
           </h1>
-          <StatsList
-            textClasses="text-xs sm:text-sm leading-5 tracking-wider"
-            listContainerProps={{
-              className: 'list-none ml-1 mt-2 p-0 flex flex-col gap-y-1'
-            }}
-            items={[
-              {
-                iconId: 'suitcase',
-                text: 'Senior Software Engineer @ Godaddy.com',
-              },
-              {
-                iconId: 'school',
-                text: 'B.A. Applied Math @ CUNY Queens College',
-              },
-              { iconId: 'location', text: 'New York City' },
-            ]}
-          />
+          <StatsList {...statsListContent} />
           <p className="sm:text-lg mt-6 max-w-md leading-normal">
             I&apos;m a software engineer with 6 years of experience.
           </p>
@@ -56,19 +41,8 @@ export default function Home() {
           </p>
         </div>
         <div>
-          <SocialLinks
-            items={[
-              {
-                slug: 'envelope',
-                label: 'MarioVillacreses@outlook.com',
-                href: 'mailto:MarioVillacreses@outlook.com',
-              },
-              { slug: 'github', label: 'My GitHub profile', href: 'https://github.com/villacreses' },
-              { slug: 'linkedin', label: 'My LinkedIn profile', href: 'https://www.linkedin.com/in/villacreses' },
-              { slug: 'codepen', label: 'CodePen', href: 'https://codepen.io/villacreses' },
-            ]}
-          />
-          <p className="text-xs pt-2 tracking-tight text-opacity-10 text-white cursor-default">
+          <SocialLinks items={socialLinkItems} />
+          <p className="text-xs pt-2 tracking-tight text-opacity-5 text-white cursor-default">
             <small>
               Still using Netscape? Check out&nbsp;
               <a href="#" className="underline cursor-default">
@@ -82,42 +56,19 @@ export default function Home() {
       <main className="pt-24 lg:w-1/2 lg:py-24">
         <Section>
           <SectionHeader>About me</SectionHeader>
-          <p className="mb-3">
+          <p className="mb-3 max-w-lg">
             Over the course of my career, I&apos;ve had the privilege of working
             for companies of all sizes and across multiple industries, including
             education, healthcare, social media, and e-commerce.
           </p>
-          <p>
+          <p className="mb-3 max-w-lg">
             When I&apos;m not at the computer, I&apos;m usually reading,
             brushing up on my math skills, or biking around New York City.
           </p>
         </Section>
         <Section>
           <SectionHeader>Experience</SectionHeader>
-          <ExperienceList
-            items={[
-              {
-                org: 'GoDaddy.com',
-                role: 'Senior Software Engineer',
-                startDate: '2022-11-14T09:00-0500',
-                location: 'New York City (remote)'
-              },
-              {
-                org: 'Meta (Facebook)',
-                role: 'Software Engineer',
-                startDate: '2021-08-26T09:00-0800',
-                endDate: '2022-08-26T17:00-0800',
-                location: 'Menlo Park, CA (hybrid)'
-              },
-              {
-                org: 'doc.ai',
-                role: 'Software Engineer',
-                startDate: '2021-02-21T09:00-0800',
-                endDate: '2021-12-18T20:00-0500',
-                location: 'Boston, MA (remote)'
-              }
-            ]}
-          />
+          <ExperienceList items={experienceEntries} />
           <p className="mt-8 text-sm">
             <InlineLink href="#">View full career timeline</InlineLink>
           </p>

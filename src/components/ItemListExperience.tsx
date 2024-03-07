@@ -1,14 +1,15 @@
-import {FC} from 'react';
+import { FC } from 'react';
 import ItemList from './ItemList';
 import StatsList from './ItemListStats';
 
-type ExperienceEntryProps = {
+export type ExperienceEntryProps = {
   org: string;
   role: string;
   startDate: string;
   endDate?: string;
   location: string;
-}
+  description?: string;
+};
 
 const formatDate = (dateString?: string) => {
   if (!dateString) return null;
@@ -19,17 +20,16 @@ const formatDate = (dateString?: string) => {
 
   return [
     date.toLocaleString('default', { month: 'long' }),
-    date.getFullYear()
+    date.getFullYear(),
   ].join(' ');
-} 
-;
-
+};
 const ExperienceEntry: FC<ExperienceEntryProps> = ({
   org,
   role,
   startDate,
   endDate,
-  location
+  location,
+  description,
 }) => (
   <>
     <hgroup className="mb-2">
@@ -41,24 +41,27 @@ const ExperienceEntry: FC<ExperienceEntryProps> = ({
       <StatsList
         textClasses="text-xs leading-5 tracking-wider"
         listContainerProps={{
-          className: 'list-none ml-1 p-0 flex flex-col gap-y-1'
+          className: 'list-none ml-1 p-0 flex flex-col gap-y-1',
         }}
         items={[
-          { iconId: 'clock', text: `${formatDate(startDate)} - ${formatDate(endDate) || 'Present'}`},
-          { iconId: 'location', text: location }
+          {
+            iconId: 'clock',
+            text: `${formatDate(startDate)} - ${formatDate(endDate) || 'Present'}`,
+          },
+          { iconId: 'location', text: location },
         ]}
       />
     </hgroup>
-    <p className="ml-1 mt-3">Description</p>
+    {description && <p className="ml-1 mt-1 text-sm max-w-md">{description}</p>}
   </>
 );
 
-const ExperienceList: FC<{items: ExperienceEntryProps[]}> = ({ items }) => (
-  <ItemList 
+const ExperienceList: FC<{ items: ExperienceEntryProps[] }> = ({ items }) => (
+  <ItemList
     items={items}
     ItemComponent={ExperienceEntry}
     listContainerProps={{
-      className: 'flex flex-col gap-y-8 mt-5'
+      className: 'flex flex-col gap-y-12 mt-5',
     }}
   />
 );
