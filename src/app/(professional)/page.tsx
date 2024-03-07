@@ -2,7 +2,7 @@ import {
   ExperienceList,
   InlineLink,
   SocialLinks,
-  StatsList
+  StatsList,
 } from '@/components';
 import { FC, PropsWithChildren } from 'react';
 
@@ -13,9 +13,9 @@ const Section: FC<PropsWithChildren<{}>> = ({ children }) => (
 );
 
 const SectionHeader: FC<PropsWithChildren<{}>> = ({ children }) => (
-  <section className="text-sm font-bold uppercase tracking-widest mb-3">
+  <h2 className="text-sm font-bold uppercase tracking-widest mb-3">
     {children}
-  </section>
+  </h2>
 );
 
 export default function Home() {
@@ -32,6 +32,10 @@ export default function Home() {
             </strong>
           </h1>
           <StatsList
+            textClasses="text-xs sm:text-sm leading-5 tracking-wider"
+            listContainerProps={{
+              className: 'list-none ml-1 mt-2 p-0 flex flex-col gap-y-1'
+            }}
             items={[
               {
                 iconId: 'suitcase',
@@ -54,13 +58,17 @@ export default function Home() {
         <div>
           <SocialLinks
             items={[
-              { slug: 'envelope', label: 'MarioVillacreses@outlook.com', href: '#' },
-              { slug: 'github', label: 'My GitHub profile', href: '#' },
-              { slug: 'linkedin', label: 'My LinkedIn profile', href: '#' },
-              { slug: 'codepen', label: 'CodePen', href: '#' },
+              {
+                slug: 'envelope',
+                label: 'MarioVillacreses@outlook.com',
+                href: 'mailto:MarioVillacreses@outlook.com',
+              },
+              { slug: 'github', label: 'My GitHub profile', href: 'https://github.com/villacreses' },
+              { slug: 'linkedin', label: 'My LinkedIn profile', href: 'https://www.linkedin.com/in/villacreses' },
+              { slug: 'codepen', label: 'CodePen', href: 'https://codepen.io/villacreses' },
             ]}
           />
-          <p className="text-xs pt-2 tracking-tight text-opacity-5 text-white cursor-default">
+          <p className="text-xs pt-2 tracking-tight text-opacity-10 text-white cursor-default">
             <small>
               Still using Netscape? Check out&nbsp;
               <a href="#" className="underline cursor-default">
@@ -86,20 +94,28 @@ export default function Home() {
         </Section>
         <Section>
           <SectionHeader>Experience</SectionHeader>
-          <ExperienceList 
+          <ExperienceList
             items={[
               {
-                key: 'godaddy',
                 org: 'GoDaddy.com',
                 role: 'Senior Software Engineer',
-                startDate: '',
+                startDate: '2022-11-14T09:00-0500',
+                location: 'New York City (remote)'
               },
               {
-                key: 'meta',
                 org: 'Meta (Facebook)',
                 role: 'Software Engineer',
-                startDate: '',
+                startDate: '2021-08-26T09:00-0800',
+                endDate: '2022-08-26T17:00-0800',
+                location: 'Menlo Park, CA (hybrid)'
               },
+              {
+                org: 'doc.ai',
+                role: 'Software Engineer',
+                startDate: '2021-02-21T09:00-0800',
+                endDate: '2021-12-18T20:00-0500',
+                location: 'Boston, MA (remote)'
+              }
             ]}
           />
           <p className="mt-8 text-sm">

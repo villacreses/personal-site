@@ -1,6 +1,6 @@
 import {HTMLProps, ComponentType} from 'react';
 
-type ItemListProps<T extends {}> = {
+export type ItemListProps<T extends {}> = {
   items: Array<T>;
   ItemComponent: ComponentType<T>,
   listContainerProps?: Omit<HTMLProps<HTMLUListElement>, 'children'>,

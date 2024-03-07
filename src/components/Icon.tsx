@@ -13,7 +13,7 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 
 import {
-  faFolder, faHourglass, faEnvelope,
+  faFolder, faHourglass, faEnvelope, faClock
 } from '@fortawesome/free-regular-svg-icons';
 
 import {
@@ -51,6 +51,7 @@ export const iconMap = {
   caretDown: faCaretDown,
   location: faLocationDot,
   envelope: faEnvelope,
+  clock: faClock,
   [ExperienceCategory.JOBS]: faSuitcase,
   [ExperienceCategory.HACKATHON]: faHourglass,
   [ExperienceCategory.EDUCATION]: faGraduationCap,
