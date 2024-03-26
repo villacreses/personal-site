@@ -1,5 +1,5 @@
-import {ComponentProps, FC, HTMLProps} from 'react';
-import Link from 'next/link';
+import {ComponentProps, FC} from 'react';
+import Link, {LinkProps} from 'next/link';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {
   faGithub,
@@ -68,11 +68,11 @@ export interface IconProps extends FAProps {
 
 export type IconPropsWithId = IconProps & IconIdProps;
 
-export type IconLinkProps = {
-  href: string;
+export interface IconLinkProps extends LinkProps {
   label: string;
   slug: IconID;
   iconProps?: IconProps;
+  newWindow?: boolean
 };
 
 export const Icon: FC<IconPropsWithId> = ({ iconId, size, style, containerStyles, ...props }) => (
@@ -80,19 +80,20 @@ export const Icon: FC<IconPropsWithId> = ({ iconId, size, style, containerStyles
     <FontAwesomeIcon
       icon={iconMap[iconId]}
       className="leading-4 block"
-      style={{minHeight: '.875rem', ...style}}
       {...props}
     />
   </div>
 );
 
-export const IconLink: FC<IconLinkProps> = ({ href, label, slug }) => (
+export const IconLink: FC<IconLinkProps> = ({ href, label, slug, iconProps, newWindow, ...linkProps }) => (
   <Link
     href={href}
     title={label}
     aria-label={label}
     className="transition duration-300 hover:-translate-y-0.5"
+    target={newWindow ? '_blank' : undefined}
+    {...linkProps}
   >
-    <Icon iconId={slug} />
+    <Icon iconId={slug} {...iconProps} />
   </Link>
 );

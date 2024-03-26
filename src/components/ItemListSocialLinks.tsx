@@ -7,9 +7,10 @@ const SocialLinksList: FC<{ items: IconLinkProps[] }> = ({ items }) => (
     items={items}
     ItemComponent={({iconProps = {}, ...props}) => (
       <IconLink 
+        newWindow
         iconProps={{
           ...iconProps,
-          containerStyles: { height: '.875rem', marginTop: '.1875rem' },
+          containerStyles: { height: '1.875rem', marginTop: '.1875rem' },
         }}
         {...props}
       />
