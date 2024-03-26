@@ -6,6 +6,7 @@ import {
 } from '@/components';
 import { FC, PropsWithChildren } from 'react';
 import { experienceEntries, socialLinkItems, statsListContent } from './content';
+import { yearsSince } from '@/utils';
 
 const Section: FC<PropsWithChildren<{}>> = ({ children }) => (
   <section className="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24">
@@ -18,6 +19,8 @@ const SectionHeader: FC<PropsWithChildren<{}>> = ({ children }) => (
     {children}
   </h2>
 );
+
+const yearsExp = Math.ceil(yearsSince(experienceEntries[experienceEntries.length -1].startDate));
 
 export default function Home() {
   return (
@@ -34,7 +37,7 @@ export default function Home() {
           </h1>
           <StatsList {...statsListContent} />
           <p className="sm:text-lg mt-6 max-w-md leading-normal">
-            I&apos;m a software engineer with 6 years of experience.
+            I&apos;m a software engineer with {yearsExp} years of experience. 
           </p>
           <p className="text-sm mt-3 ml-1">
             <InlineLink href="#">View my latest resume</InlineLink>
@@ -56,12 +59,12 @@ export default function Home() {
       <main className="pt-24 lg:w-1/2 lg:py-24">
         <Section>
           <SectionHeader>About me</SectionHeader>
-          <p className="mb-3 max-w-lg">
+          <p className="mb-3 max-w-lg text-justify">
             Over the course of my career, I&apos;ve had the privilege of working
             for companies of all sizes and across multiple industries, including
             education, healthcare, social media, and e-commerce.
           </p>
-          <p className="mb-3 max-w-lg">
+          <p className="mb-3 max-w-lg text-justify">
             When I&apos;m not at the computer, I&apos;m usually reading,
             brushing up on my math skills, or biking around New York City.
           </p>
@@ -70,7 +73,6 @@ export default function Home() {
           <SectionHeader>Experience</SectionHeader>
           <ExperienceList items={experienceEntries} />
           <p className="mt-8 text-sm">
-            <InlineLink href="#">View full career timeline</InlineLink>
           </p>
         </Section>
         <Section>
