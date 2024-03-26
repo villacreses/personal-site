@@ -52,9 +52,11 @@ export const experienceEntries: ExperienceEntryProps[] = [
     startDate: '2022-11-14T09:00-0500',
     // endDate: '2024-01-30T16:00-0500',
     location: 'New York City (remote)',
-    description:
-      'Spearheaded overhaul of frontend and devops architectures for legacy ' +
-      'e-commerce platform.',
+    description: [
+      'Spearheaded overhaul of frontend and devops architectures for legacy e-commerce platform.',
+      'Reengineered the pricing fee architecture to give customers the freedom to set their own',
+      'custom transaction costs for their credit card terminals.'
+    ].join(' '),
     techUsed: [
       'Javascript',
       'Ember.js',
@@ -75,10 +77,11 @@ export const experienceEntries: ExperienceEntryProps[] = [
     startDate: '2021-08-26T09:00-0800',
     endDate: '2022-08-26T17:00-0800',
     location: 'Menlo Park, CA (hybrid)',
-    description:
-      'Contributed to the new universal metrics platform designed to ' +
-      'standardize metrics lookup and integration for the entire company.',
-
+    description: [
+      'Contributed to the new universal metrics platform designed to standardize metrics lookup',
+      'and integration for the entire company. Enhanced backend reliability of Metric Authoring',
+      'API, resulting in a 20% reduction in latency issues and improved overall performance.',
+    ].join(' '),
     techUsed: ['Javascript', 'GraphQL', 'Python', 'PHP/Hack'],
   },
   {
@@ -87,7 +90,11 @@ export const experienceEntries: ExperienceEntryProps[] = [
     startDate: '2021-02-21T09:00-0800',
     endDate: '2021-12-18T20:00-0500',
     location: 'Boston, MA (remote)',
-    description: 'Headed development of UI library for new flagship app.',
+    description: [
+      'Headed development of UI library for company\'s new flagship app.',
+      'Created real-time geographic visualization of COVID-19 outbreak,',
+      'increasing brand awareness by over 100%.'
+    ].join(' '),
     techUsed: [
       'React Native',
       'Typescript',
@@ -103,7 +110,11 @@ export const experienceEntries: ExperienceEntryProps[] = [
     startDate: '2018-11-05T09:00-0500',
     endDate: '2020-01-07T17:00-0500',
     location: 'Boston, MA',
-    description: '',
+    description: [
+      'Collaborated with cloud architect to build administrative tools to streamline customer',
+      'management, recruiting, and real-time analytics.',
+      'Refactored existing codebase to the latest standards and optimized for scalability.'
+    ].join(' '),
     techUsed: [
       'Javascript',
       'React',

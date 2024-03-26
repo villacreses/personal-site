@@ -8,12 +8,13 @@ type StatProps = IconPropsWithId & { text: string }
 export type StatsListProps = {
   items: StatProps[],
   textClasses?: string
-} & Pick<ItemListProps<StatProps>, 'listContainerProps'>;
+} & Pick<ItemListProps<StatProps>, 'listContainerProps' | 'itemContainerProps'>;
 
 const StatsList: FC<StatsListProps> = ({
   items,
   textClasses,
-  listContainerProps
+  listContainerProps,
+  itemContainerProps
 }) => (
   <ItemList
     items={items}
@@ -31,7 +32,7 @@ const StatsList: FC<StatsListProps> = ({
     itemContainerProps={{
       className: 'grid align-center gap-x-3',
       style: { gridTemplateColumns: '20px 1fr' },
-
+      ...itemContainerProps
     }}
   />
 );
