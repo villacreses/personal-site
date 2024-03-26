@@ -2,6 +2,7 @@ import { FC } from 'react';
 import ItemList from './ItemList';
 import StatsList from './ItemListStats';
 import DisplayIf from './DisplayIf';
+import { BubbleList } from './BubbleList';
 
 export type ExperienceEntryProps = {
   org: string;
@@ -43,12 +44,8 @@ const ExperienceEntry: FC<ExperienceEntryProps> = ({
       </h3>
       <StatsList
         textClasses="text-xs leading-5"
-        listContainerProps={{
-        className: 'list-none ml-1 p-0 flex gap-x-4',
-        }}
-        itemContainerProps={{
-          className: 'grid items-center gap-x-0.5',
-        }}
+        listContainerProps={{className: 'list-none ml-1 p-0 flex gap-x-4'}}
+        itemContainerProps={{className: 'grid items-center gap-x-0.5'}}
         items={[
           {
             iconId: 'clock',
@@ -63,26 +60,12 @@ const ExperienceEntry: FC<ExperienceEntryProps> = ({
             containerStyles: {
               height: '.745rem'
             }
-
           },
         ]}
       />
     </hgroup>
-    {description && <p className="ml-1 mt-1 text-sm max-w-md leading-normal">{description}</p>}
-    
-    <DisplayIf condition={techUsed && techUsed.length}>
-      <ul className="mt-2 flex flex-wrap">
-        {techUsed?.map(keyword => (
-          <li
-            key={keyword}
-            className="rounded-full inline-block bg-green-400/20 text-xs py-1 px-3 mr-1.5 mt-2 font-medium leading-4"
-          >
-            {keyword}
-          </li>
-        ))}
-      </ul>
-    </DisplayIf>
-    
+    {description && <p className="ml-1 mt-1 text-sm max-w-md leading-normal text-justify">{description}</p>}
+    <BubbleList items={techUsed} />
   </>
 );
 
