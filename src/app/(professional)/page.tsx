@@ -42,7 +42,7 @@ export default function Home() {
           </p>
         </hgroup>
         <p className="sm:text-sm mt-6 sm:mt-3 ml-1">
-          <InlineLink href="#">View my latest resume</InlineLink>
+          <InlineLink href="/docs/resume.pdf">View my latest resume</InlineLink>
         </p>
         <div>
           <SocialLinks items={socialLinkItems} />
