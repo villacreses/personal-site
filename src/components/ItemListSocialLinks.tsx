@@ -1,26 +1,20 @@
 import {FC} from 'react';
 import ItemList from './ItemList';
 import {IconLink, IconLinkProps} from './Icon';
+import styles from './Icon.module.css';
 
 const SocialLinksList: FC<{ items: IconLinkProps[] }> = ({ items }) => (
   <ItemList
     items={items}
-    ItemComponent={({iconProps = {}, ...props}) => (
-      <IconLink 
-        newWindow
-        iconProps={{
-          ...iconProps,
-          containerStyles: { height: '1.875rem', marginTop: '.1875rem' },
-        }}
+    ItemComponent={(props) => (
+      <IconLink
+        className={`block transition duration-300 hover:-translate-y-0.5 ${styles.socialIcon}`}
+        target="_blank"
         {...props}
       />
     )}
     listContainerProps={{
-      className: 'list-none ml-1 mt-16 p-0 flex gap-x-2'
-    }}
-    itemContainerProps={{
-      className: 'grid align-center gap-x-3',
-      style: { gridTemplateColumns: '20px 1fr' }
+      className: 'list-none ml-1 mt-16 p-0 flex justify-center sm:justify-start gap-x-6 sm:gap-x-4'
     }}
   />
 );

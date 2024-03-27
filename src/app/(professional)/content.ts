@@ -14,10 +14,12 @@ export const statsListContent: StatsListProps = {
     {
       iconId: 'suitcase',
       text: 'Senior Software Engineer @ Godaddy.com',
+      size: '.8rem'
     },
     {
       iconId: 'school',
       text: 'B.A. Applied Math @ CUNY Queens College',
+      size: '.95rem'
     },
     { iconId: 'location', text: 'New York City' },
   ],

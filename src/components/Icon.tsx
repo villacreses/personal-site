@@ -1,4 +1,4 @@
-import {ComponentProps, FC} from 'react';
+import {ComponentProps, CSSProperties, FC} from 'react';
 import Link, {LinkProps} from 'next/link';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {
@@ -64,36 +64,37 @@ export type IconID = keyof typeof iconMap;
 type IconIdProps = { iconId: IconID };
 type FAProps = Omit<ComponentProps<typeof FontAwesomeIcon>, 'icon'>
 
-export interface IconProps extends FAProps {
+export interface IconProps extends Omit<FAProps, 'size'> {
   containerStyles?: IconProps['style'];
+  size?: CSSProperties['height']
 }
 
 export type IconPropsWithId = IconProps & IconIdProps;
 
-export interface IconLinkProps extends LinkProps {
+export interface IconLinkProps extends ComponentProps<typeof Link> {
   label: string;
   slug: IconID;
   iconProps?: IconProps;
-  newWindow?: boolean
 };
 
-export const Icon: FC<IconPropsWithId> = ({ iconId, size, style, containerStyles, ...props }) => (
-  <div className="flex justify-center" style={containerStyles}>
+export const Icon: FC<IconPropsWithId> = ({ iconId, containerStyles, size, style, className, ...props }) => {
+  const sizeStyles = size || !className ? { height: size, width: size } : {};
+
+  return (
     <FontAwesomeIcon
       icon={iconMap[iconId]}
-      className="leading-4 block"
+      style={{...style, ...sizeStyles}}
+      className={className}
       {...props}
     />
-  </div>
-);
+  );
+};
 
-export const IconLink: FC<IconLinkProps> = ({ href, label, slug, iconProps, newWindow, ...linkProps }) => (
+export const IconLink: FC<IconLinkProps> = ({ href, label, slug, iconProps, ...linkProps }) => (
   <Link
     href={href}
     title={label}
     aria-label={label}
-    className="transition duration-300 hover:-translate-y-0.5"
-    target={newWindow ? '_blank' : undefined}
     {...linkProps}
   >
     <Icon iconId={slug} {...iconProps} />

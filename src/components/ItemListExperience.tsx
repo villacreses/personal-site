@@ -37,10 +37,10 @@ const ExperienceEntry: FC<ExperienceEntryProps> = ({
 }) => (
   <>
   <hgroup className="mb-2">
-      <h3 className="leading-5 mb-1 text-xl">
-        <span className="font-medium tracking-wide">{role}</span>
-        &nbsp;&nbsp;&#x2022;&nbsp;
-        <span className="font-light tracking-tight"> {org}</span>
+      <h3 className="leading-5 mb-1 flex flex-col sm:flex-row">
+        <span className="font-medium tracking-wide text-xl">{role}</span>
+        <span className="hidden sm:inline text-xl">&nbsp;&nbsp;&#x2022;&nbsp;&nbsp;</span>
+        <span className="font-light tracking-wide text-md sm:text-xl sm:tracking-tight sm:ml-0"> {org}</span>
       </h3>
       <StatsList
         textClasses="text-xs leading-5"

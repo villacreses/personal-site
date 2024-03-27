@@ -21,12 +21,9 @@ const IconCta: FC<IconCtaProps> = ({
   text,
   href
 }) => (
-  <Link className="grid text-center gap-x-0.25" style={{ gridTemplateColumns: '20px 1fr' }} href={href}>
-    <Icon
-      iconId={iconId}
-      containerStyles={{ height: '.875rem', marginTop: '.0875rem' }}
-    />
-    <span className="text-xs tracking-wide">{text}</span>
+  <Link className="flex flex-row items-center sm:gap-x-0.25" href={href}>
+    <Icon iconId={iconId} className="mr-0.5 sm:mr-1 w-3.5 h-3.5 sm:w-3 sm:h-3" />
+    <span className="text-sm sm:text-xs tracking-wide">{text}</span>
   </Link>
 );
 
@@ -44,9 +41,7 @@ const ProjectEntry: FC<ProjectEntryProps> = ({ title, description, techUsed, lin
       <ItemList
         items={links}
         ItemComponent={IconCta}
-        listContainerProps={{
-          className: 'flex flex-row ml-1 mt-2 gap-x-3'
-        }}
+        listContainerProps={{className: 'flex flex-row ml-0.5 mt-3 gap-x-4 sm:gap-x-3'}}
       />
     )}
     <BubbleList items={techUsed} />
