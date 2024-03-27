@@ -8,6 +8,7 @@ import {
 import { FC, PropsWithChildren } from 'react';
 import { experienceEntries, projectEntries, socialLinkItems, statsListContent } from './content';
 import { yearsSince } from '@/utils';
+import Link from 'next/link';
 
 const Section: FC<PropsWithChildren<{}>> = ({ children }) => (
   <section className="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24">
@@ -46,12 +47,12 @@ export default function Home() {
         </p>
         <div>
           <SocialLinks items={socialLinkItems} />
-          <p className="text-xs pt-2 tracking-tight text-opacity-5 text-white cursor-default">
+          <p className="text-xs mt-10 sm:mt-4  tracking-tight text-opacity-5 text-white cursor-default">
             <small>
               Still using Netscape? Check out&nbsp;
-              <a href="#" className="underline cursor-default">
+              <Link href="/90s" className="underline cursor-default">
                 my optimized site
-              </a>
+              </Link>
               .
             </small>
           </p>
