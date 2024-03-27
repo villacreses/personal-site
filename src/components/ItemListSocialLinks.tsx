@@ -15,7 +15,7 @@ const SocialLinksList: FC<{ items: IconLinkProps[] }> = ({ items }) => (
       />
     )}
     listContainerProps={{
-      className: 'list-none ml-1 mt-16 p-0 flex justify-center sm:justify-start gap-x-6 sm:gap-x-4'
+      className: 'list-none ml-1 mt-7 p-0 flex gap-x-6 sm:gap-x-4'
     }}
   />
 );

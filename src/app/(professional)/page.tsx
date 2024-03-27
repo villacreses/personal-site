@@ -17,7 +17,7 @@ const Section: FC<PropsWithChildren<{}>> = ({ children }) => (
 );
 
 const SectionHeader: FC<PropsWithChildren<{}>> = ({ children }) => (
-  <h2 className="text-sm font-bold uppercase tracking-widest mb-3">
+  <h2 className="text-sm font-bold uppercase tracking-widest mb-6">
     {children}
   </h2>
 );
@@ -38,13 +38,10 @@ export default function Home() {
             </strong>
           </h1>
           <StatsList {...statsListContent} />
-          <p className="sm:text-lg mt-3 max-w-md leading-normal">
+          <p className="sm:text-lg mt-4 max-w-md leading-normal">
             I&apos;m a software engineer with {yearsExp} years of experience. 
           </p>
         </hgroup>
-        <p className="sm:text-sm mt-6 sm:mt-3 ml-1">
-          <InlineLink href="/docs/resume.pdf">View my latest resume</InlineLink>
-        </p>
         <div>
           <SocialLinks items={socialLinkItems} />
           <p className="text-xs mt-10 sm:mt-4  tracking-tight text-opacity-5 text-white cursor-default">
@@ -74,7 +71,8 @@ export default function Home() {
         <Section>
           <SectionHeader>Experience</SectionHeader>
           <ExperienceList items={experienceEntries} />
-          <p className="mt-8 text-sm">
+          <p className="sm:text-sm mt-12 sm:mt-3 ml-1">
+            <InlineLink href="/docs/resume.pdf">View my latest resume</InlineLink>
           </p>
         </Section>
         <Section>

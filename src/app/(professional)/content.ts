@@ -8,7 +8,7 @@ import {
 export const statsListContent: StatsListProps = {
   textClasses: 'text-xs sm:text-sm leading-5 tracking-wider',
   listContainerProps: {
-    className: 'list-none ml-1 mt-2 p-0 flex flex-col gap-y-1',
+    className: 'list-none ml-1 mt-3 p-0 flex flex-col gap-y-1',
   },
   items: [
     {

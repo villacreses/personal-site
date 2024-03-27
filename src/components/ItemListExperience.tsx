@@ -41,7 +41,7 @@ const ExperienceEntry: FC<ExperienceEntryProps> = ({
       <h3 className="leading-5 mb-1 flex flex-col sm:flex-row">
         <span className="font-medium tracking-wide text-xl">{role}</span>
         <span className="hidden sm:inline text-xl">&nbsp;&nbsp;&#x2022;&nbsp;&nbsp;</span>
-        <span className="font-light tracking-wide ml-1 sm:ml-0 text-md sm:text-xl sm:tracking-tight"> {org}</span>
+        <span className="font-light tracking-wide ml-1 sm:ml-0 text-sm sm:text-xl sm:tracking-tight"> {org}</span>
       </h3>
       <ul className="no-list flex ml-1 gap-x-4">
         <li className="flex items-center gap-x-1">
