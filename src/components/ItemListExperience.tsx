@@ -3,6 +3,7 @@ import ItemList from './ItemList';
 import StatsList from './ItemListStats';
 import DisplayIf from './DisplayIf';
 import { BubbleList } from './BubbleList';
+import { Icon } from './Icon';
 
 export type ExperienceEntryProps = {
   org: string;
@@ -36,33 +37,26 @@ const ExperienceEntry: FC<ExperienceEntryProps> = ({
   techUsed
 }) => (
   <>
-  <hgroup className="mb-2">
+    <hgroup className="mb-2">
       <h3 className="leading-5 mb-1 flex flex-col sm:flex-row">
         <span className="font-medium tracking-wide text-xl">{role}</span>
         <span className="hidden sm:inline text-xl">&nbsp;&nbsp;&#x2022;&nbsp;&nbsp;</span>
         <span className="font-light tracking-wide ml-1 sm:ml-0 text-md sm:text-xl sm:tracking-tight"> {org}</span>
       </h3>
-      <StatsList
-        textClasses="text-xs leading-5"
-        listContainerProps={{className: 'list-none ml-1 p-0 flex gap-x-4'}}
-        itemContainerProps={{className: 'grid items-center gap-x-0.5'}}
-        items={[
-          {
-            iconId: 'clock',
-            text: `${formatDate(startDate)} - ${formatDate(endDate) || 'Present'}`,
-            containerStyles: {
-              height: '.75rem'
-            }
-          },
-          {
-            iconId: 'location',
-            text: location,
-            containerStyles: {
-              height: '.745rem'
-            }
-          },
-        ]}
-      />
+      <ul className="no-list flex ml-1 gap-x-4">
+        <li className="flex items-center gap-x-1">
+          <Icon iconId="clock" className="w-3 h-3" />
+          <span className="text-xs leading-5">
+            {`${formatDate(startDate)} - ${formatDate(endDate) || 'Present'}`}
+          </span>
+        </li>
+        <li className="flex items-center gap-x-0.5">
+          <Icon iconId="location" className="w-3 h-3 mr-0.5" />
+          <span className="text-xs leading-5">
+            {location}
+          </span>
+        </li>
+      </ul>
     </hgroup>
     {description && <p className="ml-1 mt-1 text-sm max-w-md leading-normal">{description}</p>}
     <BubbleList items={techUsed} />

@@ -18,20 +18,16 @@ const StatsList: FC<StatsListProps> = ({
 }) => (
   <ItemList
     items={items}
-    ItemComponent={({ text, width, size = '.875rem', ...props }) => (
+    ItemComponent={({ text, ...props }) => (
       <>
-        <Icon
-          style={{ width }}
-          size={size}
-          {...props}
-        />
+        <Icon {...props} />
         <span className={textClasses}>{text}</span>
       </>
     )}
     listContainerProps={listContainerProps}
     itemContainerProps={{
-      className: 'grid items-center gap-x-3',
-      style: { gridTemplateColumns: '20px 1fr' },
+      className: 'grid items-center gap-x-2',
+      style: { gridTemplateColumns: '1rem 1fr' },
       ...itemContainerProps
     }}
   />

@@ -21,7 +21,7 @@ export const statsListContent: StatsListProps = {
       text: 'B.A. Applied Math @ CUNY Queens College',
       size: '.95rem'
     },
-    { iconId: 'location', text: 'New York City' },
+    { iconId: 'location', text: 'New York City', size: '.875rem' },
   ],
 };
 
