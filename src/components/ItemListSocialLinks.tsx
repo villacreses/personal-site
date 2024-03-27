@@ -2,13 +2,14 @@ import {FC} from 'react';
 import ItemList from './ItemList';
 import {IconLink, IconLinkProps} from './Icon';
 import styles from './Icon.module.css';
+import { linkColor } from '@/utils';
 
 const SocialLinksList: FC<{ items: IconLinkProps[] }> = ({ items }) => (
   <ItemList
     items={items}
     ItemComponent={(props) => (
       <IconLink
-        className={`block transition duration-300 hover:-translate-y-0.5 ${styles.socialIcon}`}
+        className={`block transition duration-300 hover:-translate-y-0.5 ${styles.socialIcon} ${linkColor}`}
         target="_blank"
         {...props}
       />

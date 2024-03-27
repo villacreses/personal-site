@@ -3,6 +3,7 @@ import ItemList from './ItemList';
 import { BubbleList } from './BubbleList';
 import { Icon, IconID, IconLink } from './Icon';
 import Link from 'next/link';
+import { linkColor } from '@/utils';
 
 type IconCtaProps = {
   iconId: IconID;
@@ -21,7 +22,7 @@ const IconCta: FC<IconCtaProps> = ({
   text,
   href
 }) => (
-  <Link className="flex flex-row items-center sm:gap-x-0.25" href={href}>
+  <Link className={`flex flex-row items-center sm:gap-x-0.25 ${linkColor}`} href={href}>
     <Icon iconId={iconId} className="mr-0.5 sm:mr-1 w-3.5 h-3.5 sm:w-3 sm:h-3" />
     <span className="text-sm sm:text-xs tracking-wide">{text}</span>
   </Link>
