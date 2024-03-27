@@ -35,7 +35,7 @@ const ProjectEntry: FC<ProjectEntryProps> = ({ title, description, techUsed, lin
         {title}
       </span>
     </h3>
-    <p className="mt-1 text-sm max-w-md leading-normal text-justify">
+    <p className="mt-1 text-sm max-w-md leading-normal">
       {description}
     </p>
     {links && (

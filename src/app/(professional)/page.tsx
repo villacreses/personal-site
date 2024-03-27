@@ -60,12 +60,12 @@ export default function Home() {
       <main className="pt-24 lg:w-1/2 lg:py-24">
         <Section>
           <SectionHeader>About me</SectionHeader>
-          <p className="mb-3 max-w-lg text-justify">
+          <p className="mb-3 max-w-lg">
             Over the course of my career, I&apos;ve had the privilege of working
             for companies of all sizes and across multiple industries, including
             education, healthcare, social media, and e-commerce.
           </p>
-          <p className="mb-3 max-w-lg text-justify">
+          <p className="mb-3 max-w-lg">
             When I&apos;m not at the computer, I&apos;m usually reading,
             brushing up on my math skills, or biking around New York City.
           </p>

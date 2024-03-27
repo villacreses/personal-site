@@ -64,7 +64,7 @@ const ExperienceEntry: FC<ExperienceEntryProps> = ({
         ]}
       />
     </hgroup>
-    {description && <p className="ml-1 mt-1 text-sm max-w-md leading-normal text-justify">{description}</p>}
+    {description && <p className="ml-1 mt-1 text-sm max-w-md leading-normal">{description}</p>}
     <BubbleList items={techUsed} />
   </>
 );
