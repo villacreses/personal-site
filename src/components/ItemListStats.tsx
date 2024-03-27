@@ -30,7 +30,7 @@ const StatsList: FC<StatsListProps> = ({
     )}
     listContainerProps={listContainerProps}
     itemContainerProps={{
-      className: 'grid align-center gap-x-3',
+      className: 'grid items-center gap-x-3',
       style: { gridTemplateColumns: '20px 1fr' },
       ...itemContainerProps
     }}

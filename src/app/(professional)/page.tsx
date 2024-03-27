@@ -1,11 +1,12 @@
 import {
   ExperienceList,
   InlineLink,
+  ProjectList,
   SocialLinks,
   StatsList,
 } from '@/components';
 import { FC, PropsWithChildren } from 'react';
-import { experienceEntries, socialLinkItems, statsListContent } from './content';
+import { experienceEntries, projectEntries, socialLinkItems, statsListContent } from './content';
 import { yearsSince } from '@/utils';
 
 const Section: FC<PropsWithChildren<{}>> = ({ children }) => (
@@ -77,7 +78,7 @@ export default function Home() {
         </Section>
         <Section>
           <SectionHeader>Projects</SectionHeader>
-          <p>Filler.</p>
+          <ProjectList items={projectEntries} />
         </Section>
       </main>
     </div>

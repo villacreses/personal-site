@@ -24,6 +24,7 @@ import {
   faCaretUp,
   faCaretDown,
   faLocationDot,
+  faLink,
 } from '@fortawesome/free-solid-svg-icons';
 
 export enum ExperienceCategory {
@@ -39,6 +40,7 @@ export const iconMap = {
   medium: faMedium,
   hackerrank: faHackerrank,
   folder: faFolder,
+  link: faLink,
   external: faExternalLinkAlt,
   burger: faBars,
   devto: faDev,
