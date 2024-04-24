@@ -18,7 +18,7 @@ const IconArrowUpRight = () => (
   </svg>
 );
 
-const InlineLink: FC<PropsWithChildren<Omit<LinkProps, 'className'>>> = ({
+export const InlineLink: FC<PropsWithChildren<Omit<LinkProps, 'className'>>> = ({
   children,
   ...props
 }) => (
@@ -27,5 +27,3 @@ const InlineLink: FC<PropsWithChildren<Omit<LinkProps, 'className'>>> = ({
     <IconArrowUpRight />
   </Link>
 );
-
-export default InlineLink;

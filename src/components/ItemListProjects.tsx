@@ -1,7 +1,6 @@
 import { FC } from 'react';
-import ItemList from './ItemList';
 import { BubbleList } from './BubbleList';
-import { Icon, IconID, IconLink } from './Icon';
+import { Icon, IconID } from './Icon';
 import Link from 'next/link';
 import { linkColor } from '@/utils';
 
@@ -39,22 +38,24 @@ const ProjectEntry: FC<ProjectEntryProps> = ({ title, description, techUsed, lin
       {description}
     </p>
     {links && (
-      <ItemList
-        items={links}
-        ItemComponent={IconCta}
-        listContainerProps={{className: 'flex flex-row ml-0.5 mt-3 gap-x-4 sm:gap-x-3'}}
-      />
+      <ul className="flex flex-row ml-0.5 mt-3 gap-x-4 sm:gap-x-3">
+        {links.map(link => (
+          <li key={link.href}>
+            <IconCta {...link} />
+          </li>
+        ))}
+      </ul>
     )}
     <BubbleList items={techUsed} />
   </>
 );
 
 export const ProjectList: FC<{items: ProjectEntryProps[]}> = ({items}) => (
-  <ItemList 
-    items={items}
-    ItemComponent={ProjectEntry}
-    listContainerProps={{
-    className: 'mt-5 flex flex-col gap-y-12'
-    }}
-  />
+  <ul className="mt-5 flex flex-col gap-y-12">
+    {items.map(item => (
+      <li key={item.title}>
+        <ProjectEntry {...item} />
+      </li>
+    ))}
+  </ul>
 );
