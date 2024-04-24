@@ -26,6 +26,12 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+@layer base {
+  a {
+    @apply text-blue-700 hover:text-blue-900 dark:text-green-300 dark:hover:text-green-500
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
