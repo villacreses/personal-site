@@ -1,7 +1,4 @@
 import { FC } from 'react';
-import ItemList from './ItemList';
-import StatsList from './ItemListStats';
-import DisplayIf from './DisplayIf';
 import { BubbleList } from './BubbleList';
 import { Icon } from './Icon';
 
@@ -27,6 +24,7 @@ const formatDate = (dateString?: string) => {
     date.getFullYear(),
   ].join(' ');
 };
+
 const ExperienceEntry: FC<ExperienceEntryProps> = ({
   org,
   role,
@@ -63,14 +61,12 @@ const ExperienceEntry: FC<ExperienceEntryProps> = ({
   </>
 );
 
-const ExperienceList: FC<{ items: ExperienceEntryProps[] }> = ({ items }) => (
-  <ItemList
-    items={items}
-    ItemComponent={ExperienceEntry}
-    listContainerProps={{
-      className: 'flex flex-col gap-y-12 mt-5 max-w-lg ',
-    }}
-  />
+export const ExperienceList: FC<{ items: ExperienceEntryProps[] }> = ({ items }) => (
+  <ul className="flex flex-col gap-y-12 mt-5 max-w-lg">
+    {items.map(item => (
+      <li key={`${item.org}_${item.startDate}`}>
+        <ExperienceEntry {...item} />
+      </li>
+    ))}
+  </ul>
 );
-
-export default ExperienceList;

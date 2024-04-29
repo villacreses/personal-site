@@ -1,4 +1,3 @@
-import { linkColor } from '@/utils';
 import Link, { LinkProps } from 'next/link';
 import { FC, PropsWithChildren } from 'react';
 
@@ -18,14 +17,12 @@ const IconArrowUpRight = () => (
   </svg>
 );
 
-const InlineLink: FC<PropsWithChildren<Omit<LinkProps, 'className'>>> = ({
+export const InlineLink: FC<PropsWithChildren<Omit<LinkProps, 'className'>>> = ({
   children,
   ...props
 }) => (
-  <Link className={`flex flex-row group ${linkColor}`} {...props}>
+  <Link className={`flex flex-row group`} {...props}>
     {children + ' '}
     <IconArrowUpRight />
   </Link>
 );
-
-export default InlineLink;

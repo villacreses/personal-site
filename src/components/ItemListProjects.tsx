@@ -1,9 +1,7 @@
 import { FC } from 'react';
-import ItemList from './ItemList';
 import { BubbleList } from './BubbleList';
-import { Icon, IconID, IconLink } from './Icon';
+import { Icon, IconID } from './Icon';
 import Link from 'next/link';
-import { linkColor } from '@/utils';
 
 type IconCtaProps = {
   iconId: IconID;
@@ -22,7 +20,7 @@ const IconCta: FC<IconCtaProps> = ({
   text,
   href
 }) => (
-  <Link className={`flex flex-row items-center sm:gap-x-0.25 ${linkColor}`} href={href}>
+  <Link className={`flex flex-row items-center sm:gap-x-0.25`} href={href}>
     <Icon iconId={iconId} className="mr-0.5 sm:mr-1 w-3.5 h-3.5 sm:w-3 sm:h-3" />
     <span className="text-sm sm:text-xs tracking-wide">{text}</span>
   </Link>
@@ -39,22 +37,24 @@ const ProjectEntry: FC<ProjectEntryProps> = ({ title, description, techUsed, lin
       {description}
     </p>
     {links && (
-      <ItemList
-        items={links}
-        ItemComponent={IconCta}
-        listContainerProps={{className: 'flex flex-row ml-0.5 mt-3 gap-x-4 sm:gap-x-3'}}
-      />
+      <ul className="flex flex-row ml-0.5 mt-3 gap-x-4 sm:gap-x-3">
+        {links.map(link => (
+          <li key={link.href}>
+            <IconCta {...link} />
+          </li>
+        ))}
+      </ul>
     )}
     <BubbleList items={techUsed} />
   </>
 );
 
 export const ProjectList: FC<{items: ProjectEntryProps[]}> = ({items}) => (
-  <ItemList 
-    items={items}
-    ItemComponent={ProjectEntry}
-    listContainerProps={{
-    className: 'mt-5 flex flex-col gap-y-12'
-    }}
-  />
+  <ul className="mt-5 flex flex-col gap-y-12">
+    {items.map(item => (
+      <li key={item.title}>
+        <ProjectEntry {...item} />
+      </li>
+    ))}
+  </ul>
 );
