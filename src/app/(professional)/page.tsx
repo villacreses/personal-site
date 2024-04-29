@@ -44,7 +44,7 @@ export default function Home() {
         </hgroup>
         <div>
           <SocialLinks items={socialLinkItems} />
-          <p className="text-xs mt-10 sm:mt-4  tracking-tight text-opacity-5 text-white cursor-default">
+          {/* <p className="text-xs mt-10 sm:mt-4  tracking-tight text-opacity-5 text-white cursor-default">
             <small>
               Still using Netscape? Check out&nbsp;
               <Link href="/90s" className="underline cursor-default">
@@ -52,7 +52,7 @@ export default function Home() {
               </Link>
               .
             </small>
-          </p>
+          </p> */}
         </div>
       </header>
       <main className="pt-24 lg:w-1/2 lg:py-24">
