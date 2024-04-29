@@ -49,7 +49,7 @@ export const experienceEntries: ExperienceEntryProps[] = [
     org: 'GoDaddy.com',
     role: 'Senior Software Engineer',
     startDate: '2022-11-14T09:00-0500',
-    // endDate: '2024-01-30T16:00-0500',
+    endDate: '2024-01-30T16:00-0500',
     location: 'New York City (remote)',
     description: [
       'Spearheaded overhaul of frontend and devops architectures for legacy e-commerce platform.',
