@@ -1,5 +1,5 @@
-import Link, { LinkProps } from 'next/link';
-import { FC, PropsWithChildren } from 'react';
+import Link from 'next/link';
+import { FC, PropsWithChildren, ComponentProps } from 'react';
 
 const IconArrowUpRight = () => (
   <svg
@@ -17,11 +17,13 @@ const IconArrowUpRight = () => (
   </svg>
 );
 
-export const InlineLink: FC<PropsWithChildren<Omit<LinkProps, 'className'>>> = ({
+type InlineLinkProps = Omit<ComponentProps<typeof Link>, 'className'>
+
+export const InlineLink: FC<PropsWithChildren<InlineLinkProps>> = ({
   children,
   ...props
 }) => (
-  <Link className={`flex flex-row group`} {...props}>
+  <Link className={'flex flex-row group'} {...props}>
     {children + ' '}
     <IconArrowUpRight />
   </Link>

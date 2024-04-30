@@ -39,11 +39,10 @@ export default function Home() {
             for companies of all sizes and across multiple industries, including
             education, healthcare, social media, and e-commerce.
           </p>
-          <p className="mb-3 max-w-xl mx-auto text-lg">
-            Please send all inquiries to {' '}
-            <Link href="mailto:MarioVillacreses@outlook.com">
-              MarioVillacreses@outlook.com
-            </Link>.
+          <p className="text-lg mx-auto max-w-xl mt-10 font-semibold">
+            <InlineLink href="/docs/resume.pdf" target="_blank">
+              Download latest resume
+            </InlineLink>
           </p>
         </Section>
         <Section>
@@ -51,6 +50,27 @@ export default function Home() {
             Professional Experience
           </h2>
           <ExperienceList items={experienceEntries} />
+          <p className="text-lg mx-auto max-w-xl mt-10 font-semibold">
+            <InlineLink href="/career-history" target="_blank">
+              View full Career History
+            </InlineLink>
+          </p>
+        </Section>
+        <Section>
+          <h2 className="section-header">
+            Contact
+          </h2>
+          <p className="mb-3 max-w-xl mx-auto text-lg">
+            I&apos;m currently open to full-time and contract roles.
+          </p>
+          <p className="mt-8 mb-3 max-w-xl mx-auto text-lg text-center">
+            <a
+              href="mailto:MarioVillacreses@outlook.com"
+              className="rounded px-4 py-2 border-2 border-green-700"
+            >
+              Send me an Email
+            </a>
+          </p>
         </Section>
       </main>
     </>
