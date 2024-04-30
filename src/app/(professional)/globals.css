@@ -32,6 +32,12 @@ body {
   }
 }
 
+@layer components {
+  .section-header {
+    @apply font-bold uppercase tracking-widest mb-16 text-center
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

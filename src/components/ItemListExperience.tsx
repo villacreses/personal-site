@@ -35,34 +35,32 @@ const ExperienceEntry: FC<ExperienceEntryProps> = ({
   techUsed
 }) => (
   <>
-    <hgroup className="mb-2">
-      <h3 className="leading-5 mb-1 flex flex-col sm:flex-row">
-        <span className="font-medium tracking-wide text-xl">{role}</span>
-        <span className="hidden sm:inline text-xl">&nbsp;&nbsp;&#x2022;&nbsp;&nbsp;</span>
-        <span className="font-light tracking-wide ml-1 sm:ml-0 text-sm sm:text-xl sm:tracking-tight"> {org}</span>
-      </h3>
-      <ul className="no-list flex ml-1 gap-x-4">
-        <li className="flex items-center gap-x-1">
-          <Icon iconId="clock" className="w-3 h-3" />
-          <span className="text-xs leading-5">
-            {`${formatDate(startDate)} - ${formatDate(endDate) || 'Present'}`}
-          </span>
-        </li>
-        <li className="flex items-center gap-x-0.5">
+    <div className="grid grid-cols-8 gap-x-4">
+      <header className="col-span-2 mt-1.5">
+        <h3 className="text-sm font-semibold uppercase tracking-wide">{org}</h3>
+        <p className="text-xs mt-1">
+          {`${formatDate(startDate)} - ${formatDate(endDate) || 'Present'}`}
+        </p>
+      </header>
+      <div className="col-span-6">
+        <h4 className="font-medium tracking-wide text-lg">{role}</h4>
+        <div className="flex items-center gap-x-0.5 ml-1">
           <Icon iconId="location" className="w-3 h-3 mr-0.5" />
           <span className="text-xs leading-5">
             {location}
           </span>
-        </li>
-      </ul>
-    </hgroup>
-    {description && <p className="ml-1 mt-1 text-sm max-w-md leading-normal">{description}</p>}
-    <BubbleList items={techUsed} />
+        </div>
+        {description && (
+          <p className="ml-1 mt-1 text-sm max-w-md leading-normal">{description}</p>
+        )}
+        <BubbleList items={techUsed} />
+      </div>
+    </div>
   </>
 );
 
 export const ExperienceList: FC<{ items: ExperienceEntryProps[] }> = ({ items }) => (
-  <ul className="flex flex-col gap-y-12 mt-5 max-w-lg">
+  <ul className="flex flex-col gap-y-12 mt-5 max-w-xl mx-auto">
     {items.map(item => (
       <li key={`${item.org}_${item.startDate}`}>
         <ExperienceEntry {...item} />
