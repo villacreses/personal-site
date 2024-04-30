@@ -27,7 +27,7 @@ export default function Home() {
         <p></p>
         <SocialLinks items={socialLinkItems} />
       </header>
-      <main className="px-6">
+      <main>
         <Section>
           <h2 className="section-header">About Me</h2>
           <p className="mb-3 max-w-xl mx-auto text-lg">
@@ -51,7 +51,7 @@ export default function Home() {
           </h2>
           <ExperienceList items={experienceEntries} />
           <p className="text-lg mx-auto max-w-xl mt-10 font-semibold">
-            <InlineLink href="/career-history" target="_blank">
+            <InlineLink href="/career-history">
               View full Career History
             </InlineLink>
           </p>
@@ -61,7 +61,9 @@ export default function Home() {
             Contact
           </h2>
           <p className="mb-3 max-w-xl mx-auto text-lg">
-            I&apos;m currently open to full-time and contract roles.
+            I&apos;m currently open to full-time and contract roles for fullstack or frontend
+            engineering. Whether you have a question, a job offer, or just want to say hi,
+            I&apos;ll try my best to get back to you!
           </p>
           <p className="mt-8 mb-3 max-w-xl mx-auto text-lg text-center">
             <a

@@ -127,6 +127,56 @@ export const experienceEntries: ExperienceEntryProps[] = [
   },
 ];
 
+type CareerContent = {
+  heading: string;
+  items: ExperienceEntryProps[];
+}[];
+
+export const careerContent: CareerContent = [
+  {
+    heading: 'Education',
+    items: [
+      {
+        org: 'CUNY Queens College',
+        role: 'B.A. Applied Mathematics',
+        startDate: '',
+        location: 'Flushing, NY',
+        description: [
+          'Bachelor of Arts in Applied Mathematics with a concentration in computer science',
+        ].join(' ')
+      },
+      {
+        org: 'Fullstack Academy',
+        role: 'Coding Bootcamp - Web Development',
+        startDate: '',
+        location: 'New York, NY',
+        description: [
+          'Full time immersive program that teaches full-stack web development using the NERD development stack.'
+        ].join(' '),
+      }
+    ],
+  },
+  {
+    heading: 'Professional Experience',
+    items: experienceEntries,
+  },
+  {
+    heading: 'Hackathons',
+    items: [
+      {
+        org: '',
+        role: 'NY Sextech Hackathon 2018 - 1st Place Winner',
+        startDate: '2018-08-01',
+        location: 'Brooklyn, NY',
+        description: [
+          '1st Place Winner at NY Sextech Hackathon, featured in Vice, Forbes, and Men’s Health.',
+          'Project was considered for official curriculum integration within select NYC high schools.'
+        ].join(' ') 
+      },
+    ],
+  },
+];
+
 export const projectEntries: ProjectEntryProps[] = [
   {
     title: 'Chronos',

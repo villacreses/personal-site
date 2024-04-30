@@ -21,10 +21,11 @@ type InlineLinkProps = Omit<ComponentProps<typeof Link>, 'className'>
 
 export const InlineLink: FC<PropsWithChildren<InlineLinkProps>> = ({
   children,
+  target,
   ...props
 }) => (
-  <Link className={'flex flex-row group'} {...props}>
+  <Link className={'flex flex-row group'} target={target} {...props}>
     {children + ' '}
-    <IconArrowUpRight />
+    {target === '_blank' ? <IconArrowUpRight /> : null}
   </Link>
 );

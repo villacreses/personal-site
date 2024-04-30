@@ -27,12 +27,19 @@ body {
 }
 
 @layer base {
+  main {
+    @apply px-6
+  }
   a {
     @apply text-blue-700 hover:text-blue-900 dark:text-green-300 dark:hover:text-green-500
   }
 }
 
 @layer components {
+  .page-section {
+    @apply mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24
+  }
+
   .section-header {
     @apply font-bold uppercase tracking-widest mb-12 text-center
   }
