@@ -139,7 +139,7 @@ export const careerContent: CareerContent = [
       {
         org: 'CUNY Queens College',
         role: 'B.A. Applied Mathematics',
-        startDate: '',
+        startDate: '2016-05-30T17:00-0500',
         location: 'Flushing, NY',
         description: [
           'Bachelor of Arts in Applied Mathematics with a concentration in computer science',
@@ -147,8 +147,8 @@ export const careerContent: CareerContent = [
       },
       {
         org: 'Fullstack Academy',
-        role: 'Coding Bootcamp - Web Development',
-        startDate: '',
+        role: 'Web Development Bootcamp',
+        startDate: '2018-02-05T09:00-0500',
         location: 'New York, NY',
         description: [
           'Full time immersive program that teaches full-stack web development using the NERD development stack.'
@@ -165,7 +165,7 @@ export const careerContent: CareerContent = [
     items: [
       {
         org: '',
-        role: 'NY Sextech Hackathon 2018 - 1st Place Winner',
+        role: 'NY Sextech Hackathon - 1st Place Winner',
         startDate: '2018-08-01',
         location: 'Brooklyn, NY',
         description: [

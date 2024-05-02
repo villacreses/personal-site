@@ -9,6 +9,11 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        'xs': '410px',
+        'xxs': '375px', 
+        '2xs': '320px',
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':

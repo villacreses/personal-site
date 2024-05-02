@@ -10,12 +10,6 @@ import { experienceEntries, projectEntries, socialLinkItems, statsListContent } 
 import { yearsSince } from '@/utils';
 import Link from 'next/link';
 
-const Section: FC<PropsWithChildren<{}>> = ({ children }) => (
-  <section className="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24">
-    {children}
-  </section>
-);
-
 const yearsExp = Math.ceil(yearsSince(experienceEntries[experienceEntries.length -1].startDate));
 
 export default function Home() {
@@ -28,7 +22,7 @@ export default function Home() {
         <SocialLinks items={socialLinkItems} />
       </header>
       <main>
-        <Section>
+        <section className="page-section">
           <h2 className="section-header">About Me</h2>
           <p className="mb-3 max-w-xl mx-auto text-lg">
             I have {yearsExp} years of experience working as a full stack software
@@ -44,8 +38,8 @@ export default function Home() {
               Download latest resume
             </InlineLink>
           </p>
-        </Section>
-        <Section>
+        </section>
+        <section className="page-section">
           <h2 className="section-header">
             Professional Experience
           </h2>
@@ -55,8 +49,8 @@ export default function Home() {
               View full Career History
             </InlineLink>
           </p>
-        </Section>
-        <Section>
+        </section>
+        <section className="page-section">
           <h2 className="section-header">
             Contact
           </h2>
@@ -73,7 +67,7 @@ export default function Home() {
               Send me an Email
             </a>
           </p>
-        </Section>
+        </section>
       </main>
     </>
   );

@@ -28,7 +28,7 @@ body {
 
 @layer base {
   main {
-    @apply px-6
+    @apply px-6 pb-16
   }
   a {
     @apply text-blue-700 hover:text-blue-900 dark:text-green-300 dark:hover:text-green-500
@@ -40,8 +40,12 @@ body {
     @apply mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24
   }
 
+  .page-section:last-of-type {
+    @apply mb-0
+  }
+
   .section-header {
-    @apply font-bold uppercase tracking-widest mb-12 text-center
+    @apply font-bold uppercase tracking-widest mb-8 text-center
   }
 }
 
