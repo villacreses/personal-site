@@ -27,13 +27,38 @@ body {
 }
 
 @layer base {
+  main {
+    @apply px-6 pb-16
+  }
   a {
     @apply text-blue-700 hover:text-blue-900 dark:text-green-300 dark:hover:text-green-500
+  }
+}
+
+@layer components {
+  .page-section {
+    @apply mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24
+  }
+
+  .page-section:last-of-type {
+    @apply mb-0
+  }
+
+  .section-header {
+    @apply font-bold uppercase tracking-widest mb-8 text-center
   }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .transition-default {
+    @apply transition-all duration-300 ease-in-out
+  }
+
+  .link-colors {
+    @apply border-blue-700 hover:border-blue-900 dark:border-green-300 dark:hover:border-green-500
   }
 }

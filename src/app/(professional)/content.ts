@@ -46,7 +46,7 @@ export const socialLinkItems: IconLinkProps[] = [
 
 export const experienceEntries: ExperienceEntryProps[] = [
   {
-    org: 'GoDaddy.com',
+    org: 'GoDaddy',
     role: 'Senior Software Engineer',
     startDate: '2022-11-14T09:00-0500',
     endDate: '2024-01-30T16:00-0500',
@@ -123,6 +123,56 @@ export const experienceEntries: ExperienceEntryProps[] = [
       'Express.js',
       'Sass',
       'AWS S3',
+    ],
+  },
+];
+
+type CareerContent = {
+  heading: string;
+  items: ExperienceEntryProps[];
+}[];
+
+export const careerContent: CareerContent = [
+  {
+    heading: 'Education',
+    items: [
+      {
+        org: 'CUNY Queens College',
+        role: 'B.A. Applied Mathematics',
+        startDate: '2016-05-30T17:00-0500',
+        location: 'Flushing, NY',
+        description: [
+          'Bachelor of Arts in Applied Mathematics with a concentration in computer science',
+        ].join(' ')
+      },
+      {
+        org: 'Fullstack Academy',
+        role: 'Web Development Bootcamp',
+        startDate: '2018-02-05T09:00-0500',
+        location: 'New York, NY',
+        description: [
+          'Full time immersive program that teaches full-stack web development using the NERD development stack.'
+        ].join(' '),
+      }
+    ],
+  },
+  {
+    heading: 'Professional Experience',
+    items: experienceEntries,
+  },
+  {
+    heading: 'Hackathons',
+    items: [
+      {
+        org: '',
+        role: 'NY Sextech Hackathon - 1st Place Winner',
+        startDate: '2018-08-01',
+        location: 'Brooklyn, NY',
+        description: [
+          '1st Place Winner at NY Sextech Hackathon, featured in Vice, Forbes, and Men’s Health.',
+          'Project was considered for official curriculum integration within select NYC high schools.'
+        ].join(' ') 
+      },
     ],
   },
 ];
