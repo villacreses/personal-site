@@ -6,7 +6,7 @@ export const SocialLinks: FC<{ items: IconLinkProps[] }> = ({ items }) => (
     {items.map(props => (
       <li key={props.label}>
         <IconLink
-          className={'block transition duration-300 hover:-translate-y-0.5 h-[30px] w-[30px]'}
+          className={'block transition-default hover:-translate-y-0.5 h-[30px] w-[30px]'}
           target="_blank"
           {...props}
         />

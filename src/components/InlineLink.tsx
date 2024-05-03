@@ -1,12 +1,14 @@
 import Link from 'next/link';
 import { FC, PropsWithChildren, ComponentProps } from 'react';
+import {Icon} from './Icon';
+import { classNames } from '@/utils';
 
 const IconArrowUpRight = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
     fill="currentColor"
-    className="inline-block w-4 pt-1 transform ease-in-out duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+    className="inline-block w-4 pt-1 transition-default group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
     aria-hidden="true"
   >
     <path
@@ -17,15 +19,30 @@ const IconArrowUpRight = () => (
   </svg>
 );
 
+const ArrowRight = () => (
+  <Icon
+    iconId="rightArrow"
+    size={14}
+    className="ml-0.5 transition-default group-hover:translate-x-1"
+  />
+);
+
 type InlineLinkProps = Omit<ComponentProps<typeof Link>, 'className'>
 
 export const InlineLink: FC<PropsWithChildren<InlineLinkProps>> = ({
   children,
   target,
   ...props
-}) => (
-  <Link className={'flex flex-row group'} target={target} {...props}>
-    {children + ' '}
-    {target === '_blank' ? <IconArrowUpRight /> : null}
-  </Link>
-);
+}) => {
+  const className = classNames([
+    'flex flex-row group transition-default',
+    target !== '_blank' && 'items-center'
+  ]); 
+
+  return (
+    <Link className={className} target={target} {...props}>
+      {children + ' '}
+      {target === '_blank' ? <IconArrowUpRight /> : <ArrowRight />}
+    </Link>
+  );
+};

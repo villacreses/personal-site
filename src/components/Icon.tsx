@@ -1,5 +1,5 @@
 import {ComponentProps, CSSProperties, FC} from 'react';
-import Link, {LinkProps} from 'next/link';
+import Link from 'next/link';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {
   faGithub,
@@ -25,6 +25,7 @@ import {
   faCaretDown,
   faLocationDot,
   faLink,
+  faArrowRightLong,
 } from '@fortawesome/free-solid-svg-icons';
 
 export enum ExperienceCategory {
@@ -54,6 +55,7 @@ export const iconMap = {
   location: faLocationDot,
   envelope: faEnvelope,
   clock: faClock,
+  rightArrow: faArrowRightLong,
   [ExperienceCategory.JOBS]: faSuitcase,
   [ExperienceCategory.HACKATHON]: faHourglass,
   [ExperienceCategory.EDUCATION]: faGraduationCap,
@@ -78,7 +80,7 @@ export interface IconLinkProps extends ComponentProps<typeof Link> {
 };
 
 export const Icon: FC<IconPropsWithId> = ({ iconId, containerStyles, size, style, className, ...props }) => {
-  const sizeStyles = size || !className ? { height: size, width: size } : {};
+  const sizeStyles = size ? { height: size, width: size } : {};
 
   return (
     <FontAwesomeIcon
