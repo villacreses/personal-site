@@ -1,14 +1,10 @@
 import {
   ExperienceList,
   InlineLink,
-  ProjectList,
   SocialLinks,
-  StatsList,
 } from '@/components';
-import { FC, PropsWithChildren } from 'react';
-import { experienceEntries, projectEntries, socialLinkItems, statsListContent } from './content';
+import { experienceEntries, socialLinkItems } from './content';
 import { yearsSince } from '@/utils';
-import Link from 'next/link';
 
 const yearsExp = Math.ceil(yearsSince(experienceEntries[experienceEntries.length -1].startDate));
 
