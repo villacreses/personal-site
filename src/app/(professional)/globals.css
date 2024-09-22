@@ -58,10 +58,6 @@ body {
 }
 
 @layer base {
-  main {
-    @apply px-6 pb-16
-  }
-
   a {
     @apply text-blue-700 hover:text-blue-900 dark:text-green-300 dark:hover:text-green-500
   }
@@ -78,6 +74,15 @@ body {
 
   .section-header {
     @apply font-bold uppercase tracking-widest mb-8 text-center
+  }
+
+  .prose {
+    color: var(--color-neutral-300);
+    max-width: 53ch;
+  }
+
+  .prose p {
+    @apply my-6;
   }
 }
 

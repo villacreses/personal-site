@@ -1,20 +1,34 @@
-import { IconLinkProps } from "@/components";
+import { IconID, IconLinkProps } from "@/components";
 
-export const statsListContent = {
-  items: [
-    {
-      iconId: "suitcase",
-      text: "Senior Software Engineer @ Godaddy.com",
-      size: ".8rem",
-    },
-    {
-      iconId: "school",
-      text: "B.A. Applied Math @ CUNY Queens College",
-      size: ".95rem",
-    },
-    { iconId: "location", text: "New York City", size: ".875rem" },
-  ],
+export const homepageIntro = `
+I'm Mario, a fullstack engineer with 6 years of experience. 
+
+Over the course of my career, I&apos;ve had the privilege of working
+for companies of all sizes and across multiple industries, including
+education, healthcare, social media, and e-commerce.
+
+Take a look at my resume and skills, and get in touch via my social links below.
+`;
+
+type TCredential = {
+  iconId: IconID;
+  text: string;
+  size?: string;
 };
+
+export const credentials: TCredential[] = [
+  {
+    iconId: "suitcase",
+    text: "Senior Software Engineer @ Godaddy.com",
+    size: ".8rem",
+  },
+  {
+    iconId: "school",
+    text: "B.A. Applied Math @ CUNY Queens College",
+    size: ".95rem",
+  },
+  { iconId: "location", text: "New York City", size: ".875rem" },
+];
 
 export const socialLinkItems: IconLinkProps[] = [
   {
