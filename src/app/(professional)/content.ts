@@ -7,7 +7,7 @@ Over the course of my career, I&apos;ve had the privilege of working
 for companies of all sizes and across multiple industries, including
 education, healthcare, social media, and e-commerce.
 
-Take a look at my resume and skills, and get in touch via my social links below.
+Take a look at my [resume](/docs/resume.pdf) and skills, and get in touch via my social links below.
 `;
 
 type TCredential = {
