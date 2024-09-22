@@ -2,7 +2,8 @@ import { IconLink, Icon } from "@/components";
 import {
   credentials,
   experienceEntries,
-  homepageIntro,
+  homepageMain,
+  homepageLead,
   socialLinkItems,
 } from "./content";
 import { yearsSince } from "@/utils";
@@ -47,11 +48,18 @@ function Credentials() {
   );
 }
 
+function MyImage() {
+  return (
+    <div className="mb-4 mx-auto rounded-full h-36 w-36 border-4 medium-zoom-image" />
+  );
+}
+
 export default function Home() {
   return (
     <main className="grow">
       <article className="h-full flex flex-col items-center justify-center text-center">
         <header>
+          <MyImage />
           <hgroup className={`mb-6 ${bottomBorderStyles}`}>
             <h1 className="text-4xl font-extrabold">Mario Villacreses</h1>
             <h2 className="text-lg text-neutral-500 dark:text-neutral-400">
@@ -61,7 +69,10 @@ export default function Home() {
         </header>
         {/* <hr className="mx-auto lg:mx-0 h-1 w-4/5 mt-2 mb-6 border-b-2 border-neutral-700 opacity-25" /> */}
         <Credentials />
-        <Markdown className="prose text-gray-200">{homepageIntro}</Markdown>
+        <p className="prose text-gray-400 text-xl">
+          {homepageLead}
+        </p>
+        <Markdown className="prose text-gray-200">{homepageMain}</Markdown>
         <SocialLinks />
       </article>
     </main>

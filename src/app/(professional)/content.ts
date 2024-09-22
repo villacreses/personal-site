@@ -1,8 +1,10 @@
 import { IconID, IconLinkProps } from "@/components";
 
-export const homepageIntro = `
+export const homepageLead = `
 I'm Mario, a fullstack engineer with 6 years of experience. 
+`;
 
+export const homepageMain = `
 Over the course of my career, I&apos;ve had the privilege of working
 for companies of all sizes and across multiple industries, including
 education, healthcare, social media, and e-commerce.

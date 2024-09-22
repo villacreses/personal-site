@@ -8,8 +8,8 @@ type TNavLink = {
 
 const navLinks: TNavLink[] = [
   {
-    href: "/experience",
-    children: "Experience",
+    href: "/career",
+    children: "Career History",
   },
   {
     href: "/other",
