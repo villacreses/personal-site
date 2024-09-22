@@ -7,7 +7,7 @@ I'm Mario, a fullstack engineer with 6 years of experience.
 export const homepageMain = `
 Over the course of my career, I&apos;ve had the privilege of working
 for companies of all sizes and across multiple industries, including
-education, healthcare, social media, and e-commerce.
+education, healthcare, social media, and e-commerce. Currently I'm on a hiatus from the tech industry in order to complete my master's degree.
 
 Take a look at my [resume](/docs/resume.pdf) and skills, and get in touch via my social links below.
 `;
@@ -55,7 +55,7 @@ export const socialLinkItems: IconLinkProps[] = [
   },
 ];
 
-type ExperienceEntry = {
+export type TWorkEntry = {
   org: string;
   role: string;
   startDate: string;
@@ -65,7 +65,16 @@ type ExperienceEntry = {
   techUsed?: string[];
 };
 
-export const experienceEntries: ExperienceEntry[] = [
+export type TSchoolEntry = {
+  schoolName: string;
+  credential: string;
+  graduationDate: string;
+  startDate?: string;
+  location: string;
+  description: string;
+};
+
+export const experienceEntries: TWorkEntry[] = [
   {
     org: "GoDaddy",
     role: "Senior Software Engineer",
@@ -145,6 +154,18 @@ export const experienceEntries: ExperienceEntry[] = [
       "Sass",
       "AWS S3",
     ],
+  },
+];
+
+export const educationEntries: TSchoolEntry[] = [
+  {
+    schoolName: "CUNY Queens College",
+    credential: "Bachelor of Arts - Applied Mathematics",
+    graduationDate: "2016-05-30T17:00-0500",
+    location: "Flushing, NY",
+    description: [
+      "Bachelor of Arts in Applied Mathematics with a concentration in computer science",
+    ].join(" "),
   },
 ];
 

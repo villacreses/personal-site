@@ -1,17 +1,11 @@
 import { IconLink, Icon } from "@/components";
 import {
   credentials,
-  experienceEntries,
   homepageMain,
   homepageLead,
   socialLinkItems,
 } from "./content";
-import { yearsSince } from "@/utils";
 import Markdown from "react-markdown";
-
-const yearsExp = Math.ceil(
-  yearsSince(experienceEntries[experienceEntries.length - 1].startDate),
-);
 
 const bottomBorderStyles =
   "after:content-[' '] after:block after:border after:opacity-25 after:mt-2 after:border-neutral-700 after:-mx-4";
@@ -67,11 +61,8 @@ export default function Home() {
             </h2>
           </hgroup>
         </header>
-        {/* <hr className="mx-auto lg:mx-0 h-1 w-4/5 mt-2 mb-6 border-b-2 border-neutral-700 opacity-25" /> */}
         <Credentials />
-        <p className="prose text-gray-400 text-xl">
-          {homepageLead}
-        </p>
+        <p className="prose text-gray-400 text-xl">{homepageLead}</p>
         <Markdown className="prose text-gray-200">{homepageMain}</Markdown>
         <SocialLinks />
       </article>

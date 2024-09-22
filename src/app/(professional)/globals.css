@@ -55,9 +55,15 @@ body {
   background: linear-gradient(to bottom,
       transparent,
       rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 @layer base {
+  body {
+    @apply h-screen
+  }
+
   a {
     @apply text-blue-700 hover:text-blue-900 dark:text-green-300 dark:hover:text-green-500
   }
@@ -78,7 +84,7 @@ body {
 
   .prose {
     color: var(--color-neutral-300);
-    max-width: 53ch;
+    max-width: 60ch;
   }
 
   .prose p {
@@ -97,5 +103,11 @@ body {
 
   .link-colors {
     @apply border-blue-700 hover:border-blue-900 dark:border-green-300 dark:hover:border-green-500
+  }
+
+  .after-comma::after {
+    @apply mr-1;
+    content: ',';
+    display: inline-block;
   }
 }
