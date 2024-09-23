@@ -35,23 +35,18 @@ export const credentials: TCredential[] = [
 export const socialLinkItems: IconLinkProps[] = [
   {
     slug: "envelope",
-    label: "MarioVillacreses@outlook.com",
+    label: "Send me an email",
     href: "mailto:MarioVillacreses@outlook.com",
   },
   {
     slug: "github",
-    label: "My GitHub profile",
+    label: "Follow me on GitHub",
     href: "https://github.com/villacreses",
   },
   {
     slug: "linkedin",
-    label: "My LinkedIn profile",
+    label: "Add me on LinkedIn",
     href: "https://www.linkedin.com/in/villacreses",
-  },
-  {
-    slug: "codepen",
-    label: "CodePen",
-    href: "https://codepen.io/villacreses",
   },
 ];
 
@@ -164,58 +159,8 @@ export const educationEntries: TSchoolEntry[] = [
     graduationDate: "2016-05-30T17:00-0500",
     location: "Flushing, NY",
     description: [
-      "Bachelor of Arts in Applied Mathematics with a concentration in computer science",
+      "Bachelor of Arts in Applied Mathematics with a concentrations in computer science and operations research",
     ].join(" "),
-  },
-];
-
-type CareerContent = {
-  heading: string;
-  items: ExperienceEntry[];
-}[];
-
-export const careerContent: CareerContent = [
-  {
-    heading: "Education",
-    items: [
-      {
-        org: "CUNY Queens College",
-        role: "B.A. Applied Mathematics",
-        startDate: "2016-05-30T17:00-0500",
-        location: "Flushing, NY",
-        description: [
-          "Bachelor of Arts in Applied Mathematics with a concentration in computer science",
-        ].join(" "),
-      },
-      {
-        org: "Fullstack Academy",
-        role: "Web Development Bootcamp",
-        startDate: "2018-02-05T09:00-0500",
-        location: "New York, NY",
-        description: [
-          "Full time immersive program that teaches full-stack web development using the NERD development stack.",
-        ].join(" "),
-      },
-    ],
-  },
-  {
-    heading: "Professional Experience",
-    items: experienceEntries,
-  },
-  {
-    heading: "Hackathons",
-    items: [
-      {
-        org: "",
-        role: "NY Sextech Hackathon - 1st Place Winner",
-        startDate: "2018-08-01",
-        location: "Brooklyn, NY",
-        description: [
-          "1st Place Winner at NY Sextech Hackathon, featured in Vice, Forbes, and Men’s Health.",
-          "Project was considered for official curriculum integration within select NYC high schools.",
-        ].join(" "),
-      },
-    ],
   },
 ];
 

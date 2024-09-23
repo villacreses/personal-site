@@ -34,7 +34,7 @@ const WorkEntry: FC<TWorkEntry> = ({
         <span className="font-extralight">{org}</span>
       </h3>
     </header>
-    <p>{description}</p>
+    <p className="text-sm">{description}</p>
     <BubbleList items={techUsed} />
   </>
 );
@@ -45,10 +45,10 @@ const SchoolEntry: FC<TSchoolEntry> = ({
   description,
 }) => (
   <div className="max-w-[70ch] mx-auto">
-    <dt className="text-xl ">{credential}</dt>
+    <dt className="text-xl font-bold tracking-wider">{credential}</dt>
     <dd className="ml-0.5">
       <dl>
-        <div className="flex flex-row mb-2">
+        <div className="flex flex-row mb-2 font-light tracking-wide text-neutral-400">
           <dt className="sr-only">School</dt>
           <dd className="after-comma">{schoolName}</dd>
           <dt className="sr-only">Graduated</dt>

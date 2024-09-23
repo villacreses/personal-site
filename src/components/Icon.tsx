@@ -4,7 +4,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {
   faGithub,
   faHackerrank,
-  faLinkedinIn,
+  faLinkedin,
   faMedium,
   faStackOverflow,
   faDev,
@@ -36,7 +36,7 @@ export enum ExperienceCategory {
 
 export const iconMap = {
   github: faGithub,
-  linkedin: faLinkedinIn,
+  linkedin: faLinkedin,
   stackoverflow: faStackOverflow,
   medium: faMedium,
   hackerrank: faHackerrank,
