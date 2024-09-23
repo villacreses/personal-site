@@ -12,12 +12,12 @@ const bottomBorderStyles =
   "after:content-[' '] after:block after:border after:opacity-25 after:border-neutral-700 after:-mx-6";
 
 const SocialLinks = () => (
-  <ul className="text-sm flex flex-row justify-center gap-x-4 mb-6">
+  <ul className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4 mb-6">
     {socialLinkItems.map(({ slug, href, label }) => (
-      <li key={slug} className="p-2">
+      <li key={slug} className="p-2 text-lg sm:text-sm">
         <Link href={href} className="flex flex-row items-center gap-x-1.5">
           <Icon iconId={slug} height="1.2em" />
-          <span className="font-medium tracking-tight">{label}</span>
+          <span className="font-semibold tracking-tight">{label}</span>
         </Link>
       </li>
     ))}
@@ -56,7 +56,6 @@ export default function Home() {
           </hgroup>
         </header>
         <Credentials />
-
         <p className="prose text-gray-400 text-xl">{homepageLead}</p>
         <Markdown className="prose text-gray-200">{homepageMain}</Markdown>
         <SocialLinks />

@@ -6,6 +6,7 @@ import {
   educationEntries,
   experienceEntries,
 } from "../content";
+import Markdown from "react-markdown";
 
 const DateRange: FC<Pick<TWorkEntry, "startDate" | "endDate">> = ({
   startDate,
@@ -26,16 +27,29 @@ const WorkEntry: FC<TWorkEntry> = ({
   endDate,
 }) => (
   <>
-    <header>
-      <DateRange startDate={startDate} endDate={endDate} />
-      <h3 className="text-xl mb-2">
-        <span className="font-bold tracking-wider">{role}</span>
-        <span className="mx-1.5">&#x2022;</span>
-        <span className="font-extralight">{org}</span>
-      </h3>
-    </header>
-    <p className="text-sm">{description}</p>
-    <BubbleList items={techUsed} />
+    <dl>
+      <dt className="sr-only">Dates worked</dt>
+      <dd>
+        <DateRange startDate={startDate} endDate={endDate} />
+      </dd>
+      <div className="flex flex-col xs:flex-row text-lg xs:text-xl mb-2">
+        <dt className="sr-only">Job title</dt>
+        <dd className="font-bold tracking-wider">{role}</dd>
+        <span aria-hidden="true" className="mx-1.5 hidden xs:inline-block">
+          &#x2022;
+        </span>
+        <dt className="sr-only">Company</dt>
+        <dd className="font-extralight">{org}</dd>
+      </div>
+      <dt className="sr-only">Accomplishments at role</dt>
+      <dd className="text-sm mb-2">
+        <Markdown>{description}</Markdown>
+      </dd>
+      <dt className="sr-only">Technologies used</dt>
+      <dd>
+        <BubbleList items={techUsed} />
+      </dd>
+    </dl>
   </>
 );
 
