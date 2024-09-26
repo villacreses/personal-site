@@ -1,12 +1,13 @@
 import { FC } from "react";
+import Markdown from "react-markdown";
 import { BubbleList } from "@/components";
 import {
   TSchoolEntry,
   TWorkEntry,
   educationEntries,
-  experienceEntries,
-} from "../content";
-import Markdown from "react-markdown";
+  workEntries,
+  headerContent,
+} from "./content";
 
 const DateRange: FC<Pick<TWorkEntry, "startDate" | "endDate">> = ({
   startDate,
@@ -26,31 +27,29 @@ const WorkEntry: FC<TWorkEntry> = ({
   startDate,
   endDate,
 }) => (
-  <>
-    <dl>
-      <dt className="sr-only">Dates worked</dt>
-      <dd>
-        <DateRange startDate={startDate} endDate={endDate} />
-      </dd>
-      <div className="flex flex-col xs:flex-row text-lg xs:text-xl mb-2">
-        <dt className="sr-only">Job title</dt>
-        <dd className="font-bold tracking-wider">{role}</dd>
-        <span aria-hidden="true" className="mx-1.5 hidden xs:inline-block">
-          &#x2022;
-        </span>
-        <dt className="sr-only">Company</dt>
-        <dd className="font-extralight">{org}</dd>
-      </div>
-      <dt className="sr-only">Accomplishments at role</dt>
-      <dd className="text-sm mb-2">
-        <Markdown>{description}</Markdown>
-      </dd>
-      <dt className="sr-only">Technologies used</dt>
-      <dd>
-        <BubbleList items={techUsed} />
-      </dd>
-    </dl>
-  </>
+  <dl>
+    <dt className="sr-only">Dates worked</dt>
+    <dd>
+      <DateRange startDate={startDate} endDate={endDate} />
+    </dd>
+    <div className="flex flex-col xs:flex-row text-lg xs:text-xl mb-2">
+      <dt className="sr-only">Job title</dt>
+      <dd className="font-bold tracking-wider">{role}</dd>
+      <span aria-hidden="true" className="mx-1.5 hidden xs:inline-block">
+        &#x2022;
+      </span>
+      <dt className="sr-only">Company</dt>
+      <dd className="font-extralight">{org}</dd>
+    </div>
+    <dt className="sr-only">Accomplishments at role</dt>
+    <dd className="text-sm mb-2 prose">
+      <Markdown>{description}</Markdown>
+    </dd>
+    <dt className="sr-only">Technologies used</dt>
+    <dd>
+      <BubbleList items={techUsed} />
+    </dd>
+  </dl>
 );
 
 const SchoolEntry: FC<TSchoolEntry> = ({
@@ -58,7 +57,7 @@ const SchoolEntry: FC<TSchoolEntry> = ({
   credential,
   description,
 }) => (
-  <div className="max-w-[70ch] mx-auto">
+  <>
     <dt className="text-xl font-bold tracking-wider">{credential}</dt>
     <dd className="ml-0.5">
       <dl>
@@ -69,38 +68,40 @@ const SchoolEntry: FC<TSchoolEntry> = ({
           <dd>2016</dd>
         </div>
         <dt className="sr-only">Description</dt>
-        <dd className="text-sm">{description}</dd>
+        <dd className="text-sm prose">{description}</dd>
       </dl>
     </dd>
-  </div>
+  </>
 );
 
-export default function Experience() {
+const bottomBorderStyles =
+  "after:content-[' '] after:block after:border-b after:opacity-25 after:border-neutral-700 after:-mx-3 after:pb-8";
+
+export default function CareerHistory() {
   return (
-    <main>
-      <article>
-        <section className="page-section">
-          <h2 className="section-header">Education</h2>
-          <dl>
-            {educationEntries.map((props) => (
-              <SchoolEntry key={props.credential} {...props} />
-            ))}
-          </dl>
-        </section>
-        <section className="page-section">
-          <h2 className="section-header">Professional Experience</h2>
-          <ol className="flex flex-col gap-12">
-            {experienceEntries.map((props) => (
-              <li
-                key={`${props.role}${props.org}`}
-                className="max-w-[70ch] mx-auto"
-              >
-                <WorkEntry {...props} />
-              </li>
-            ))}
-          </ol>
-        </section>
-      </article>
+    <main className="max-w-[70ch] mx-auto">
+      <header className={`mb-20 ${bottomBorderStyles}`}>
+        <h1 className="text-4xl font-extrabold mb-5 text-center">{`Mario's Career History`}</h1>
+        <Markdown>{headerContent}</Markdown>
+      </header>
+      <section className="page-section">
+        <h2 className="section-header">Education</h2>
+        <dl>
+          {educationEntries.map((props) => (
+            <SchoolEntry key={props.credential} {...props} />
+          ))}
+        </dl>
+      </section>
+      <section className="page-section">
+        <h2 className="section-header">Professional Experience</h2>
+        <ol className="flex flex-col gap-12">
+          {workEntries.map((props) => (
+            <li key={`${props.role}${props.org}`}>
+              <WorkEntry {...props} />
+            </li>
+          ))}
+        </ol>
+      </section>
     </main>
   );
 }

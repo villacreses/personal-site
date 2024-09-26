@@ -42,6 +42,10 @@
   --background-end-rgb: 255, 255, 255;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: var(--color-neutral);
@@ -67,6 +71,10 @@ body {
   a {
     @apply text-blue-700 hover:text-blue-900 dark:text-green-300 dark:hover:text-green-500
   }
+
+  p {
+    color: rgb(var(--color-neutral-300));
+  }
 }
 
 @layer components {
@@ -83,8 +91,7 @@ body {
   }
 
   .prose {
-    color: var(--color-neutral-300);
-    max-width: 60ch;
+    color: rgb(var(--color-neutral-300));
   }
 
   .prose p {

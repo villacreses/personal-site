@@ -57,7 +57,9 @@ export default function Home() {
         </header>
         <Credentials />
         <p className="prose text-gray-400 text-xl">{homepageLead}</p>
-        <Markdown className="prose text-gray-200">{homepageMain}</Markdown>
+        <Markdown className="prose max-w-[60ch] text-gray-200">
+          {homepageMain}
+        </Markdown>
         <SocialLinks />
       </article>
     </main>
