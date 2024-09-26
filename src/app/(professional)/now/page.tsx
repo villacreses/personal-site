@@ -20,7 +20,7 @@ const components: ComponentProps<typeof Markdown>["components"] = {
 
 export default function NowPage() {
   return (
-    <main className="h-full max-w-[70ch] mx-auto">
+    <main className="max-w-[70ch] mx-auto">
       <StandardHeader title="Now">
         <Markdown>{headerContent}</Markdown>
       </StandardHeader>
