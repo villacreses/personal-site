@@ -93,10 +93,6 @@ body {
   .prose {
     color: rgb(var(--color-neutral-300));
   }
-
-  .prose p {
-    @apply my-6;
-  }
 }
 
 @layer utilities {

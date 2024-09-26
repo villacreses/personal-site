@@ -1,6 +1,6 @@
-import {ComponentProps, CSSProperties, FC} from 'react';
-import Link from 'next/link';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { ComponentProps, CSSProperties, FC } from "react";
+import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faGithub,
   faHackerrank,
@@ -10,11 +10,14 @@ import {
   faDev,
   faCodepen,
   faHackerNews,
-} from '@fortawesome/free-brands-svg-icons';
+} from "@fortawesome/free-brands-svg-icons";
 
 import {
-  faFolder, faHourglass, faEnvelope, faClock
-} from '@fortawesome/free-regular-svg-icons';
+  faFolder,
+  faHourglass,
+  faEnvelope,
+  faClock,
+} from "@fortawesome/free-regular-svg-icons";
 
 import {
   faBars,
@@ -26,12 +29,14 @@ import {
   faLocationDot,
   faLink,
   faArrowRightLong,
-} from '@fortawesome/free-solid-svg-icons';
+  faScrewdriverWrench,
+  faBookOpen,
+} from "@fortawesome/free-solid-svg-icons";
 
 export enum ExperienceCategory {
-  JOBS = 'JOBS',
-  HACKATHON = 'HACKATHON',
-  EDUCATION = 'EDUCATION',
+  JOBS = "JOBS",
+  HACKATHON = "HACKATHON",
+  EDUCATION = "EDUCATION",
 }
 
 export const iconMap = {
@@ -56,6 +61,8 @@ export const iconMap = {
   envelope: faEnvelope,
   clock: faClock,
   rightArrow: faArrowRightLong,
+  tools: faScrewdriverWrench,
+  book: faBookOpen,
   [ExperienceCategory.JOBS]: faSuitcase,
   [ExperienceCategory.HACKATHON]: faHourglass,
   [ExperienceCategory.EDUCATION]: faGraduationCap,
@@ -64,11 +71,11 @@ export const iconMap = {
 export type IconID = keyof typeof iconMap;
 
 type IconIdProps = { iconId: IconID };
-type FAProps = Omit<ComponentProps<typeof FontAwesomeIcon>, 'icon'>
+type FAProps = Omit<ComponentProps<typeof FontAwesomeIcon>, "icon">;
 
-export interface IconProps extends Omit<FAProps, 'size'> {
-  containerStyles?: IconProps['style'];
-  size?: CSSProperties['height']
+export interface IconProps extends Omit<FAProps, "size"> {
+  containerStyles?: IconProps["style"];
+  size?: CSSProperties["height"];
 }
 
 export type IconPropsWithId = IconProps & IconIdProps;
@@ -77,28 +84,36 @@ export interface IconLinkProps extends ComponentProps<typeof Link> {
   label: string;
   slug: IconID;
   iconProps?: IconProps;
-};
+}
 
-export const Icon: FC<IconPropsWithId> = ({ iconId, containerStyles, size, style, className, ...props }) => {
+export const Icon: FC<IconPropsWithId> = ({
+  iconId,
+  containerStyles,
+  size,
+  style,
+  className,
+  ...props
+}) => {
   const sizeStyles = size ? { height: size, width: size } : {};
 
   return (
     <FontAwesomeIcon
       icon={iconMap[iconId]}
-      style={{...style, ...sizeStyles}}
+      style={{ ...style, ...sizeStyles }}
       className={className}
       {...props}
     />
   );
 };
 
-export const IconLink: FC<IconLinkProps> = ({ href, label, slug, iconProps, ...linkProps }) => (
-  <Link
-    href={href}
-    title={label}
-    aria-label={label}
-    {...linkProps}
-  >
+export const IconLink: FC<IconLinkProps> = ({
+  href,
+  label,
+  slug,
+  iconProps,
+  ...linkProps
+}) => (
+  <Link href={href} title={label} aria-label={label} {...linkProps}>
     <Icon iconId={slug} {...iconProps} />
   </Link>
 );

@@ -8,7 +8,7 @@ Powered by [Next.js](https://nextjs.org/) & inspired by [Blowfish](https://blowf
 `;
 
 const markdownComponents: ComponentProps<typeof Markdown>["components"] = {
-  p: ({node, ...props}) => <p className="last:text-right" {...props} />,
+  p: ({ node, ...props }) => <p className="last:text-right" {...props} />,
 };
 
 export default function PageFooter() {

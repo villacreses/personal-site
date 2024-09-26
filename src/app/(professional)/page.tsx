@@ -45,7 +45,7 @@ const MyImage = () => (
 export default function Home() {
   return (
     <main className="grow">
-      <article className="h-full flex flex-col items-center justify-center text-center">
+      <article className="flex flex-col items-center justify-center text-center">
         <header className="mb-3">
           <MyImage />
           <hgroup>
@@ -56,7 +56,7 @@ export default function Home() {
           </hgroup>
         </header>
         <Credentials />
-        <p className="prose text-gray-400 text-xl">{homepageLead}</p>
+        <p className="prose text-gray-400 text-xl my-6">{homepageLead}</p>
         <Markdown className="prose max-w-[60ch] text-gray-200">
           {homepageMain}
         </Markdown>

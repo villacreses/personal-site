@@ -12,8 +12,8 @@ const navLinks: TNavLink[] = [
     children: "Career History",
   },
   {
-    href: "/other",
-    children: "Other",
+    href: "/now",
+    children: "Now",
   },
 ];
 
