@@ -1,11 +1,10 @@
-import { Icon } from "@/components";
+import { Icon, Markdown, TMarkdownComponents } from "@/components";
 import {
   credentials,
   homepageMain,
   homepageLead,
   socialLinkItems,
 } from "./content";
-import Markdown from "react-markdown";
 import Link from "next/link";
 
 const bottomBorderStyles =
@@ -42,6 +41,12 @@ const MyImage = () => (
   <div className="mb-4 mx-auto rounded-full h-36 w-36 border-4 medium-zoom-image" />
 );
 
+const components: TMarkdownComponents = {
+  p({ node, ...props }) {
+    return <p className="pb-4 " {...props} />;
+  },
+};
+
 export default function Home() {
   return (
     <main className="grow">
@@ -57,7 +62,10 @@ export default function Home() {
         </header>
         <Credentials />
         <p className="prose text-gray-400 text-xl my-6">{homepageLead}</p>
-        <Markdown className="prose max-w-[60ch] text-gray-200">
+        <Markdown
+          className="prose max-w-[60ch] text-gray-200"
+          components={components}
+        >
           {homepageMain}
         </Markdown>
         <SocialLinks />
