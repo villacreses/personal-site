@@ -1,22 +1,39 @@
 import { FC } from "react";
 import Markdown from "react-markdown";
-import { BubbleList } from "@/components";
+import { BubbleList, TMarkdownComponents } from "@/components";
 import {
   TSchoolEntry,
   TWorkEntry,
   educationEntries,
   workEntries,
   headerContent,
+  hackathonEntries,
 } from "./content";
 
-const DateRange: FC<Pick<TWorkEntry, "startDate" | "endDate">> = ({
-  startDate,
-  endDate,
-}) => {
-  const start = new Date(startDate).getFullYear();
-  const end = endDate ? new Date(endDate).getFullYear() : "Present";
+const components: TMarkdownComponents = {
+  ul({ node, ...props }) {
+    return <ul className="list-disc mt-2 pl-5 prose" {...props} />;
+  },
+  li({ node, ...props }) {
+    return <li className="mb-3" {...props} />;
+  },
+};
 
-  return <p className="text-neutral-500 text-sm">{`${start} - ${end}`}</p>;
+const DateRange: FC<
+  Pick<TWorkEntry, "startDate" | "endDate" | "omitEndDate">
+> = ({ startDate, endDate, omitEndDate }) => {
+  const start = new Date(startDate).getFullYear();
+  const end = endDate
+    ? new Date(endDate).getFullYear()
+    : omitEndDate
+      ? ""
+      : "Present";
+
+  return (
+    <p className="text-neutral-500 text-sm">
+      {[start, end].filter((exists) => exists).join(" - ")}
+    </p>
+  );
 };
 
 const WorkEntry: FC<TWorkEntry> = ({
@@ -26,11 +43,16 @@ const WorkEntry: FC<TWorkEntry> = ({
   org,
   startDate,
   endDate,
+  omitEndDate,
 }) => (
   <dl>
     <dt className="sr-only">Dates worked</dt>
     <dd>
-      <DateRange startDate={startDate} endDate={endDate} />
+      <DateRange
+        startDate={startDate}
+        endDate={endDate}
+        omitEndDate={omitEndDate}
+      />
     </dd>
     <div className="flex flex-col xs:flex-row text-lg xs:text-xl mb-2">
       <dt className="sr-only">Job title</dt>
@@ -43,7 +65,7 @@ const WorkEntry: FC<TWorkEntry> = ({
     </div>
     <dt className="sr-only">Accomplishments at role</dt>
     <dd className="text-sm mb-2 prose">
-      <Markdown>{description}</Markdown>
+      <Markdown components={components}>{description}</Markdown>
     </dd>
     <dt className="sr-only">Technologies used</dt>
     <dd>
@@ -58,7 +80,7 @@ const SchoolEntry: FC<TSchoolEntry> = ({
   description,
 }) => (
   <>
-    <dt className="text-xl font-bold tracking-wider">{credential}</dt>
+    <dt className="text-lg font-bold tracking-wider">{credential}</dt>
     <dd className="ml-0.5">
       <dl>
         <div className="flex flex-row mb-2 font-light tracking-wide text-neutral-400">
@@ -101,6 +123,22 @@ export default function CareerHistory() {
             </li>
           ))}
         </ol>
+      </section>
+      <section>
+        <h2 className="section-header">Hackathons</h2>
+        {hackathonEntries.map(
+          ({ event, award, date, description, techUsed }) => (
+            <WorkEntry
+              key={event + date}
+              role={event}
+              org={award}
+              startDate={date}
+              omitEndDate
+              description={description}
+              techUsed={techUsed}
+            />
+          ),
+        )}
       </section>
     </main>
   );
