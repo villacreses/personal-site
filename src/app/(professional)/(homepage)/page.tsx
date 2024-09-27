@@ -28,9 +28,9 @@ const Credentials = () => (
     {credentials.map(({ iconId, text }) => (
       <li
         key={text}
-        className="mb-2 grid grid-cols-2 grid-cols-[1em_1fr] items-center gap-x-4"
+        className="mb-2 grid grid-cols-2 grid-cols-[1em_1fr] xxs:items-center gap-x-4 text-left"
       >
-        <Icon iconId={iconId} height={"1em"} className="justify-self-center" />
+        <Icon iconId={iconId} height={"1em"} className="justify-self-center mt-[0.241rem] xxs:mt-0" />
         <span className="justify-self-start">{text}</span>
       </li>
     ))}
@@ -54,8 +54,10 @@ export default function Home() {
         <header className="mb-3">
           <MyImage />
           <hgroup>
-            <h1 className="text-4xl font-extrabold">Mario Villacreses</h1>
-            <h2 className="text-lg text-neutral-500 dark:text-neutral-400">
+            <h1 className="text-3xl xxs:text-4xl font-extrabold">
+              Mario Villacreses
+            </h1>
+            <h2 className="text-sm xxs:text-lg text-neutral-500 dark:text-neutral-400">
               Software Engineer & Math Enthusiast
             </h2>
           </hgroup>
