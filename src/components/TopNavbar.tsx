@@ -28,7 +28,7 @@ export const toggleMenu = () => {
 };
 
 const menuClasses = classNames([
-  "hidden fixed inset-0 h-screen w-screen z-50 backdrop-blur-sm",
+  "hidden fixed inset-0 h-screen w-screen z-50 backdrop-blur",
   "flex flex-col justify-center items-center",
 ]);
 

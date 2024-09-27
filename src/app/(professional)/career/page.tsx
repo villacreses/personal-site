@@ -9,6 +9,7 @@ import {
   headerContent,
   hackathonEntries,
 } from "./content";
+import StandardHeader from "@/components/StandardHeader";
 
 const components: TMarkdownComponents = {
   ul({ node, ...props }) {
@@ -102,10 +103,9 @@ const bottomBorderStyles =
 export default function CareerHistory() {
   return (
     <main className="max-w-[70ch] mx-auto">
-      <header className={`mb-20 ${bottomBorderStyles}`}>
-        <h1 className="text-4xl font-extrabold mb-5 text-center">{`Mario's Career History`}</h1>
+      <StandardHeader title="Mario's Career History" className="mb-20">
         <Markdown>{headerContent}</Markdown>
-      </header>
+      </StandardHeader>
       <section className="page-section">
         <h2 className="section-header">Education</h2>
         <dl>

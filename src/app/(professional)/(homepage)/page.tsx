@@ -24,7 +24,7 @@ const SocialLinks = () => (
 );
 
 const Credentials = () => (
-  <ul className={`text-sm text-gray-300 mb-6 ${bottomBorderStyles}`}>
+  <ul className={`text-sm text-gray-300 mb-6`}>
     {credentials.map(({ iconId, text }) => (
       <li
         key={text}
@@ -58,18 +58,21 @@ export default function Home() {
   return (
     <main className="grow">
       <article className="flex flex-col items-center justify-center text-center">
-        <header className="mb-3">
-          <MyImage />
-          <hgroup>
-            <h1 className="text-3xl xxs:text-4xl font-extrabold">
-              Mario Villacreses
-            </h1>
-            <h2 className="text-sm xxs:text-lg text-neutral-500 dark:text-neutral-400">
-              Software Engineer & Math Enthusiast
-            </h2>
-          </hgroup>
-        </header>
-        <Credentials />
+        <div>
+          <header className="mb-3">
+            <MyImage />
+            <hgroup>
+              <h1 className="text-3xl xxs:text-4xl font-extrabold">
+                Mario Villacreses
+              </h1>
+              <h2 className="text-sm xxs:text-lg text-neutral-500 dark:text-neutral-400">
+                Software Engineer & Math Enthusiast
+              </h2>
+            </hgroup>
+          </header>
+          <Credentials />
+          <hr />
+        </div>
         <p className="prose text-gray-400 text-xl my-6">{homepageLead}</p>
         <Markdown
           className="prose max-w-[60ch] text-gray-200"
