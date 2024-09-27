@@ -63,6 +63,15 @@ body {
   background-attachment: fixed;
 }
 
+body[data-menuopen] {
+  @apply overflow-hidden
+}
+
+body[data-menuopen] #mobile-menu {
+  @apply flex flex-col;
+  background-color: rgba(var(--background-end-rgb), 0.7);
+}
+
 @layer base {
   body {
     @apply h-screen
@@ -79,7 +88,7 @@ body {
 
 @layer components {
   .page-section {
-    @apply mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24
+    @apply mb-16 scroll-mt-16 md:mb-24 lg:scroll-mt-24
   }
 
   .page-section:last-of-type {

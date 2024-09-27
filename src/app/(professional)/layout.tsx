@@ -4,6 +4,7 @@ import "./globals.css";
 import { classNames } from "@/utils";
 import TopNavbar from "@/components/TopNavbar";
 import PageFooter from "@/components/PageFooter";
+import { useContext } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 

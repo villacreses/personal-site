@@ -2,7 +2,7 @@ import { PropsWithChildren } from "react";
 import { classNames } from "@/utils";
 
 const bottomBorderStyles =
-  "after:content-[' '] after:block after:border-b after:opacity-25 after:border-neutral-700 after:-mx-3 after:pb-8";
+  "after:content-[' '] after:block after:relative after:border-b after:opacity-25 after:border-neutral-700 after:-mx-3 after:pb-8 after:z-0";
 
 export default function StandardHeader({
   children,
