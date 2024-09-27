@@ -72,9 +72,17 @@ body[data-menuopen] #mobile-menu {
   background-color: rgba(var(--background-end-rgb), 0.7);
 }
 
+body[data-menuopen] hr {
+  @apply blur
+}
+
 @layer base {
   body {
     @apply h-screen
+  }
+
+  hr {
+    @apply mt-6 -mx-3 border-neutral-700 opacity-50
   }
 
   a {

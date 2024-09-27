@@ -2,6 +2,9 @@
 
 import DefaultLink from "next/link";
 import { ComponentProps, FC } from "react";
+import { Icon } from "./Icon";
+import { classNames } from "@/utils";
+import { useScrollTracker } from "@/hooks";
 
 type TNavLink = {
   href: string;
@@ -19,8 +22,12 @@ const navLinks: TNavLink[] = [
   },
 ];
 
-import { Icon } from "./Icon";
-import { classNames } from "@/utils";
+const menuNavLinks: TNavLink[] = [
+  {
+    href: "/",
+    children: "Home",
+  },
+].concat(navLinks);
 
 export const toggleMenu = () => {
   const body = document.querySelector("body");
@@ -28,19 +35,22 @@ export const toggleMenu = () => {
 };
 
 const menuClasses = classNames([
-  "hidden fixed inset-0 h-screen w-screen z-50 backdrop-blur-sm",
+  "hidden fixed inset-0 h-screen w-screen z-50 backdrop-blur",
   "flex flex-col justify-center items-center",
 ]);
 
 function TopNavbarMenu() {
   return (
-    <button className="xs:hidden text-xl font-semibold tracking-wide" onClick={toggleMenu}>
-      <Icon iconId="burger" height="1.3em" />
+    <button
+      className="xs:hidden text-2xl font-semibold tracking-wide"
+      onClick={toggleMenu}
+    >
+      <Icon iconId="burger" />
       <span className="sr-only">Open Navigation Menu</span>
       <div id="mobile-menu" className={menuClasses}>
         <nav>
           <ul className="flex flex-col gap-y-4">
-            {navLinks.map((props) => (
+            {menuNavLinks.map((props) => (
               <li key={props.href}>
                 <Link {...props} className="p-2 block" />
               </li>
@@ -57,10 +67,18 @@ const Link: FC<ComponentProps<typeof DefaultLink>> = (props) => (
 );
 
 export default function TopNavbar() {
+  const { scrolledToTop } = useScrollTracker();
+
+  const navbarBlurOpacity = scrolledToTop ? 0 : 1;
+
   return (
     <>
-      <div className="fixed inset-x-0 px-6 sm:px-12 pt-2 pb-3 mb-[95px] h-[53px]">
-        <div className="m-auto max-w-[64rem] flex flex-row justify-between">
+      <div className="fixed inset-x-0 px-6 sm:px-12 py-2 mb-[95px] h-[53px]">
+        <div
+          className="absolute inset-x-0 top-0 h-full backdrop-blur-2xl"
+          style={{ opacity: navbarBlurOpacity }}
+        />
+        <div className="m-auto max-w-[64rem] flex flex-row justify-between items-center relative">
           <nav>
             <Link href="/">Mario Villacreses</Link>
           </nav>
