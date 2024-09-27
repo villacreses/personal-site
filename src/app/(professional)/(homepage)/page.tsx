@@ -30,7 +30,11 @@ const Credentials = () => (
         key={text}
         className="mb-2 grid grid-cols-2 grid-cols-[1em_1fr] xxs:items-center gap-x-4 text-left"
       >
-        <Icon iconId={iconId} height={"1em"} className="justify-self-center mt-[0.241rem] xxs:mt-0" />
+        <Icon
+          iconId={iconId}
+          height={"1em"}
+          className="justify-self-center mt-[0.241rem] xxs:mt-0"
+        />
         <span className="justify-self-start">{text}</span>
       </li>
     ))}
@@ -38,7 +42,10 @@ const Credentials = () => (
 );
 
 const MyImage = () => (
-  <div className="mb-4 mx-auto rounded-full h-36 w-36 border-4 medium-zoom-image" />
+  <img
+    src="/images/mario_small.jpg"
+    className="mb-4 mx-auto rounded-full h-36 w-36 border-4 medium-zoom-image"
+  />
 );
 
 const components: TMarkdownComponents = {
