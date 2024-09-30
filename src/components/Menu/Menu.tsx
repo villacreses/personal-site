@@ -1,4 +1,10 @@
-import { FC, HTMLProps, PropsWithChildren, ComponentProps } from "react";
+import {
+  FC,
+  HTMLProps,
+  PropsWithChildren,
+  ComponentProps,
+  useEffect,
+} from "react";
 import { MenuContextProvider, useMenuContext } from "./menuContext";
 import { useMenuState } from "./useMenuState";
 import Link from "next/link";
@@ -39,7 +45,7 @@ const MenuButton: FC<MenuButtonProps> = (props) => {
       id={`${id}-menu-button`}
       aria-haspopup="true"
       aria-controls={`${id}-menu-container`}
-      aria-label="Menu"
+      aria-label="Open navigation menu"
       type="button"
       onClick={toggleMenu}
       data-menuopen={menuOpen}
@@ -48,11 +54,14 @@ const MenuButton: FC<MenuButtonProps> = (props) => {
   );
 };
 
-const MenuContainer: FC<MenuStandardProps> = ({ className, children }) => {
+const MenuContainer: FC<HTMLProps<HTMLDivElement>> = ({
+  children,
+  ...props
+}) => {
   const { id, menuOpen, navRef } = useMenuContext();
 
   return (
-    <div className={className} aria-hidden={!menuOpen}>
+    <div aria-hidden={!menuOpen} {...props}>
       <nav
         ref={navRef}
         id={`${id}-menu-container`}
@@ -81,6 +90,12 @@ const MenuItem: FC<AnchorProps> = ({ className, ...props }) => {
 
 export function Menu({ id, children }: MenuProps) {
   const menuState = useMenuState(id);
+
+  useEffect(() => {
+    document
+      .querySelector("body")
+      ?.toggleAttribute("data-menuopen", menuState.menuOpen);
+  });
 
   return (
     <MenuContextProvider value={menuState}>{children}</MenuContextProvider>
