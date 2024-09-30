@@ -18,6 +18,10 @@ export function useMenuState(id: string) {
     setMenuOpen((prevState) => !prevState);
   }, []);
 
+  const closeMenu = useCallback(() => {
+    setMenuOpen(false);
+  }, []);
+
   const buttonRef = useRef() as RefObject<HTMLButtonElement>;
   const navRef = useRef() as RefObject<HTMLDivElement>;
 
@@ -88,6 +92,7 @@ export function useMenuState(id: string) {
     buttonRef,
     navRef,
     onItemClick,
+    closeMenu,
   };
 }
 

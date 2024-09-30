@@ -9,6 +9,7 @@ import { MenuContextProvider, useMenuContext } from "./menuContext";
 import { useMenuState } from "./useMenuState";
 import Link from "next/link";
 import { classNames } from "@/utils";
+import { Icon } from "..";
 
 const omittedButtonProps = [
   "id",
@@ -88,6 +89,21 @@ const MenuItem: FC<AnchorProps> = ({ className, ...props }) => {
   );
 };
 
+type MenuCloseButtonProps = Omit<
+  HTMLProps<HTMLButtonElement>,
+  "type" | "onClick"
+>;
+
+const MenuCloseButton: FC<MenuCloseButtonProps> = (props) => {
+  const { closeMenu } = useMenuContext();
+
+  return (
+    <button type="button" onClick={closeMenu} {...props}>
+      <Icon iconId="xmark" />
+    </button>
+  );
+};
+
 export function Menu({ id, children }: MenuProps) {
   const menuState = useMenuState(id);
 
@@ -105,3 +121,4 @@ export function Menu({ id, children }: MenuProps) {
 Menu.Container = MenuContainer;
 Menu.Button = MenuButton;
 Menu.Item = MenuItem;
+Menu.CloseButton = MenuCloseButton;

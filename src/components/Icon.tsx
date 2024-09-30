@@ -31,6 +31,7 @@ import {
   faArrowRightLong,
   faScrewdriverWrench,
   faBookOpen,
+  faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 
 export enum ExperienceCategory {
@@ -63,6 +64,7 @@ export const iconMap = {
   rightArrow: faArrowRightLong,
   tools: faScrewdriverWrench,
   book: faBookOpen,
+  xmark: faXmark,
   [ExperienceCategory.JOBS]: faSuitcase,
   [ExperienceCategory.HACKATHON]: faHourglass,
   [ExperienceCategory.EDUCATION]: faGraduationCap,

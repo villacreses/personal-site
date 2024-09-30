@@ -34,6 +34,7 @@ const BurgerMenu: FC<BurgerMenuProps> = ({ items }) => (
           </li>
         ))}
       </ul>
+      <Menu.CloseButton className="absolute text-4xl right-4 top-4" />
     </Menu.Container>
   </Menu>
 );
