@@ -67,11 +67,6 @@ body[data-menuopen] {
   @apply overflow-hidden
 }
 
-body[data-menuopen] #mobile-menu {
-  @apply flex flex-col;
-  background-color: rgba(var(--background-end-rgb), 0.7);
-}
-
 body[data-menuopen] hr {
   @apply blur
 }

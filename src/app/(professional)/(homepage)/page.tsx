@@ -7,9 +7,6 @@ import {
 } from "./content";
 import Link from "next/link";
 
-const bottomBorderStyles =
-  "after:content-[' '] after:block after:border after:opacity-25 after:border-neutral-700 after:-mx-6";
-
 const SocialLinks = () => (
   <ul className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4 mb-6">
     {socialLinkItems.map(({ slug, href, label }) => (
