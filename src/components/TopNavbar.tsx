@@ -4,6 +4,7 @@ import DefaultLink from "next/link";
 import { ComponentProps, FC } from "react";
 import { useScrollTracker } from "@/hooks";
 import BurgerMenu from "./BurgerMenu";
+import { ToggleDarkMode } from "./ToggleDarkMode";
 
 type TNavLink = {
   href: string;
@@ -44,20 +45,25 @@ export default function TopNavbar() {
           className="absolute inset-x-0 top-0 h-full backdrop-blur-2xl"
           style={{ opacity: navbarBlurOpacity }}
         />
-        <div className="m-auto max-w-[64rem] flex flex-row justify-between items-center relative">
-          <nav>
+        <div className="m-auto max-w-[64rem] flex flex-row items-center relative">
+          <nav className="mr-auto">
             <Link href="/">Mario Villacreses</Link>
           </nav>
-          <nav className="hidden xs:block">
-            <ul className="flex flex-row gap-x-2">
+          <nav>
+            <ul className="flex flex-row gap-x-5 xs:gap-x-2 items-center">
               {navLinks.map((props) => (
-                <li key={props.href}>
+                <li key={props.href} className="hidden xs:block">
                   <Link {...props} className="px-2 py-1" />
                 </li>
               ))}
+              <li>
+                <ToggleDarkMode />
+              </li>
+              <li>
+                <BurgerMenu items={menuNavLinks} />
+              </li>
             </ul>
           </nav>
-          <BurgerMenu items={menuNavLinks} />
         </div>
       </div>
       <div className="min-h-[148px]" />

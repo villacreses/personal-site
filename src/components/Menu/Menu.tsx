@@ -95,10 +95,15 @@ type MenuCloseButtonProps = Omit<
 >;
 
 const MenuCloseButton: FC<MenuCloseButtonProps> = (props) => {
-  const { closeMenu } = useMenuContext();
+  const { closeMenu, menuOpen } = useMenuContext();
 
   return (
-    <button type="button" onClick={closeMenu} {...props}>
+    <button
+      type="button"
+      onClick={closeMenu}
+      tabIndex={menuOpen ? 1 : -1}
+      {...props}
+    >
       <Icon iconId="xmark" />
     </button>
   );
