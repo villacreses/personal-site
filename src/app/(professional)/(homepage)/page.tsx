@@ -21,7 +21,7 @@ const SocialLinks = () => (
 );
 
 const Credentials = () => (
-  <ul className={`text-sm text-gray-300 mb-6`}>
+  <ul className={`text-sm text-gray-600 dark:text-gray-300 mb-6`}>
     {credentials.map(({ iconId, text }) => (
       <li
         key={text}
@@ -41,7 +41,7 @@ const Credentials = () => (
 const MyImage = () => (
   <img
     src="/images/mario_small.jpg"
-    className="mb-4 mx-auto rounded-full h-36 w-36 border-4 medium-zoom-image"
+    className="mb-4 mx-auto rounded-full h-36 w-36 border-4 medium-zoom-image border-slate-900/80 dark:border-blue-100"
   />
 );
 
@@ -70,7 +70,9 @@ export default function Home() {
           <Credentials />
           <hr />
         </div>
-        <p className="prose text-gray-400 text-xl my-6">{homepageLead}</p>
+        <p className="text-gray-600 dark:text-gray-400 text-xl my-6">
+          {homepageLead}
+        </p>
         <Markdown
           className="prose max-w-[60ch] text-gray-200"
           components={components}
