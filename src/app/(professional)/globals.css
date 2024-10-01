@@ -47,6 +47,13 @@
   box-sizing: border-box;
 }
 
+:root[data-theme=dark] {
+  --foreground-rgb: var(--color-neutral);
+  --background-start-rgb: var(--color-neutral-800);
+  --background-end-rgb: var(--color-neutral-900);
+  --prose: var(--color-neutral-300);
+}
+
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme=light]) {
     --foreground-rgb: var(--color-neutral);
