@@ -6,6 +6,7 @@ import {
   socialLinkItems,
 } from "./content";
 import Link from "next/link";
+import Image from 'next/image';
 
 const SocialLinks = () => (
   <ul className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4 mb-6">
@@ -39,8 +40,13 @@ const Credentials = () => (
 );
 
 const MyImage = () => (
-  <img
+  <Image
+    alt="A picture of Mario Villacreses"
     src="/images/mario_small.jpg"
+    placeholder="blur"
+    blurDataURL="/images/mario_blur.jpg"
+    height={144}
+    width={144}
     className="mb-4 mx-auto rounded-full h-36 w-36 border-4 medium-zoom-image border-slate-900/80 dark:border-blue-100"
   />
 );
