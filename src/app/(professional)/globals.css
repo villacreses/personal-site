@@ -38,8 +38,9 @@
 
 
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background-start-rgb: var(--color-primary-50);
+  --background-end-rgb: var(--color-neutral-300);
+  --prose: var(--color-neutral-600);
 }
 
 * {
@@ -47,10 +48,11 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme=light]) {
     --foreground-rgb: var(--color-neutral);
     --background-start-rgb: var(--color-neutral-800);
     --background-end-rgb: var(--color-neutral-900);
+    --prose: var(--color-neutral-300);
   }
 }
 
@@ -81,11 +83,11 @@ body[data-menuopen] hr {
   }
 
   a {
-    @apply text-blue-700 hover:text-blue-900 dark:text-green-300 dark:hover:text-green-500
+    @apply text-blue-800 hover:text-blue-900 dark:text-green-300 dark:hover:text-green-500
   }
 
   p {
-    color: rgb(var(--color-neutral-300));
+    color: rgb(var(--prose));
   }
 }
 
@@ -103,7 +105,7 @@ body[data-menuopen] hr {
   }
 
   .prose {
-    color: rgb(var(--color-neutral-300));
+    color: rgb(var(--prose));
   }
 }
 
