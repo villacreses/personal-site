@@ -27,6 +27,10 @@ export const nowSections: TNowSection[] = [
     heading: "Reading",
     content: `
 - *Fundamentals of Software Architecture* by Mark Richards
+
+- *The Power of Latino Leadership* by Juana Bordas
+
+- *On Freedom* by Timothy Snyder
     `,
   },
 ];

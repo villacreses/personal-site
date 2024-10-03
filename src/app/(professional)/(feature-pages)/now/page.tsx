@@ -9,7 +9,7 @@ const dateDisplayed = new Date(timestamp).toLocaleString("default", {
 
 export default function NowPage() {
   return (
-    <main className="max-w-[70ch] mx-auto">
+    <>
       <StandardHeader title="Now">
         <Markdown>{headerContent}</Markdown>
       </StandardHeader>
@@ -31,6 +31,6 @@ export default function NowPage() {
           </section>
         ))}
       </article>
-    </main>
+    </>
   );
 }
