@@ -1,5 +1,4 @@
-import { Icon, Markdown } from "@/components";
-import StandardHeader from "@/components/StandardHeader";
+import { Icon, Markdown, StandardHeader } from "@/components";
 import { nowSections, timestamp, headerContent } from "./content";
 
 const dateDisplayed = new Date(timestamp).toLocaleString("default", {

@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
 
-export default function StandardHeader({
+export function StandardHeader({
   children,
   className,
   title,
