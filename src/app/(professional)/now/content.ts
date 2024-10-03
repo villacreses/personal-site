@@ -19,7 +19,7 @@ export const nowSections: TNowSection[] = [
     content: `
 - **Master's Degree:** I've begun my journey towards earning a Master of Computer Science at Arizona State University. Expected graduation: Spring 2026.
 
-- **Learning Rust:**  I'm super excited to dive into Rust after spending most of my career with JavaScript. Discovering the [pax.dev]((https://www.pax.dev/) ) project has sparked my enthusiasm since it aims to simplify modern web development and harnesses the power of WebAssembly. I can't wait to learn Rust and contribute to this game-changing initiative!
+- **Learning Rust:**  I'm super excited to dive into Rust after spending most of my career with JavaScript. Discovering the [pax.dev](https://www.pax.dev/) project has sparked my enthusiasm since it aims to simplify modern web development and harnesses the power of WebAssembly. I can't wait to learn Rust and contribute to this game-changing initiative!
     `,
   },
   {
