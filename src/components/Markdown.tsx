@@ -1,6 +1,23 @@
-import { ComponentProps } from "react";
-import Markdown from "react-markdown";
+import { ComponentProps, ReactNode } from "react";
+import MarkdownBase from "react-markdown";
 
-export { default as Markdown } from "react-markdown";
+export type MarkdownProps = ComponentProps<typeof MarkdownBase>;
+export type MarkdownComponents = MarkdownProps["components"];
 
-export type TMarkdownComponents = ComponentProps<typeof Markdown>["components"];
+const defaultComponents: MarkdownComponents = {
+  ul({ node, ...props }) {
+    return <ul className="list-disc mt-2 pl-5 prose" {...props} />;
+  },
+  li({ node, ...props }) {
+    return <li className="mb-3" {...props} />;
+  },
+};
+
+export function Markdown({ components, ...props }: MarkdownProps): ReactNode {
+  return (
+    <MarkdownBase
+      components={{ ...defaultComponents, ...components }}
+      {...props}
+    />
+  );
+}

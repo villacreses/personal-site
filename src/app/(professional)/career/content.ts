@@ -1,24 +1,4 @@
-export type TWorkEntry = {
-  org: string;
-  role: string;
-  startDate: string;
-  endDate?: string | null;
-  location?: string;
-  description?: string;
-  techUsed?: string[];
-  omitEndDate?: boolean;
-};
-
-export type TSchoolEntry = {
-  schoolName: string;
-  credential: string;
-  graduationDate: string;
-  startDate?: string;
-  location: string;
-  description: string;
-};
-
-export type THackathonEntry = {};
+import { THackathonEntry, TSchoolEntry, TWorkEntry } from "@/components";
 
 export const headerContent = `
 This page highlights my work history, along with any significant 
@@ -123,7 +103,7 @@ export const educationEntries: TSchoolEntry[] = [
   },
 ];
 
-export const hackathonEntries = [
+export const hackathonEntries: THackathonEntry[] = [
   {
     event: "NY Sextech Hackathon",
     award: "1st Place Winner",
