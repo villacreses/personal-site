@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ComponentProps, ReactNode } from "react";
 import MarkdownBase from "react-markdown";
 
@@ -10,6 +11,16 @@ const defaultComponents: MarkdownComponents = {
   },
   li({ node, ...props }) {
     return <li className="mb-3" {...props} />;
+  },
+  a({ node, href = "#", ...props }) {
+    return <Link href={href} {...props} />;
+  },
+  h1({
+    node,
+    className = "text-4xl font-extrabold text-center mb-5",
+    ...props
+  }) {
+    return <h1 className={className} {...props} />;
   },
 };
 
