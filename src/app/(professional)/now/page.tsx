@@ -1,22 +1,11 @@
-import { Icon } from "@/components";
+import { Icon, Markdown } from "@/components";
 import StandardHeader from "@/components/StandardHeader";
-import { ComponentProps } from "react";
-import Markdown from "react-markdown";
 import { nowSections, timestamp, headerContent } from "./content";
 
 const dateDisplayed = new Date(timestamp).toLocaleString("default", {
   month: "long",
   year: "numeric",
 });
-
-const components: ComponentProps<typeof Markdown>["components"] = {
-  ul({ node, ...props }) {
-    return <ul className="list-disc mt-2 pl-5 prose" {...props} />;
-  },
-  li({ node, ...props }) {
-    return <li className="mb-3" {...props} />;
-  },
-};
 
 export default function NowPage() {
   return (
@@ -38,9 +27,7 @@ export default function NowPage() {
               <Icon iconId={icon} height="1.4em" className="mr-2" />
               <span>{heading}</span>
             </h3>
-            <Markdown components={components} className="ml-3">
-              {content}
-            </Markdown>
+            <Markdown className="ml-3">{content}</Markdown>
           </section>
         ))}
       </article>

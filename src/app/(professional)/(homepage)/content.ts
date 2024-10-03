@@ -1,5 +1,3 @@
-import { IconID, IconLinkProps } from "@/components";
-
 export const homepageLead = `
 I'm Mario, a fullstack engineer with 6 years of experience. 
 `;
@@ -11,44 +9,6 @@ education, healthcare, social media, and e-commerce. Currently I'm on a hiatus f
 
 Take a look at my [resume](/docs/resume.pdf) and skills, and get in touch via my social links below.
 `;
-
-type TCredential = {
-  iconId: IconID;
-  text: string;
-  size?: string;
-};
-
-export const credentials: TCredential[] = [
-  {
-    iconId: "suitcase",
-    text: "Senior Software Engineer @ Godaddy.com",
-    size: ".8rem",
-  },
-  {
-    iconId: "school",
-    text: "B.A. Applied Math @ CUNY Queens College",
-    size: ".95rem",
-  },
-  { iconId: "location", text: "New York City", size: ".875rem" },
-];
-
-export const socialLinkItems: IconLinkProps[] = [
-  {
-    slug: "envelope",
-    label: "Send me an email",
-    href: "mailto:MarioVillacreses@outlook.com",
-  },
-  {
-    slug: "github",
-    label: "Follow me on GitHub",
-    href: "https://github.com/villacreses",
-  },
-  {
-    slug: "linkedin",
-    label: "Add me on LinkedIn",
-    href: "https://www.linkedin.com/in/villacreses",
-  },
-];
 
 export const projectEntries = [
   {
