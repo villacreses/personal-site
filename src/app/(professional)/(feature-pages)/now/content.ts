@@ -25,8 +25,6 @@ export const nowSections: TNowSection[] = [
   {
     icon: "book",
     heading: "Reading",
-    content: `
-- *Fundamentals of Software Architecture* by Mark Richards
-    `,
+    content: `You can see my [reading log](/reading) to keep up with what I've been reading.`,
   },
 ];

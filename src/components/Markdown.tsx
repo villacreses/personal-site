@@ -22,6 +22,9 @@ const defaultComponents: MarkdownComponents = {
   }) {
     return <h1 className={className} {...props} />;
   },
+  em({ node, className = "mr-0.5", ...props }) {
+    return <em className={className} {...props} />;
+  },
 };
 
 export function Markdown({ components, ...props }: MarkdownProps): ReactNode {

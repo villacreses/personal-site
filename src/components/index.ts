@@ -9,3 +9,5 @@ export * from "./Icon";
 export * from "./InlineLink";
 export * from "./Markdown";
 export * from "./PageFooter";
+export * from "./StandardHeader";
+export * from "./ToggleSection";

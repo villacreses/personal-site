@@ -1,5 +1,4 @@
-import { Icon, Markdown } from "@/components";
-import StandardHeader from "@/components/StandardHeader";
+import { Icon, Markdown, StandardHeader } from "@/components";
 import { nowSections, timestamp, headerContent } from "./content";
 
 const dateDisplayed = new Date(timestamp).toLocaleString("default", {
@@ -9,7 +8,7 @@ const dateDisplayed = new Date(timestamp).toLocaleString("default", {
 
 export default function NowPage() {
   return (
-    <main className="max-w-[70ch] mx-auto">
+    <>
       <StandardHeader title="Now">
         <Markdown>{headerContent}</Markdown>
       </StandardHeader>
@@ -31,6 +30,6 @@ export default function NowPage() {
           </section>
         ))}
       </article>
-    </main>
+    </>
   );
 }

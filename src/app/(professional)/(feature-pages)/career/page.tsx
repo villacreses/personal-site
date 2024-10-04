@@ -3,6 +3,7 @@ import {
   WorkEntries,
   Markdown,
   HackathonEntries,
+  StandardHeader,
 } from "@/components";
 import {
   educationEntries,
@@ -10,11 +11,10 @@ import {
   headerContent,
   hackathonEntries,
 } from "./content";
-import StandardHeader from "@/components/StandardHeader";
 
 export default function CareerHistory() {
   return (
-    <main className="max-w-[70ch] mx-auto">
+    <>
       <StandardHeader title="Mario's Career History" className="mb-20">
         <Markdown>{headerContent}</Markdown>
       </StandardHeader>
@@ -32,6 +32,6 @@ export default function CareerHistory() {
         <h2 className="section-header">Hackathons</h2>
         <HackathonEntries entries={hackathonEntries} />
       </section>
-    </main>
+    </>
   );
 }

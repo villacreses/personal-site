@@ -29,10 +29,6 @@ const bodyClassnames = classNames([
   "px-6 m-auto max-w-7xl sm:px-14 md:px-24 lg:px-32",
 ]);
 
-/**
- * text-lg leading-7  bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral  scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600
- */
-
 export default function RootLayout({
   children,
 }: Readonly<{
