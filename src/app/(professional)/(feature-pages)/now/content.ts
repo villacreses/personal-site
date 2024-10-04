@@ -1,4 +1,5 @@
 import { IconID } from "@/components";
+import { currentlyReading } from "../content-shared";
 
 type TNowSection = {
   icon: IconID;
@@ -25,12 +26,6 @@ export const nowSections: TNowSection[] = [
   {
     icon: "book",
     heading: "Reading",
-    content: `
-- *Fundamentals of Software Architecture* by Mark Richards
-
-- *The Power of Latino Leadership* by Juana Bordas
-
-- *On Freedom* by Timothy Snyder
-    `,
+    content: currentlyReading,
   },
 ];

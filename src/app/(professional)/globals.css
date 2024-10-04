@@ -108,7 +108,7 @@ body[data-menuopen] hr {
   }
 
   .section-header {
-    @apply font-bold uppercase tracking-widest mb-8 text-center
+    @apply font-bold uppercase tracking-widest mb-8
   }
 
   .prose {
