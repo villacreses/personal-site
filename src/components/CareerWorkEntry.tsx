@@ -1,6 +1,5 @@
 import { FC } from "react";
-import Markdown from "react-markdown";
-import { BubbleList, DateRange, DateRangeProps } from ".";
+import { BubbleList, DateRange, DateRangeProps, Markdown } from ".";
 
 export type TWorkEntry = {
   org: string;

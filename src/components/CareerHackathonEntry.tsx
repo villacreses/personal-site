@@ -1,6 +1,5 @@
 import { FC } from "react";
-import Markdown from "react-markdown";
-import { BubbleList, DateRange } from ".";
+import { BubbleList, Markdown } from ".";
 
 export type THackathonEntry = {
   event: string;
