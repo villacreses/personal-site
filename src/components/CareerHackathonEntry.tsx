@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { BubbleList, Markdown } from ".";
+import { BubbleList, Markdown, MarkdownComponents } from ".";
 
 export type THackathonEntry = {
   event: string;
@@ -19,14 +19,13 @@ const HackathonEntry: FC<THackathonEntry> = ({
 }) => {
   const eventDate = new Date(date).toLocaleString("default", {
     year: "numeric",
-    month: "long",
   });
 
   return (
     <dl>
       <dt className="sr-only">Event Date</dt>
-      <dd>
-        <time dateTime="">{eventDate}</time>
+      <dd className="text-neutral-500 text-sm">
+        <time dateTime={date}>{eventDate}</time>
       </dd>
       <div className="flex flex-col xs:flex-row text-lg xs:text-xl mb-2">
         <dt className="sr-only">Job title</dt>
