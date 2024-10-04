@@ -14,6 +14,14 @@
   }
 }
 
+li.entry p:first-child {
+  @apply font-semibold;
+}
+
+li.entry p:only-child {
+  @apply font-medium;
+}
+
 li.entry p:not(:first-child) {
   @apply text-sm;
 }

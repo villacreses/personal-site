@@ -1,5 +1,4 @@
 import { IconID } from "@/components";
-import { currentlyReading } from "../content-shared";
 
 type TNowSection = {
   icon: IconID;
@@ -26,6 +25,6 @@ export const nowSections: TNowSection[] = [
   {
     icon: "book",
     heading: "Reading",
-    content: currentlyReading,
+    content: `You can see my [reading log](/reading) to keep up with what I've been reading.`,
   },
 ];

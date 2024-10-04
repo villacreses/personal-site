@@ -122,7 +122,6 @@ export class ToggleSection extends Component<
     p({ node, className, ...props }) {
       return <p className="mt-2" {...props} />;
     },
-
     li({ node, className, ...props }) {
       return <li className={styles.entry} {...props} />;
     },
@@ -134,7 +133,7 @@ export class ToggleSection extends Component<
         <summary
           ref={this.summary}
           onClick={this.onClick}
-          className="font-bold uppercase tracking-widest"
+          className="font-bold uppercase tracking-widest cursor-pointer"
         >
           {this.props.title}
         </summary>
