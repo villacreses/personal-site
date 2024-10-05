@@ -92,10 +92,6 @@ body[data-menuopen] hr {
   a {
     @apply text-blue-800 hover:text-blue-900 dark:text-green-300 dark:hover:text-green-500
   }
-
-  p {
-    color: rgb(var(--prose));
-  }
 }
 
 @layer components {
