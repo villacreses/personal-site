@@ -4,7 +4,6 @@ import { getAllPosts } from "@/lib/cosmic";
 
 export default async function BlogHome() {
   const posts = await getAllPosts();
-  const e = JSON.stringify(posts);
 
   return (
     <main>

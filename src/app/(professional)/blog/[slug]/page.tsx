@@ -30,7 +30,10 @@ const components: MarkdownComponents = {
 
 const getReadingTime = (content: string) => {
   const WORDS_PER_MINUTE = 200;
-  return Math.round(Number(content.match(/\w+/g)?.length) / WORDS_PER_MINUTE);
+  const minutes = Math.round(
+    Number(content.match(/\w+/g)?.length) / WORDS_PER_MINUTE,
+  );
+  return isNaN(minutes) ? "unknown" : minutes || "< 1";
 };
 
 const getPostData = async (slug: string) => {
