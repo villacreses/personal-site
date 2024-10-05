@@ -1,6 +1,7 @@
+import Image from "next/image";
+import Link from "next/link";
 import { Markdown, MarkdownComponents } from "@/components";
 import { getPost } from "@/lib/cosmic";
-import Link from "next/link";
 
 type BlogPostParams = {
   params: {
@@ -54,33 +55,47 @@ export default async function BlogPost({ params }: BlogPostParams) {
   const post = await getPostData(params.slug);
   const content = post.metadata.content;
 
+  const imgUrl = post.metadata.author?.metadata.image?.imgix_url;
+
   return (
     <main className="max-w-7xl">
       <article>
         <header>
-          <p className="text-sm mb-1">
+          <p className="text-sm mb-2">
             <Link href="/blog">{"Mario's Blog"}</Link>
             <span className="px-1.5">/</span>
           </p>
           <h1 className="text-4xl font-extrabold">{post.title}</h1>
           {/* Metadata container */}
-          <dl className="mt-3 mb-6 flex flex-col">
-            <dt className="sr-only">Author</dt>
-            <dd className="prose-color">{post.metadata.author?.title}</dd>
-            <div className="flex flex-row text-sm text-neutral-500 dark:text-neutral-400">
-              <dt className="sr-only">Publish date</dt>
-              <dd>
-                <time dateTime={post.metadata.published_date}>{post.date}</time>
-              </dd>
-              <dt className="sr-only"></dt>
-              <dd>
-                <span aria-hidden="true" className="mx-1.5">
+
+          <div className="flex flex-row mt-3 mb-6 items-center">
+            <Image
+              alt="A picture of Mario Villacreses"
+              src="/images/mario_small.jpg"
+              placeholder="blur"
+              blurDataURL="/images/mario_blur.jpg"
+              height={36}
+              width={36}
+              className="mr-3 rounded-full h-9 w-9 medium-zoom-image"
+            />
+            <dl className="flex flex-col flex-grow">
+              <dt className="sr-only">Author</dt>
+              <dd className="prose-color">{post.metadata.author?.title}</dd>
+              <div className="flex flex-row text-sm text-neutral-500 dark:text-neutral-400">
+                <dt className="sr-only">Publish date</dt>
+                <dd>
+                  <time dateTime={post.metadata.published_date}>
+                    {post.date}
+                  </time>
+                </dd>
+                <div aria-hidden="true" className="mx-1.5">
                   &#x2022;
-                </span>
-              </dd>
-              <span>{post.readingTime} minute read</span>
-            </div>
-          </dl>
+                </div>
+                <dt className="sr-only">Estimated reading time</dt>
+                <dd>{post.readingTime} minute read</dd>
+              </div>
+            </dl>
+          </div>
           <ul>{/* TODO: Share buttons */}</ul>
         </header>
         <Markdown className="max-w-[70ch]" components={components}>
