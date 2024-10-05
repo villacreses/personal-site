@@ -1,10 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Markdown, MarkdownComponents } from "@/components";
-import { getPost } from "@/lib/cosmic";
+import { getPost, withCalcData } from "@/lib/cosmic";
 
 import styles from "./blogpost.module.css";
 import { classNames } from "@/lib/utils";
+import { BlogPostMetadata } from "@/components/BlogPostMetadata";
+import { PostWithCalcData } from "@/lib/types";
 
 type BlogPostParams = {
   params: {
@@ -44,27 +46,8 @@ const components: MarkdownComponents = {
   },
 };
 
-const getReadingTime = (content: string) => {
-  const WORDS_PER_MINUTE = 200;
-  const minutes = Math.round(
-    Number(content.match(/\w+/g)?.length) / WORDS_PER_MINUTE,
-  );
-  return isNaN(minutes) ? "unknown" : minutes || "< 1";
-};
-
-const getPostData = async (slug: string) => {
-  const post = await getPost(slug);
-
-  return {
-    ...post,
-    date: new Date(post.metadata.published_date).toLocaleString("default", {
-      month: "long",
-      year: "numeric",
-      day: "numeric",
-    }),
-    readingTime: getReadingTime(post.metadata.content),
-  };
-};
+const getPostData = async (slug: string): Promise<PostWithCalcData> =>
+  await getPost(slug).then((post) => withCalcData(post));
 
 export default async function BlogPost({ params }: BlogPostParams) {
   const post = await getPostData(params.slug);
@@ -73,14 +56,12 @@ export default async function BlogPost({ params }: BlogPostParams) {
   return (
     <main className="max-w-7xl">
       <article>
-        <header>
+        <header className="mb-10">
           <p className="text-sm mb-2">
             <Link href="/blog">{"Mario's Blog"}</Link>
             <span className="px-1.5">/</span>
           </p>
           <h1 className="text-4xl font-extrabold">{post.title}</h1>
-          {/* Metadata container */}
-
           <div className="flex flex-row mt-3 mb-6 items-center">
             <Image
               alt="A picture of Mario Villacreses"
@@ -94,19 +75,7 @@ export default async function BlogPost({ params }: BlogPostParams) {
             <dl className="flex flex-col flex-grow">
               <dt className="sr-only">Author</dt>
               <dd className="prose-color">{post.metadata.author?.title}</dd>
-              <div className="flex flex-row text-sm text-neutral-500 dark:text-neutral-400">
-                <dt className="sr-only">Publish date</dt>
-                <dd>
-                  <time dateTime={post.metadata.published_date}>
-                    {post.date}
-                  </time>
-                </dd>
-                <div aria-hidden="true" className="mx-1.5">
-                  &#x2022;
-                </div>
-                <dt className="sr-only">Estimated reading time</dt>
-                <dd>{post.readingTime} minute read</dd>
-              </div>
+              <BlogPostMetadata post={post} />
             </dl>
           </div>
           <ul>{/* TODO: Share buttons */}</ul>

@@ -9,7 +9,7 @@ export default async function BlogHome() {
     <main className="max-w-[85ch] w-full mx-auto">
       <StandardHeader title="Blog Home"></StandardHeader>
       {posts.map((post) => (
-        <BlogPostPreview post={post} />
+        <BlogPostPreview key={post.slug} post={post} />
       ))}
     </main>
   );

@@ -22,3 +22,11 @@ export const KEY_CODES = {
   SPACE_IE11: "Spacebar",
   ENTER: "Enter",
 };
+
+export const getReadingTime = (content: string) => {
+  const WORDS_PER_MINUTE = 200;
+  const minutes = Math.round(
+    Number(content.match(/\w+/g)?.length) / WORDS_PER_MINUTE,
+  );
+  return isNaN(minutes) ? "unknown" : minutes || "< 1";
+};

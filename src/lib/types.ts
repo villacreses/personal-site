@@ -29,6 +29,11 @@ export interface Post {
   };
 }
 
+export interface PostWithCalcData extends Post {
+  date: string;
+  readingTime: string | number;
+}
+
 export interface Author {
   id: string;
   slug: string;
