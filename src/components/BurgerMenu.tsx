@@ -17,7 +17,7 @@ const menuClasses = classNames([
 
 const BurgerMenu: FC<BurgerMenuProps> = ({ items }) => (
   <Menu id="page-nav">
-    <Menu.Button className="xs:hidden text-2xl">
+    <Menu.Button className="sm:hidden text-3xl">
       <Icon iconId="burger" />
     </Menu.Button>
     <Menu.Container
@@ -34,7 +34,7 @@ const BurgerMenu: FC<BurgerMenuProps> = ({ items }) => (
           </li>
         ))}
       </ul>
-      <Menu.CloseButton className="absolute text-4xl right-4 top-4" />
+      <Menu.CloseButton className="absolute text-3xl right-4 top-4" />
     </Menu.Container>
   </Menu>
 );

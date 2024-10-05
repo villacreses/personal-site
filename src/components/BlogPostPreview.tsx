@@ -20,7 +20,7 @@ export default function BlogPostPreview({ post }: { post: Post }) {
       >
         {date}
       </time>
-      <h2 className="text-lg font-bold tracking-wider">
+      <h2 className="text-xl font-bold tracking-wider">
         <Link href={`/blog/${post.slug}`}>{post.title}</Link>
       </h2>
       <Markdown className="prose-color font-light mt-1">

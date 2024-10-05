@@ -51,12 +51,14 @@ export default function TopNavbar() {
         />
         <div className="m-auto max-w-[64rem] flex flex-row items-center relative">
           <nav className="mr-auto">
-            <Link href="/">Mario Villacreses</Link>
+            <Link href="/" className="text-lg font-medium sm:font-normal sm:text-base">
+              Mario Villacreses
+            </Link>
           </nav>
           <nav>
-            <ul className="flex flex-row gap-x-5 xs:gap-x-2 items-center">
+            <ul className="flex flex-row gap-x-6 sm:gap-x-2 items-center">
               {navLinks.map((props) => (
-                <li key={props.href} className="hidden xs:block">
+                <li key={props.href} className="hidden sm:block">
                   <Link {...props} className="px-2 py-1" />
                 </li>
               ))}
