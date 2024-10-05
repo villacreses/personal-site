@@ -38,9 +38,9 @@
 
 
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: var(--color-primary-50);
+  --background-start-rgb: var(--color-neutral-100);
   --background-end-rgb: var(--color-neutral-300);
-  --prose: var(--color-neutral-600);
+  --prose: var(--color-neutral-700);
 }
 
 * {
@@ -105,6 +105,10 @@ body[data-menuopen] hr {
 
   .section-header {
     @apply font-bold uppercase tracking-widest mb-8
+  }
+
+  .prose-color {
+    color: rgb(var(--prose));
   }
 
   .prose {

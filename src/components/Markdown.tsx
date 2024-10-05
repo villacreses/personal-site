@@ -7,10 +7,10 @@ export type MarkdownComponents = MarkdownProps["components"];
 
 const defaultComponents: MarkdownComponents = {
   ul({ node, ...props }) {
-    return <ul className="list-disc mt-2 pl-5 prose" {...props} />;
+    return <ul className="list-disc mt-2 pl-8 prose" {...props} />;
   },
   ol({ node, ...props }) {
-    return <ol className="list-decimal mt-2 pl-5 prose" {...props} />;
+    return <ol className="list-decimal mt-2 pl-8 prose" {...props} />;
   },
   li({ node, ...props }) {
     return <li className="mb-3" {...props} />;
