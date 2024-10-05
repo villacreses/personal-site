@@ -8,7 +8,7 @@ import {
 import { MenuContextProvider, useMenuContext } from "./menuContext";
 import { useMenuState } from "./useMenuState";
 import Link from "next/link";
-import { classNames } from "@/utils";
+import { classNames } from "@/lib/utils";
 import { Icon } from "..";
 
 const omittedButtonProps = [

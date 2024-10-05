@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@cosmicjs/sdk": "^1.2.0",
     "@fortawesome/free-brands-svg-icons": "^6.5.1",
     "@fortawesome/free-regular-svg-icons": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",

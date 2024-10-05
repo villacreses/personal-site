@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Menu } from "./Menu";
 import { Icon } from "./Icon";
-import { classNames } from "@/utils";
+import { classNames } from "@/lib/utils";
 
 type BurgerMenuProps = {
   items: {

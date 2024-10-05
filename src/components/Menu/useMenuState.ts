@@ -6,7 +6,7 @@ import {
   RefObject,
   useState,
 } from "react";
-import { KEY_CODES } from "@/utils";
+import { KEY_CODES } from "@/lib/utils";
 
 type Focusable = HTMLAnchorElement | HTMLButtonElement;
 

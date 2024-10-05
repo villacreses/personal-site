@@ -1,7 +1,7 @@
-import Link from 'next/link';
-import { FC, PropsWithChildren, ComponentProps } from 'react';
-import {Icon} from './Icon';
-import { classNames } from '@/utils';
+import Link from "next/link";
+import { FC, PropsWithChildren, ComponentProps } from "react";
+import { Icon } from "./Icon";
+import { classNames } from "@/lib/utils";
 
 const IconArrowUpRight = () => (
   <svg
@@ -27,7 +27,7 @@ const ArrowRight = () => (
   />
 );
 
-type InlineLinkProps = Omit<ComponentProps<typeof Link>, 'className'>
+type InlineLinkProps = Omit<ComponentProps<typeof Link>, "className">;
 
 export const InlineLink: FC<PropsWithChildren<InlineLinkProps>> = ({
   children,
@@ -35,14 +35,14 @@ export const InlineLink: FC<PropsWithChildren<InlineLinkProps>> = ({
   ...props
 }) => {
   const className = classNames([
-    'flex flex-row group transition-default',
-    target !== '_blank' && 'items-center'
-  ]); 
+    "flex flex-row group transition-default",
+    target !== "_blank" && "items-center",
+  ]);
 
   return (
     <Link className={className} target={target} {...props}>
-      {children + ' '}
-      {target === '_blank' ? <IconArrowUpRight /> : <ArrowRight />}
+      {children + " "}
+      {target === "_blank" ? <IconArrowUpRight /> : <ArrowRight />}
     </Link>
   );
 };
