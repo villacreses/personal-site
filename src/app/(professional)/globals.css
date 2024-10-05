@@ -118,6 +118,10 @@ body[data-menuopen] hr {
   .prose {
     color: rgb(var(--prose));
   }
+
+  .border-prose {
+    border-color: rgb(var(--prose));
+  }
 }
 
 @layer utilities {

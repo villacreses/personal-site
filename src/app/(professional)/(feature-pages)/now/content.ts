@@ -7,7 +7,8 @@ type TNowSection = {
 };
 
 export const headerContent = `
-Welcome to my [Now page](https://nownownow.com/about), where I share what I'm currently focusing on in my life. If we haven't connected in the last six months, you can catch up on my latest endeavors here.
+Welcome to my [Now page](https://nownownow.com/about). While my blog dives deep into topics that pique my interest, my Now page offers a quick snapshot of where I've recently been investing my energy. If we haven't connected in the last six months, you can catch up on my latest endeavors here.
+
 `;
 
 export const timestamp = "2024-09-25T22:31:00-0400";

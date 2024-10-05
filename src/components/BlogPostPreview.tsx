@@ -14,16 +14,16 @@ export default function BlogPostPreview({ post }: { post: Post }) {
 
   return (
     <article className="my-8">
+      <h2 className="text-xl font-bold tracking-wider">
+        <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+      </h2>
       <time
         dateTime={post.metadata.published_date}
         className="text-sm text-neutral-500 dark:text-neutral-400"
       >
         {date}
       </time>
-      <h2 className="text-xl font-bold tracking-wider">
-        <Link href={`/blog/${post.slug}`}>{post.title}</Link>
-      </h2>
-      <Markdown className="prose-color font-light mt-1">
+      <Markdown className="prose-color font-light mt-1.5">
         {post.metadata.teaser}
       </Markdown>
       <BubbleList items={post.metadata.categories?.map(({ title }) => title)} />

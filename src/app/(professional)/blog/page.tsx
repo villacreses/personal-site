@@ -6,7 +6,7 @@ export default async function BlogHome() {
   const posts = await getAllPosts();
 
   return (
-    <main>
+    <main className="max-w-[85ch] w-full mx-auto">
       <StandardHeader title="Blog Home"></StandardHeader>
       {posts.map((post) => (
         <BlogPostPreview post={post} />

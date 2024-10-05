@@ -3,6 +3,9 @@ import Link from "next/link";
 import { Markdown, MarkdownComponents } from "@/components";
 import { getPost } from "@/lib/cosmic";
 
+import styles from "./blogpost.module.css";
+import { classNames } from "@/lib/utils";
+
 type BlogPostParams = {
   params: {
     slug: string;
@@ -21,11 +24,23 @@ const components: MarkdownComponents = {
   h2({ node, className = "text-2xl font-bold mt-7", ...props }) {
     return <h2 className={className} {...props} />;
   },
-  h3({ node, className = "text-xl font-semibold mt-5 -mb-2", ...props }) {
+  h3({ node, className = "text-xl font-semibold mt-5 -mb-3", ...props }) {
     return <h3 className={className} {...props} />;
   },
   p({ node, className = "mt-5 prose", ...props }) {
     return <p className={className} {...props} />;
+  },
+  blockquote({
+    node,
+    className = "pl-6 py-1 mt-5 border-l-8 ml-3 text-neutral-600 dark:text-neutral-400 border-prose",
+    ...props
+  }) {
+    return (
+      <blockquote
+        className={classNames([className, styles.quote])}
+        {...props}
+      />
+    );
   },
 };
 
@@ -54,8 +69,6 @@ const getPostData = async (slug: string) => {
 export default async function BlogPost({ params }: BlogPostParams) {
   const post = await getPostData(params.slug);
   const content = post.metadata.content;
-
-  const imgUrl = post.metadata.author?.metadata.image?.imgix_url;
 
   return (
     <main className="max-w-7xl">
