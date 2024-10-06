@@ -1,10 +1,6 @@
 import { createBucketClient } from "@cosmicjs/sdk";
-import {
-  CosmicEntWithSlug,
-  TPost,
-  TPostWithCalcData,
-} from "./types";
-import { getReadingTime } from "./utils";
+import { CosmicEntWithSlug, TPost, TPostWithCalcData } from "./types";
+import { getReadingTime } from "../utils";
 
 const cosmic = createBucketClient({
   bucketSlug: process.env.COSMIC_BUCKET_SLUG ?? "",
