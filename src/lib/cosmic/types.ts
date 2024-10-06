@@ -11,6 +11,8 @@ export interface CosmicEnt<T extends {}> {
   type?: string;
   title: string;
   created_at?: string;
+  published_at?: string;
+  modified_at?: string;
   metadata: T;
 }
 
@@ -38,3 +40,30 @@ export interface TPostWithCalcData extends TPost {
   date: string;
   readingTime: string | number;
 }
+
+export type TWorkEntry = {
+  company: string;
+  job_title: string;
+  location: string;
+  remote: boolean;
+  description: string;
+  start_date: string;
+  end_date?: string;
+  company_logo?: string;
+  tech_used?: CosmicEntWithSlug<{ category?: string }>[];
+};
+
+export type TSchoolCredential = {
+  school_name: string;
+  graduation_date: string;
+  location: string;
+  description: string;
+};
+
+export type TCompetitionAward = {
+  event_name: string;
+  award: string;
+  event_date: string;
+  description: string;
+  tags: CosmicEnt<{}>[];
+};

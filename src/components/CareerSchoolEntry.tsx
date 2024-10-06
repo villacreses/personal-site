@@ -1,34 +1,24 @@
+import { CosmicEnt, TSchoolCredential } from "@/lib/cosmic";
 import { FC } from "react";
 
-export type TSchoolEntry = {
-  schoolName: string;
-  credential: string;
-  graduationDate: string;
-  startDate?: string;
-  location: string;
-  description: string;
-};
-
-const SchoolEntry: FC<TSchoolEntry> = ({
-  schoolName,
-  credential,
-  description,
-  graduationDate,
+const SchoolEntry: FC<CosmicEnt<TSchoolCredential>> = ({
+  title,
+  metadata: { school_name, description, graduation_date },
 }) => {
-  const graduated = new Date(graduationDate).toLocaleString("default", {
+  const graduated = new Date(graduation_date).toLocaleString("default", {
     year: "numeric",
   });
   return (
     <>
-      <dt className="text-lg font-bold tracking-wider">{credential}</dt>
+      <dt className="text-lg font-bold tracking-wider">{title}</dt>
       <dd className="ml-0.5">
         <dl>
           <div className="flex flex-row mb-2 font-light tracking-wide text-neutral-400">
             <dt className="sr-only">School</dt>
-            <dd className="after-comma">{schoolName}</dd>
+            <dd className="after-comma">{school_name}</dd>
             <dt className="sr-only">Graduation date</dt>
             <dd>
-              <time dateTime={graduationDate}>{graduated}</time>
+              <time dateTime={graduation_date}>{graduated}</time>
             </dd>
           </div>
           <dt className="sr-only">Description</dt>
@@ -39,10 +29,12 @@ const SchoolEntry: FC<TSchoolEntry> = ({
   );
 };
 
-export const SchoolEntries: FC<{ entries: TSchoolEntry[] }> = ({ entries }) => (
+export const SchoolEntries: FC<{ entries: CosmicEnt<TSchoolCredential>[] }> = ({
+  entries,
+}) => (
   <dl>
     {entries.map((props) => (
-      <SchoolEntry key={props.credential} {...props} />
+      <SchoolEntry key={props.title} {...props} />
     ))}
   </dl>
 );
