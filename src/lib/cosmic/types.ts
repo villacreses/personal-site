@@ -1,3 +1,5 @@
+import { IconID } from "@/components";
+
 // lib/types.ts
 export interface GlobalData {
   metadata: {
@@ -66,4 +68,9 @@ export type TCompetitionAward = {
   event_date: string;
   description: string;
   tags: CosmicEnt<{}>[];
+};
+
+export type TNowEntry = {
+  icon_id: IconID;
+  content: string;
 };

@@ -1,5 +1,10 @@
 import { createBucketClient } from "@cosmicjs/sdk";
-import { CosmicEntWithSlug, TPost, TPostWithCalcData } from "./types";
+import {
+  CosmicEntWithSlug,
+  TNowEntry,
+  TPost,
+  TPostWithCalcData,
+} from "./types";
 import { getReadingTime } from "../utils";
 
 const cosmic = createBucketClient({
@@ -8,6 +13,30 @@ const cosmic = createBucketClient({
 });
 
 export default cosmic;
+
+export async function getNowContent() {
+  try {
+    const { objects: entries }: { objects: CosmicEntWithSlug<TNowEntry>[] } =
+      await Promise.resolve(
+        cosmic.objects
+          .find({
+            type: "now-entries",
+          })
+          .props("slug,title,metadata,modified_at")
+          .depth(1),
+      );
+
+    return {
+      entries,
+      last_modified: entries
+        .map(({ modified_at }) => new Date(modified_at!))
+        .sort()[0],
+    } as const;
+  } catch (error) {
+    console.log("Error fetching Now entries:", error);
+    throw error;
+  }
+}
 
 export class PostService {
   private static withCalcData = (
