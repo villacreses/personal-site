@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Markdown, MarkdownComponents } from "@/components";
-import { PostService } from "@/lib/cosmic";
+import { BlogService } from "@/lib/cosmic";
 
 import styles from "./blogpost.module.css";
 import { classNames } from "@/lib/utils";
@@ -14,7 +14,7 @@ type BlogPostParams = {
 };
 
 export async function generateMetadata({ params }: BlogPostParams) {
-  const post = await PostService.getOne(params.slug);
+  const post = await BlogService.getPost(params.slug);
 
   return {
     title: `${post.title} | Mario Villacreses`,
@@ -46,7 +46,7 @@ const components: MarkdownComponents = {
 };
 
 export default async function BlogPost({ params }: BlogPostParams) {
-  const post = await PostService.getOne(params.slug);
+  const post = await BlogService.getPost(params.slug);
   const content = post.metadata.content;
 
   return (

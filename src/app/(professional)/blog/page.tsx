@@ -1,5 +1,5 @@
 import { BlogPostPreview, Markdown, StandardHeader } from "@/components";
-import { PostService } from "@/lib/cosmic";
+import { BlogService } from "@/lib/cosmic";
 
 const headerContent = `
 This page is under construction while I test out a new content
@@ -8,7 +8,7 @@ current appearance!
 `;
 
 export default async function BlogHome() {
-  const posts = await PostService.getAll();
+  const posts = await BlogService.getAllPosts();
 
   return (
     <main className="max-w-[85ch] w-full mx-auto">
