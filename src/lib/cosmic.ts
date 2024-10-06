@@ -1,5 +1,9 @@
 import { createBucketClient } from "@cosmicjs/sdk";
-import { Post, PostWithCalcData } from "./types";
+import {
+  CosmicEntWithSlug,
+  TPost,
+  TPostWithCalcData,
+} from "./types";
 import { getReadingTime } from "./utils";
 
 const cosmic = createBucketClient({
@@ -10,50 +14,59 @@ const cosmic = createBucketClient({
 export default cosmic;
 
 export class PostService {
-  private static withCalcData = (post: Post): PostWithCalcData => ({
+  private static withCalcData = (
+    post: CosmicEntWithSlug<TPost>,
+  ): CosmicEntWithSlug<TPostWithCalcData> => ({
     ...post,
-    date: new Date(post.metadata.published_date).toLocaleString("default", {
-      month: "long",
-      year: "numeric",
-      day: "numeric",
-    }),
-    readingTime: getReadingTime(post.metadata.content),
+    metadata: {
+      ...post.metadata,
+      date: new Date(post.metadata.published_date).toLocaleString("default", {
+        month: "long",
+        year: "numeric",
+        day: "numeric",
+      }),
+      readingTime: getReadingTime(post.metadata.content),
+    },
   });
 
-  static async getAll(): Promise<PostWithCalcData[]> {
+  static async getAll(): Promise<CosmicEntWithSlug<TPostWithCalcData>[]> {
     try {
-      const { objects: posts }: { objects: Post[] } = await Promise.resolve(
-        cosmic.objects
-          .find({
-            type: "posts",
-          })
-          .props("id,type,slug,title,metadata,created_at")
-          .depth(1),
-      );
+      const { objects: posts }: { objects: CosmicEntWithSlug<TPost>[] } =
+        await Promise.resolve(
+          cosmic.objects
+            .find({
+              type: "posts",
+            })
+            .props("id,type,slug,title,metadata,created_at")
+            .depth(1),
+        );
 
-      return posts.map(PostService.withCalcData);
+      return posts.map((post) => PostService.withCalcData(post));
     } catch (error) {
       console.log("Error fetching all posts:", error);
       return Promise.resolve([]);
     }
   }
 
-  static async getOne(slug: string): Promise<PostWithCalcData> {
+  static async getOne(
+    slug: string,
+  ): Promise<CosmicEntWithSlug<TPostWithCalcData>> {
     try {
-      const { object: post }: { object: Post } = await Promise.resolve(
-        cosmic.objects
-          .findOne({
-            type: "posts",
-            slug,
-          })
-          .props(["id", "type", "slug", "title", "metadata", "created_at"])
-          .depth(1),
-      );
+      const { object: post }: { object: CosmicEntWithSlug<TPost> } =
+        await Promise.resolve(
+          cosmic.objects
+            .findOne({
+              type: "posts",
+              slug,
+            })
+            .props(["id", "type", "slug", "title", "metadata", "created_at"])
+            .depth(1),
+        );
 
       return PostService.withCalcData(post);
     } catch (error) {
       console.log("Error in fetching post data:", error);
-      return Promise.resolve({} as PostWithCalcData);
+      return Promise.resolve({} as CosmicEntWithSlug<TPostWithCalcData>);
     }
   }
 }

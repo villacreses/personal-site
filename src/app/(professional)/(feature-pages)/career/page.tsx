@@ -11,8 +11,11 @@ import {
   headerContent,
   hackathonEntries,
 } from "./content";
+import { CareerService } from "@/lib/cosmic";
 
-export default function CareerHistory() {
+export default async function CareerHistory() {
+  const jobs = await CareerService.getWorkEntries();
+  console.log("jobs", jobs);
   return (
     <>
       <StandardHeader title="Mario's Career History" className="mb-20">

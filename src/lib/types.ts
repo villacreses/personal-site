@@ -6,41 +6,35 @@ export interface GlobalData {
   };
 }
 
-export interface Post {
-  id: string;
-  slug: string;
+export interface CosmicEnt<T extends {}> {
+  id?: string;
+  type?: string;
   title: string;
-  metadata: {
-    published_date: string;
-    content: string;
-    author?: {
-      slug?: string;
-      title?: string;
-      metadata: {
-        image?: {
-          imgix_url?: string;
-        };
-      };
-    };
-    teaser: string;
-    categories: {
-      title: string;
-    }[];
-  };
+  created_at?: string;
+  metadata: T;
 }
 
-export interface PostWithCalcData extends Post {
+export interface CosmicEntWithSlug<T extends {}> extends CosmicEnt<T> {
+  slug: string;
+}
+
+export type Author = {
+  image?: {
+    imgix_url?: string;
+  };
+};
+
+export type TPost = {
+  published_date: string;
+  content: string;
+  author?: CosmicEntWithSlug<Author>;
+  teaser: string;
+  categories: {
+    title: string;
+  }[];
+};
+
+export interface TPostWithCalcData extends TPost {
   date: string;
   readingTime: string | number;
-}
-
-export interface Author {
-  id: string;
-  slug: string;
-  title: string;
-  metadata: {
-    image?: {
-      imgix_url?: string;
-    };
-  };
 }
