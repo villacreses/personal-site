@@ -1,5 +1,11 @@
-import { BlogPostPreview, StandardHeader } from "@/components";
+import { BlogPostPreview, Markdown, StandardHeader } from "@/components";
 import { PostService } from "@/lib/cosmic";
+
+const headerContent = `
+This page is under construction while I test out a new content
+management system (CMS). Nothing to see just yet, please excuse the
+current appearance!
+`;
 
 export default async function BlogHome() {
   const posts = await PostService.getAll();
@@ -7,7 +13,7 @@ export default async function BlogHome() {
   return (
     <main className="max-w-[85ch] w-full mx-auto">
       <StandardHeader title="Blog Home">
-        This page is under construction while I test out a new content management system (CMS). Please excuse the current appearance!
+        <Markdown>{headerContent}</Markdown>
       </StandardHeader>
       {posts.map((post) => (
         <BlogPostPreview key={post.slug} post={post} />
