@@ -1,12 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Markdown, MarkdownComponents } from "@/components";
-import { getPost, withCalcData } from "@/lib/cosmic";
+import { PostService } from "@/lib/cosmic";
 
 import styles from "./blogpost.module.css";
 import { classNames } from "@/lib/utils";
-import { BlogPostMetadata } from "@/components/BlogPostMetadata";
-import { PostWithCalcData } from "@/lib/types";
+import { BlogPostMetadata } from "@/components";
 
 type BlogPostParams = {
   params: {
@@ -15,7 +14,7 @@ type BlogPostParams = {
 };
 
 export async function generateMetadata({ params }: BlogPostParams) {
-  const post = await getPost(params.slug);
+  const post = await PostService.getOne(params.slug);
 
   return {
     title: `${post.title} | Mario Villacreses`,
@@ -46,11 +45,8 @@ const components: MarkdownComponents = {
   },
 };
 
-const getPostData = async (slug: string): Promise<PostWithCalcData> =>
-  await getPost(slug).then((post) => withCalcData(post));
-
 export default async function BlogPost({ params }: BlogPostParams) {
-  const post = await getPostData(params.slug);
+  const post = await PostService.getOne(params.slug);
   const content = post.metadata.content;
 
   return (

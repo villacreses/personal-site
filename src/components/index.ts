@@ -1,3 +1,5 @@
+export * from "./BlogPostMetadata";
+export * from "./BlogPostPreview";
 export * from "./BubbleList";
 export * from "./CareerHackathonEntry";
 export * from "./CareerSchoolEntry";

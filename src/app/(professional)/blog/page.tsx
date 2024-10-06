@@ -1,9 +1,8 @@
-import { StandardHeader } from "@/components";
-import BlogPostPreview from "@/components/BlogPostPreview";
-import { getAllPosts } from "@/lib/cosmic";
+import { BlogPostPreview, StandardHeader } from "@/components";
+import { PostService } from "@/lib/cosmic";
 
 export default async function BlogHome() {
-  const posts = await getAllPosts();
+  const posts = await PostService.getAll();
 
   return (
     <main className="max-w-[85ch] w-full mx-auto">

@@ -1,9 +1,9 @@
-import { Post, PostWithCalcData } from "@/lib/types";
+import { PostWithCalcData } from "@/lib/types";
 import { BubbleList, Markdown } from ".";
 import Link from "next/link";
-import { BlogPostMetadata } from "./BlogPostMetadata";
+import { BlogPostMetadata } from ".";
 
-export default function BlogPostPreview({ post }: { post: PostWithCalcData }) {
+export function BlogPostPreview({ post }: { post: PostWithCalcData }) {
   return (
     <article className="my-8">
       <h2 className="text-xl font-bold tracking-wider">
