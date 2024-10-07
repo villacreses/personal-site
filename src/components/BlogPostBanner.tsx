@@ -21,6 +21,7 @@ export function BlogPostBanner({
         alt={post.metadata.banner_alt_text}
         width={height}
         height={width}
+        placeholder="blur"
         blurDataURL={post.metadata.banner_blur.imgix_url}
       />
     </figure>
