@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Markdown, MarkdownComponents } from "@/components";
+import { BlogPostBanner, Markdown, MarkdownComponents } from "@/components";
 import { BlogService } from "@/lib/cosmic";
 
 import styles from "./blogpost.module.css";
@@ -47,11 +47,11 @@ const components: MarkdownComponents = {
 
 export default async function BlogPost({ params }: BlogPostParams) {
   const post = await BlogService.getPost(params.slug);
-  const content = post.metadata.content;
 
   return (
     <main className="max-w-7xl">
       <article>
+        <BlogPostBanner post={post} />
         <header className="mb-10">
           <p className="text-sm mb-2">
             <Link href="/blog">{"Mario's Blog"}</Link>
@@ -77,7 +77,7 @@ export default async function BlogPost({ params }: BlogPostParams) {
           <ul>{/* TODO: Share buttons */}</ul>
         </header>
         <Markdown className="max-w-[70ch]" components={components}>
-          {content}
+          {post.metadata.content}
         </Markdown>
       </article>
     </main>

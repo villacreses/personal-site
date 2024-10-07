@@ -4,7 +4,6 @@ import {
   StandardHeader,
   ToggleSection,
 } from "@/components";
-import { currentlyReading, readingHistory } from "./content";
 import styles from "@/components/ToggleSection.module.css";
 import { getReadingLogs } from "@/lib/cosmic";
 

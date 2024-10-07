@@ -6,6 +6,9 @@ const props = `{
   title
   published_at
   metadata {
+    banner
+    banner_blur
+    banner_alt_text
     content
     teaser
     author {

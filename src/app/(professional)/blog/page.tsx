@@ -3,8 +3,7 @@ import { BlogService } from "@/lib/cosmic";
 
 const headerContent = `
 This page is under construction while I test out a new content
-management system (CMS). Nothing to see just yet, please excuse the
-current appearance!
+management system (CMS). Nothing to see just yet, please excuse the current appearance!
 `;
 
 export default async function BlogHome() {
@@ -15,9 +14,11 @@ export default async function BlogHome() {
       <StandardHeader title="Blog Home">
         <Markdown>{headerContent}</Markdown>
       </StandardHeader>
-      {posts.map((post) => (
-        <BlogPostPreview key={post.slug} post={post} />
-      ))}
+      <div className="flex flex-col gap-14">
+        {posts.map((post) => (
+          <BlogPostPreview key={post.slug} post={post} />
+        ))}
+      </div>
     </main>
   );
 }
