@@ -1,3 +1,4 @@
+export * from "./BlogPostBanner";
 export * from "./BlogPostMetadata";
 export * from "./BlogPostPreview";
 export * from "./BubbleList";

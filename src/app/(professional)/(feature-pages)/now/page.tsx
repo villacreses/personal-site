@@ -2,7 +2,7 @@ import { Icon, Markdown, StandardHeader } from "@/components";
 import { getNowContent } from "@/lib/cosmic";
 
 const headerContent = `
-Welcome to my [Now page](https://nownownow.com/about). While my blog dives deep into topics that pique my interest, my Now page offers a quick snapshot of where I've recently been investing my energy. If we haven't connected in the last six months, you can catch up on my latest endeavors here.
+Welcome to my [Now page](https://nownownow.com/about). My Now page offers a quick snapshot of where I've recently been investing my energy. If we haven't connected in the last six months, you can catch up on my latest endeavors here.
 `;
 
 export default async function NowPage() {

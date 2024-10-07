@@ -28,12 +28,21 @@ export type Author = {
   };
 };
 
+export type TImage = {
+  url: string;
+  imgix_url: string;
+};
+
 export type TPost = {
+  banner: TImage;
+  banner_blur: TImage;
+  banner_alt_text: string;
   published_date: string;
   content: string;
   author?: CosmicEntWithSlug<Author>;
   teaser: string;
-  categories: {
+  category: {};
+  tags?: {
     title: string;
   }[];
 };

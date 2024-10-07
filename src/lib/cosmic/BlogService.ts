@@ -1,6 +1,31 @@
 import { CosmicClient, CosmicEntWithSlug, TPost, TPostWithCalcData } from ".";
 import { getReadingTime } from "../utils";
 
+const props = `{
+  slug
+  title
+  published_at
+  metadata {
+    banner
+    banner_blur
+    banner_alt_text
+    content
+    teaser
+    author {
+      title
+    }
+    published_date
+    tags {
+      slug
+      title
+    }
+    category {
+      slug
+      title
+    }
+  }
+}`;
+
 export class BlogService {
   private static withCalcData = (
     post: CosmicEntWithSlug<TPost>,
@@ -21,12 +46,7 @@ export class BlogService {
     try {
       const { objects: posts }: { objects: CosmicEntWithSlug<TPost>[] } =
         await Promise.resolve(
-          CosmicClient.objects
-            .find({
-              type: "posts",
-            })
-            .props("id,type,slug,title,metadata,created_at")
-            .depth(1),
+          CosmicClient.objects.find({ type: "posts" }).props(props).depth(1),
         );
 
       return posts.map((post) => BlogService.withCalcData(post));
@@ -47,7 +67,7 @@ export class BlogService {
               type: "posts",
               slug,
             })
-            .props(["id", "type", "slug", "title", "metadata", "created_at"])
+            .props(props)
             .depth(1),
         );
 

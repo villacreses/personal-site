@@ -9,12 +9,10 @@ export const CosmicClient = createBucketClient({
 export async function getNowContent() {
   try {
     const { objects: entries }: { objects: CosmicEntWithSlug<TNowEntry>[] } =
-      await Promise.resolve(
-        CosmicClient.objects
-          .find({ type: "now-entries" })
-          .props("slug,title,metadata,modified_at")
-          .depth(1),
-      );
+      await CosmicClient.objects
+        .find({ type: "now-entries" })
+        .props("slug,title,metadata,modified_at")
+        .depth(1);
 
     return {
       entries,
@@ -26,4 +24,19 @@ export async function getNowContent() {
     console.log("Error fetching Now entries:", error);
     throw error;
   }
+}
+
+export async function getReadingLogs() {
+  const {
+    objects: entries,
+  }: { objects: CosmicEntWithSlug<{ content: string }>[] } =
+    await CosmicClient.objects
+      .find({ type: "reading-logs" })
+      .props("slug,title,metadata.content")
+      .depth(1);
+
+  return {
+    byYear: entries.filter(({ slug }) => slug !== "current"),
+    current: entries.find(({ slug }) => slug === "current"),
+  };
 }

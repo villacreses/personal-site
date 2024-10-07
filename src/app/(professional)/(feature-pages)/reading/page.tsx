@@ -4,8 +4,8 @@ import {
   StandardHeader,
   ToggleSection,
 } from "@/components";
-import { currentlyReading, readingHistory } from "./content";
-import styles from '@/components/ToggleSection.module.css'
+import styles from "@/components/ToggleSection.module.css";
+import { getReadingLogs } from "@/lib/cosmic";
 
 const headerContent = `
 # Reading
@@ -22,21 +22,24 @@ const markdownComponents: MarkdownComponents = {
   },
 };
 
-export default function ReadingPage() {
+export default async function ReadingPage() {
+  const { current, byYear } = await getReadingLogs();
   return (
     <>
       <StandardHeader>
         <Markdown>{headerContent}</Markdown>
       </StandardHeader>
+      {current?.metadata.content && (
+        <section>
+          <h2 className="section-header mb-4">Currently reading</h2>
+          <Markdown components={markdownComponents}>
+            {current.metadata.content}
+          </Markdown>
+        </section>
+      )}
       <section>
-        <h2 className="section-header mb-4">Currently reading</h2>
-        <Markdown components={markdownComponents} className="a">
-          {currentlyReading}
-        </Markdown>
-      </section>
-      <section>
-        {Object.entries(readingHistory).map(([title, content]) => (
-          <ToggleSection key={title} title={title}>
+        {byYear.map(({ title: year, metadata: { content } }) => (
+          <ToggleSection key={year} title={year}>
             {content}
           </ToggleSection>
         ))}

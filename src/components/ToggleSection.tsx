@@ -135,7 +135,9 @@ export class ToggleSection extends Component<
           onClick={this.onClick}
           className="font-bold uppercase tracking-widest cursor-pointer"
         >
+          <span className="ml-1">
           {this.props.title}
+          </span>
         </summary>
         <div ref={this.content} className="ml-4 mt-3">
           <Markdown components={ToggleSection.markdownComponents}>
