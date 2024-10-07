@@ -29,10 +29,10 @@ export default function Home() {
               className="mb-4 mx-auto rounded-full h-36 w-36 border-4 medium-zoom-image border-slate-900/80 dark:border-blue-100"
             />
             <hgroup>
-              <h1 className="text-3xl xxs:text-4xl font-extrabold">
+              <h1 className="text-3xl 3xs:text-4xl font-extrabold">
                 Mario Villacreses
               </h1>
-              <h2 className="text-sm xxs:text-lg text-neutral-500 dark:text-neutral-400">
+              <h2 className="text-sm 3xs:text-lg text-neutral-500 dark:text-neutral-400">
                 Software Engineer & Math Enthusiast
               </h2>
             </hgroup>
