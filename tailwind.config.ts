@@ -10,10 +10,11 @@ const config: Config = {
   theme: {
     extend: {
       screens: {
-        xs: "451px",
-        xxs: "360px",
-        "2xs": "360px",
-        "3xs": "320px",
+        xs: "560px",
+        xxs: "451px",
+        "2xs": "451px",
+        "3xs": "360px",
+        "4xs": "320px",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
