@@ -33,7 +33,7 @@ export type Author = {
 
 export type TPost = {
   banner: TImage;
-  banner_blur: TImage;
+  banner_caption: string;
   banner_alt_text: string;
   published_date: string;
   content: string;

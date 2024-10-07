@@ -52,14 +52,13 @@ const components: MarkdownComponents = {
 
 export default async function BlogPost({ params }: BlogPostParams) {
   const post = await BlogService.getPost(params.slug);
-  console.log("pa", post.metadata.author);
 
   return (
     <main className="max-w-7xl">
       <article>
-        <BlogPostBanner post={post} />
+        <BlogPostBanner post={post} className="mb-5" />
         <header className="mb-10">
-          <p className="text-sm mb-2">
+          <p className="text-sm mb-1">
             <Link href="/blog">{"Mario's Blog"}</Link>
             <span className="px-1.5">/</span>
           </p>

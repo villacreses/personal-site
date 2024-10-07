@@ -13,7 +13,7 @@ const props = `{
   published_at
   metadata {
     banner
-    banner_blur
+    banner_caption
     banner_alt_text
     content
     teaser

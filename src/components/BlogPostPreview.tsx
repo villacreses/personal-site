@@ -19,7 +19,7 @@ export function BlogPostPreview({
         alt={post.metadata.banner_alt_text}
         height={118}
         width={150}
-        className="w-full xs:h-[118px] xs:w-[150px]"
+        className="w-full xs:h-[118px] xs:w-[150px] xs:mt-2"
       />
       <div>
         <h2 className="text-xl font-bold tracking-wider">

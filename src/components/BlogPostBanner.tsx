@@ -22,6 +22,11 @@ export function BlogPostBanner({
         height={height}
         priority
       />
+      {post.metadata.banner_caption && (
+        <figcaption className="text-xs text-neutral-400 mt-1 mx-0.5">
+          {post.metadata.banner_caption}
+        </figcaption>
+      )}
     </figure>
   );
 }

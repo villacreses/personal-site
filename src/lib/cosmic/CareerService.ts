@@ -69,8 +69,6 @@ export class CareerService {
           .props("metadata")
           .depth(1);
 
-      console.log("com", competitionAwards);
-
       return competitionAwards.map(({ metadata }) => metadata);
     } catch (error) {
       console.log("Error fetching all school credentials:", error);
