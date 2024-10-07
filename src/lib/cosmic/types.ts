@@ -22,20 +22,18 @@ export interface CosmicEntWithSlug<T extends {}> extends CosmicEnt<T> {
   slug: string;
 }
 
-export type Author = {
-  image?: {
-    imgix_url?: string;
-  };
-};
-
 export type TImage = {
   url: string;
   imgix_url: string;
 };
 
+export type Author = {
+  image?: TImage;
+};
+
 export type TPost = {
   banner: TImage;
-  banner_blur: TImage;
+  banner_caption: string;
   banner_alt_text: string;
   published_date: string;
   content: string;

@@ -5,6 +5,7 @@ export * from "./BubbleList";
 export * from "./CareerHackathonEntry";
 export * from "./CareerSchoolEntry";
 export * from "./CareerWorkEntry";
+export * from "./CosmicImage";
 export * from "./DateRange";
 export * from "./HomepageCredentials";
 export * from "./HomepageSocialLinks";

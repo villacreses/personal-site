@@ -1,6 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BlogPostBanner, Markdown, MarkdownComponents } from "@/components";
+import {
+  BlogPostBanner,
+  CosmicImage,
+  Markdown,
+  MarkdownComponents,
+} from "@/components";
 import { BlogService } from "@/lib/cosmic";
 
 import styles from "./blogpost.module.css";
@@ -51,22 +56,20 @@ export default async function BlogPost({ params }: BlogPostParams) {
   return (
     <main className="max-w-7xl">
       <article>
-        <BlogPostBanner post={post} />
+        <BlogPostBanner post={post} className="mb-5" />
         <header className="mb-10">
-          <p className="text-sm mb-2">
+          <p className="text-sm mb-1">
             <Link href="/blog">{"Mario's Blog"}</Link>
             <span className="px-1.5">/</span>
           </p>
           <h1 className="text-4xl font-extrabold">{post.title}</h1>
           <div className="flex flex-row mt-3 mb-6 items-center">
-            <Image
-              alt="A picture of Mario Villacreses"
-              src="/images/mario_small.jpg"
-              placeholder="blur"
-              blurDataURL="/images/mario_blur.jpg"
+            <CosmicImage
+              src={post.metadata.author?.metadata.image!}
+              alt={`An image of the author, ${post.metadata.author?.title}`}
               height={36}
               width={36}
-              className="mr-3 rounded-full h-9 w-9 medium-zoom-image"
+              className="mr-3 rounded-full medium-zoom-image"
             />
             <dl className="flex flex-col flex-grow">
               <dt className="sr-only">Author</dt>

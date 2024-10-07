@@ -15,10 +15,10 @@ const WorkEntry: FC<TWorkEntry> = ({
     <dd>
       <DateRange startDate={start_date} endDate={end_date} />
     </dd>
-    <div className="flex flex-col xs:flex-row text-lg xs:text-xl mb-2">
+    <div className="flex flex-col xxs:flex-row text-lg xxs:text-xl mb-2">
       <dt className="sr-only">Job title</dt>
       <dd className="font-bold tracking-wider">{job_title}</dd>
-      <span aria-hidden="true" className="mx-1.5 hidden xs:inline-block">
+      <span aria-hidden="true" className="mx-1.5 hidden xxs:inline-block">
         &#x2022;
       </span>
       <dt className="sr-only">Company</dt>

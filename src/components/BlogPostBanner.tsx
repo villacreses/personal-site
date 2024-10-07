@@ -1,6 +1,5 @@
 import { CosmicEntWithSlug, TPostWithCalcData } from "@/lib/cosmic";
-import Image from "next/image";
-import { ComponentProps, HTMLProps } from "react";
+import { CosmicImage, CosmicImageProps } from "./CosmicImage";
 
 export function BlogPostBanner({
   post,
@@ -9,21 +8,25 @@ export function BlogPostBanner({
   className,
 }: {
   post: CosmicEntWithSlug<TPostWithCalcData>;
-  height?: ComponentProps<typeof Image>["height"];
-  width?: ComponentProps<typeof Image>["width"];
-  className?: HTMLProps<HTMLElement>["className"];
+  height?: CosmicImageProps["height"];
+  width?: CosmicImageProps["width"];
+  className?: CosmicImageProps["className"];
 }) {
   return (
     <figure className={className}>
-      <Image
+      <CosmicImage
         className="w-full rounded-lg"
-        src={post.metadata.banner.imgix_url}
+        src={post.metadata.banner}
         alt={post.metadata.banner_alt_text}
-        width={height}
-        height={width}
-        placeholder="blur"
-        blurDataURL={post.metadata.banner_blur.imgix_url}
+        width={width}
+        height={height}
+        priority
       />
+      {post.metadata.banner_caption && (
+        <figcaption className="text-xs text-neutral-400 mt-1 mx-0.5">
+          {post.metadata.banner_caption}
+        </figcaption>
+      )}
     </figure>
   );
 }

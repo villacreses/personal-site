@@ -1,4 +1,10 @@
-import { CosmicClient, CosmicEntWithSlug, TPost, TPostWithCalcData } from ".";
+import {
+  Author,
+  CosmicClient,
+  CosmicEntWithSlug,
+  TPost,
+  TPostWithCalcData,
+} from ".";
 import { getReadingTime } from "../utils";
 
 const props = `{
@@ -7,12 +13,16 @@ const props = `{
   published_at
   metadata {
     banner
-    banner_blur
+    banner_caption
     banner_alt_text
     content
     teaser
     author {
+      slug
       title
+      metadata {
+        image
+      }
     }
     published_date
     tags {
@@ -23,6 +33,14 @@ const props = `{
       slug
       title
     }
+  }
+}`;
+
+const authorProps = `{
+  slug
+  title
+  metadata {
+    image
   }
 }`;
 
@@ -75,6 +93,26 @@ export class BlogService {
     } catch (error) {
       console.log("Error in fetching post data:", error);
       return Promise.resolve({} as CosmicEntWithSlug<TPostWithCalcData>);
+    }
+  }
+
+  static async getAuthor(title: string): Promise<CosmicEntWithSlug<Author>> {
+    try {
+      const { object: author }: { object: CosmicEntWithSlug<Author> } =
+        await Promise.resolve(
+          CosmicClient.objects
+            .findOne({
+              type: "authors",
+              title,
+            })
+            .props(authorProps)
+            .depth(1),
+        );
+
+      return author;
+    } catch (error) {
+      console.log("Error in fetching author data:", error);
+      return Promise.resolve({} as CosmicEntWithSlug<Author>);
     }
   }
 }
