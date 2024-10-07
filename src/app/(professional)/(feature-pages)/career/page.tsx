@@ -6,6 +6,13 @@ import {
   StandardHeader,
 } from "@/components";
 import { CareerService } from "@/lib/cosmic";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Mario Villacreses' Career History",
+  description:
+    "This page highlights my work history, along with any significant  accomplishments that shaped me as I've navigated the tech industry.",
+};
 
 const headerContent = `
 This page highlights my work history, along with any significant 
