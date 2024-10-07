@@ -16,7 +16,7 @@ const pickedProps = [
 
 export interface CosmicImageProps
   extends Pick<ComponentProps<typeof NextImage>, (typeof pickedProps)[number]> {
-  src: TImage;
+  src: TImage | string;
 }
 
 export function CosmicImage({
@@ -25,13 +25,14 @@ export function CosmicImage({
   style = { objectFit: "cover" },
   ...props
 }: CosmicImageProps) {
+  const image = typeof src === "object" ? src.imgix_url : src;
   return (
     <NextImage
-      src={src.imgix_url}
+      src={image}
       quality={quality}
       style={style}
       placeholder="blur"
-      blurDataURL={`${src.imgix_url}?auto=format,compress&q=1&blur=500&w=2`}
+      blurDataURL={`${image}?auto=format,compress&q=1&blur=500&w=2`}
       {...props}
     />
   );

@@ -1,4 +1,5 @@
 import {
+  CosmicImage,
   Credentials,
   Markdown,
   MarkdownComponents,
@@ -6,6 +7,7 @@ import {
 } from "@/components";
 import { homepageMain, homepageLead } from "./content";
 import Image from "next/image";
+import { BlogService } from "@/lib/cosmic";
 
 const components: MarkdownComponents = {
   p({ node, ...props }) {
@@ -13,17 +15,17 @@ const components: MarkdownComponents = {
   },
 };
 
-export default function Home() {
+export default async function Home() {
+  const author = await BlogService.getAuthor("Mario Villacreses");
+
   return (
     <main className="grow">
       <article className="flex flex-col items-center justify-center text-center">
         <div>
           <header className="mb-3">
-            <Image
-              alt="A picture of Mario Villacreses"
-              src="/images/mario_small.jpg"
-              placeholder="blur"
-              blurDataURL="/images/mario_blur.jpg"
+            <CosmicImage
+              src={author.metadata.image!.imgix_url}
+              alt={`A picture of ${author.title}`}
               height={144}
               width={144}
               className="mb-4 mx-auto rounded-full h-36 w-36 border-4 medium-zoom-image border-slate-900/80 dark:border-blue-100"
