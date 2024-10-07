@@ -33,7 +33,8 @@ export type TPost = {
   content: string;
   author?: CosmicEntWithSlug<Author>;
   teaser: string;
-  categories: {
+  category: {}
+  tags?: {
     title: string;
   }[];
 };

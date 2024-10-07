@@ -19,7 +19,7 @@ export function BlogPostPreview({
       <Markdown className="prose-color font-light mt-1.5">
         {post.metadata.teaser}
       </Markdown>
-      <BubbleList items={post.metadata.categories?.map(({ title }) => title)} />
+      <BubbleList items={post.metadata.tags?.map(({ title }) => title)} />
     </article>
   );
 }
