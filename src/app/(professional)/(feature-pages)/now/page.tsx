@@ -1,5 +1,12 @@
+import { Metadata } from "next";
 import { Icon, Markdown, StandardHeader } from "@/components";
 import { getNowContent } from "@/lib/cosmic";
+
+export const metadata: Metadata = {
+  title: "Mario Villacreses' Now page",
+  description:
+    "My Now page offers a quick snapshot of where I've recently been investing my energy. If we haven't connected in the last six months, you can catch up on my latest endeavors here.",
+};
 
 const headerContent = `
 Welcome to my [Now page](https://nownownow.com/about). My Now page offers a quick snapshot of where I've recently been investing my energy. If we haven't connected in the last six months, you can catch up on my latest endeavors here.

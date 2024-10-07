@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import {
   Markdown,
   MarkdownComponents,
@@ -6,6 +7,12 @@ import {
 } from "@/components";
 import styles from "@/components/ToggleSection.module.css";
 import { getReadingLogs } from "@/lib/cosmic";
+
+export const metadata: Metadata = {
+  title: "Mario Villacreses' Reading Log",
+  description:
+    "This is an active record of books I've read and am currently reading",
+};
 
 const headerContent = `
 # Reading
