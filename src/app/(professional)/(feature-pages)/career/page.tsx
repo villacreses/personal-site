@@ -5,14 +5,25 @@ import {
   HackathonEntries,
   StandardHeader,
 } from "@/components";
-import {
-  educationEntries,
-  workEntries,
-  headerContent,
-  hackathonEntries,
-} from "./content";
+import { CareerService } from "@/lib/cosmic";
 
-export default function CareerHistory() {
+const headerContent = `
+This page highlights my work history, along with any significant 
+accomplishments that shaped me as I've navigated the tech industry. Be sure
+to also check out [my latest resume](/docs/resume.pdf).
+`;
+
+export default async function CareerHistory() {
+  const [workEntries, schoolCredentials, competitionAwards] = await Promise.all(
+    [
+      CareerService.getJobs().then((entries) =>
+        entries.map(({ metadata }) => metadata),
+      ),
+      CareerService.getSchoolCredentials(),
+      CareerService.getCompetitionAwards(),
+    ],
+  );
+
   return (
     <>
       <StandardHeader title="Mario's Career History" className="mb-20">
@@ -20,7 +31,7 @@ export default function CareerHistory() {
       </StandardHeader>
       <section className="page-section">
         <h2 className="section-header">Education</h2>
-        <SchoolEntries entries={educationEntries} />
+        <SchoolEntries entries={schoolCredentials} />
       </section>
       <section className="page-section">
         <h2 className="section-header">Professional Experience</h2>
@@ -30,7 +41,7 @@ export default function CareerHistory() {
       </section>
       <section>
         <h2 className="section-header">Hackathons</h2>
-        <HackathonEntries entries={hackathonEntries} />
+        <HackathonEntries entries={competitionAwards} />
       </section>
     </>
   );

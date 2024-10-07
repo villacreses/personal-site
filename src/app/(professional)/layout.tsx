@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { classNames } from "@/utils";
+import { classNames } from "@/lib/utils";
 import TopNavbar from "@/components/TopNavbar";
 import PageFooter from "@/components/PageFooter";
 

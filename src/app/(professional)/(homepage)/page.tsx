@@ -43,10 +43,7 @@ export default function Home() {
         <p className="text-gray-600 dark:text-gray-400 text-xl my-6">
           {homepageLead}
         </p>
-        <Markdown
-          className="prose max-w-[60ch] text-gray-200"
-          components={components}
-        >
+        <Markdown className="prose-color max-w-[60ch]" components={components}>
           {homepageMain}
         </Markdown>
         <SocialLinks />

@@ -42,7 +42,7 @@ export function ToggleDarkMode() {
   return (
     <button
       type="button"
-      className="text-2xl"
+      className="text-3xl sm:text-2xl"
       onClick={toggle}
       title="Toggle dark mode"
       aria-label="Toggle dark mode"

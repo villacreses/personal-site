@@ -38,9 +38,11 @@
 
 
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: var(--color-primary-50);
+  --background-start-rgb: var(--color-neutral-200);
   --background-end-rgb: var(--color-neutral-300);
-  --prose: var(--color-neutral-600);
+  --prose: var(--color-neutral-700);
+
+  --anchor-color: 0, 80, 128;
 }
 
 * {
@@ -90,11 +92,9 @@ body[data-menuopen] hr {
   }
 
   a {
-    @apply text-blue-800 hover:text-blue-900 dark:text-green-300 dark:hover:text-green-500
-  }
+    @apply text-blue-800 hover:text-blue-900 dark:text-green-300 dark:hover:text-green-500;
 
-  p {
-    color: rgb(var(--prose));
+    color: rgb(var(--anchor-color));
   }
 }
 
@@ -111,8 +111,16 @@ body[data-menuopen] hr {
     @apply font-bold uppercase tracking-widest mb-8
   }
 
+  .prose-color {
+    color: rgb(var(--prose));
+  }
+
   .prose {
     color: rgb(var(--prose));
+  }
+
+  .border-prose {
+    border-color: rgb(var(--prose));
   }
 }
 
