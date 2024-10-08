@@ -51,7 +51,10 @@ export default function TopNavbar() {
         />
         <div className="m-auto max-w-[64rem] flex flex-row items-center relative">
           <nav className="mr-auto">
-            <Link href="/" className="text-lg font-medium sm:font-normal sm:text-base">
+            <Link
+              href="/"
+              className="text-lg font-medium sm:font-normal sm:text-base"
+            >
               Mario Villacreses
             </Link>
           </nav>

@@ -13,7 +13,7 @@ const SchoolEntry: FC<CosmicEnt<TSchoolCredential>> = ({
       <dt className="text-lg font-bold tracking-wider">{title}</dt>
       <dd className="ml-0.5">
         <dl>
-          <div className="flex flex-row mb-2 font-light tracking-wide text-neutral-400">
+          <div className="flex flex-row mb-2 font-light tracking-wide text-neutral-500 dark:text-neutral-400">
             <dt className="sr-only">School</dt>
             <dd className="after-comma">{school_name}</dd>
             <dt className="sr-only">Graduation date</dt>
