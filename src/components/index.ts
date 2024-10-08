@@ -14,5 +14,6 @@ export * from "./Icon";
 export * from "./InlineLink";
 export * from "./Markdown";
 export * from "./PageFooter";
+export * from "./ShareButtons";
 export * from "./StandardHeader";
 export * from "./ToggleSection";

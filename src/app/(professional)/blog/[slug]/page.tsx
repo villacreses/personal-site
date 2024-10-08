@@ -1,9 +1,13 @@
 import Link from "next/link";
 import {
   BlogPostBanner,
+  BlogPostShareButtons,
   BlogPostTOC,
   CosmicImage,
   Markdown,
+  ShareButtonEmail,
+  ShareButtonFacebook,
+  ShareButtonTwitter,
 } from "@/components";
 import { BlogService } from "@/lib/cosmic";
 
@@ -27,7 +31,8 @@ export async function generateMetadata({ params }: BlogPostParams) {
 
 export default async function BlogPost({ params }: BlogPostParams) {
   const post = await BlogService.getPost(params.slug);
-  let counter = 0;
+  const author = post.metadata.author!;
+  let headingCounter = 0;
 
   return (
     <main className="max-w-7xl">
@@ -41,19 +46,19 @@ export default async function BlogPost({ params }: BlogPostParams) {
           <h1 className="text-4xl font-extrabold">{post.title}</h1>
           <div className="flex flex-row mt-3 mb-6 items-center">
             <CosmicImage
-              src={post.metadata.author?.metadata.image!}
-              alt={`An image of the author, ${post.metadata.author?.title}`}
+              src={author?.metadata.image!}
+              alt={`An image of the author, ${author.title}`}
               height={36}
               width={36}
               className="mr-3 rounded-full medium-zoom-image"
             />
             <dl className="flex flex-col flex-grow">
               <dt className="sr-only">Author</dt>
-              <dd className="prose-color">{post.metadata.author?.title}</dd>
+              <dd className="prose-color">{author.title}</dd>
               <BlogPostMetadata post={post} />
             </dl>
           </div>
-          <ul>{/* TODO: Share buttons */}</ul>
+          <BlogPostShareButtons author={author.title} />
         </header>
         <div
           id="markdown"
@@ -65,7 +70,7 @@ export default async function BlogPost({ params }: BlogPostParams) {
               h2({ node, className = "text-2xl font-bold mt-7", ...props }) {
                 return (
                   <h2
-                    id={`mdh-${counter++}`}
+                    id={`mdh-${headingCounter++}`}
                     className={className}
                     style={{ scrollMarginTop: 100 }}
                     {...props}
@@ -79,7 +84,7 @@ export default async function BlogPost({ params }: BlogPostParams) {
               }) {
                 return (
                   <h3
-                    id={`mdh-${counter++}`}
+                    id={`mdh-${headingCounter++}`}
                     className={className}
                     style={{ scrollMarginTop: 100 }}
                     {...props}
