@@ -38,8 +38,8 @@
 
 
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: var(--color-neutral-200);
-  --background-end-rgb: var(--color-neutral-300);
+  --background-start-rgb: #F0F2F5;
+  --background-end-rgb: #F0F2F5;
   --prose: var(--color-neutral-700);
 
   --anchor-color: 0, 80, 128;
@@ -92,9 +92,7 @@ body[data-menuopen] hr {
   }
 
   a {
-    @apply text-blue-800 hover:text-blue-900 dark:text-green-300 dark:hover:text-green-500;
-
-    color: rgb(var(--anchor-color));
+    @apply font-medium text-[#0064D1] hover:text-blue-700 dark:text-green-300 dark:hover:text-green-500;
   }
 }
 

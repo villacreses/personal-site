@@ -37,7 +37,7 @@ export default async function NowPage() {
         <h2 className="text-2xl font-semibold">
           So what am I currently doing?
         </h2>
-        <p className="text-xs mt-2 italic text-neutral-600 dark:text-neutral-400">
+        <p className="text-xs mt-2 italic prose-color">
           <span className="mr-1.5">Last updated:</span>
           <time dateTime={last_modified.toJSON()}>{dateDisplayed}</time>
         </p>
