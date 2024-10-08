@@ -8,10 +8,20 @@ import {
 import { CareerService } from "@/lib/cosmic";
 import { Metadata } from "next";
 
+const PAGE_TITLE = "Career History | Mario Villacreses";
+
+const PAGE_DESC =
+  "This page highlights my work history, along with any significant  accomplishments that shaped me as I've navigated the tech industry.";
+
 export const metadata: Metadata = {
-  title: "Mario Villacreses' Career History",
-  description:
-    "This page highlights my work history, along with any significant  accomplishments that shaped me as I've navigated the tech industry.",
+  title: PAGE_TITLE,
+  description: PAGE_DESC,
+  openGraph: {
+    type: "website",
+    url: `https://mariovillacreses.com/now`,
+    title: PAGE_TITLE,
+    description: PAGE_DESC,
+  },
 };
 
 const headerContent = `

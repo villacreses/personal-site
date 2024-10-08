@@ -6,7 +6,6 @@ import {
   SocialLinks,
 } from "@/components";
 import { homepageMain, homepageLead } from "./content";
-import Image from "next/image";
 import { BlogService } from "@/lib/cosmic";
 
 const components: MarkdownComponents = {

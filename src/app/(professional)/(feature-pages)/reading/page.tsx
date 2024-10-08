@@ -8,10 +8,20 @@ import {
 import styles from "@/components/ToggleSection.module.css";
 import { getReadingLogs } from "@/lib/cosmic";
 
+const PAGE_TITLE = "Reading Log | Mario Villacreses";
+
+const PAGE_DESC =
+  "This is an active record of books I've read and am currently reading.";
+
 export const metadata: Metadata = {
-  title: "Mario Villacreses' Reading Log",
-  description:
-    "This is an active record of books I've read and am currently reading",
+  title: PAGE_TITLE,
+  description: PAGE_DESC,
+  openGraph: {
+    type: "website",
+    url: `https://mariovillacreses.com/now`,
+    title: PAGE_TITLE,
+    description: PAGE_DESC,
+  },
 };
 
 const headerContent = `

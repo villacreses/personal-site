@@ -14,6 +14,7 @@ export const metadata: Metadata = {
   description: "Personal website for Mario Villacreses",
   authors: { name: "Mario Villacreses" },
   keywords: ["portfolio", "software engineer"],
+  generator: 'Next.js',
   openGraph: {
     type: "website",
     url: "https://mariovillacreses.com/",

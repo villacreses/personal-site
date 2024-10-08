@@ -1,10 +1,5 @@
 import { CosmicEntWithSlug, TPostWithCalcData } from "@/lib/cosmic";
-import {
-  BubbleList,
-  Markdown,
-  BlogPostMetadata,
-  CosmicImage,
-} from ".";
+import { BubbleList, Markdown, BlogPostMetadata, CosmicImage } from ".";
 import Link from "next/link";
 
 export function BlogPostPreview({
@@ -23,7 +18,7 @@ export function BlogPostPreview({
       />
       <div>
         <h2 className="text-xl font-bold tracking-wider">
-          <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+          <Link href={`/blog/post/${post.slug}`}>{post.title}</Link>
         </h2>
         <dl>
           <BlogPostMetadata post={post} />

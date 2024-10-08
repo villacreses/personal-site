@@ -10,6 +10,8 @@ import {
   faDev,
   faCodepen,
   faHackerNews,
+  faFacebook,
+  faXTwitter
 } from "@fortawesome/free-brands-svg-icons";
 
 import {
@@ -69,6 +71,8 @@ export const iconMap = {
   xmark: faXmark,
   sun: faSun,
   moon: faMoon,
+  facebook: faFacebook,
+  twitter: faXTwitter,
   [ExperienceCategory.JOBS]: faSuitcase,
   [ExperienceCategory.HACKATHON]: faHourglass,
   [ExperienceCategory.EDUCATION]: faGraduationCap,
