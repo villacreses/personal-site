@@ -5,9 +5,13 @@ import { Markdown, MarkdownComponents } from ".";
 
 import styles from "./ToggleSection.module.css";
 
-type ToggleSectionProps = {
+export type ToggleSectionProps = {
   title: string;
   children: string;
+  detailsClassNames?: string;
+  summaryClassNames?: string;
+  contentContainerClassNames?: string;
+  components?: MarkdownComponents;
 };
 
 enum action {
@@ -15,26 +19,26 @@ enum action {
   EXPANDING = "EXPANDING",
 }
 
-type ToggleSectionState = {
+export type ToggleSectionState = {
   action: action | null;
 };
 
-export class ToggleSection extends Component<
-  ToggleSectionProps,
-  ToggleSectionState
-> {
+export class ToggleSection<
+  P extends ToggleSectionProps = ToggleSectionProps,
+  S extends ToggleSectionState = ToggleSectionState,
+> extends Component<P, S> {
   details: RefObject<HTMLDetailsElement>;
   summary: RefObject<HTMLElement>;
   content: RefObject<HTMLDivElement>;
 
   animation: Animation | null;
 
-  constructor(props: ToggleSectionProps) {
+  constructor(props: P) {
     super(props);
 
     this.state = {
       action: null,
-    };
+    } as S;
 
     this.details = createRef<HTMLDetailsElement>();
     this.summary = createRef<HTMLElement>();
@@ -44,6 +48,22 @@ export class ToggleSection extends Component<
 
     this.onClick = this.onClick.bind(this);
   }
+
+  private static defaultComponents: MarkdownComponents = {
+    p({ node, className, ...props }) {
+      return <p className="mt-2" {...props} />;
+    },
+    li({ node, className, ...props }) {
+      return <li className={styles.entry} {...props} />;
+    },
+  };
+
+  static defaultProps: Partial<ToggleSectionProps> = {
+    detailsClassNames: "mt-8",
+    summaryClassNames: "font-bold uppercase tracking-widest cursor-pointer",
+    contentContainerClassNames: "ml-4 mt-3",
+    components: ToggleSection.defaultComponents,
+  };
 
   onClick(evt: MouseEvent<HTMLElement>) {
     evt.preventDefault();
@@ -118,29 +138,21 @@ export class ToggleSection extends Component<
     this.details.current!.style.height = "";
   }
 
-  private static markdownComponents: MarkdownComponents = {
-    p({ node, className, ...props }) {
-      return <p className="mt-2" {...props} />;
-    },
-    li({ node, className, ...props }) {
-      return <li className={styles.entry} {...props} />;
-    },
-  };
-
   render(): ReactNode {
     return (
-      <details ref={this.details} className="mt-8">
+      <details ref={this.details} className={this.props.detailsClassNames}>
         <summary
           ref={this.summary}
           onClick={this.onClick}
-          className="font-bold uppercase tracking-widest cursor-pointer"
+          className={this.props.summaryClassNames}
         >
-          <span className="ml-1">
-          {this.props.title}
-          </span>
+          <span className="ml-1">{this.props.title}</span>
         </summary>
-        <div ref={this.content} className="ml-4 mt-3">
-          <Markdown components={ToggleSection.markdownComponents}>
+        <div
+          ref={this.content}
+          className={this.props.contentContainerClassNames}
+        >
+          <Markdown components={this.props.components}>
             {this.props.children}
           </Markdown>
         </div>
