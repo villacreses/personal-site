@@ -2,10 +2,18 @@ import { Metadata } from "next";
 import { Icon, Markdown, StandardHeader } from "@/components";
 import { getNowContent } from "@/lib/cosmic";
 
+const PAGE_TITLE = "Now | Mario Villacreses";
+const PAGE_DESC =
+  "My Now page offers a quick snapshot of where I've recently been investing my energy. If we haven't connected in the last six months, you can catch up on my latest endeavors here.";
 export const metadata: Metadata = {
-  title: "Mario Villacreses' Now page",
-  description:
-    "My Now page offers a quick snapshot of where I've recently been investing my energy. If we haven't connected in the last six months, you can catch up on my latest endeavors here.",
+  title: PAGE_TITLE,
+  description: PAGE_DESC,
+  openGraph: {
+    type: "website",
+    url: `https://mariovillacreses.com/blog`,
+    title: PAGE_TITLE,
+    description: PAGE_DESC,
+  },
 };
 
 const headerContent = `

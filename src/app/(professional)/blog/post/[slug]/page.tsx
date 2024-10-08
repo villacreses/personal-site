@@ -5,15 +5,13 @@ import {
   BlogPostTOC,
   CosmicImage,
   Markdown,
-  ShareButtonEmail,
-  ShareButtonFacebook,
-  ShareButtonTwitter,
 } from "@/components";
 import { BlogService } from "@/lib/cosmic";
 
 import styles from "./blogpost.module.css";
 import { classNames } from "@/lib/utils";
 import { BlogPostMetadata } from "@/components";
+import { Metadata } from "next";
 
 type BlogPostParams = {
   params: {
@@ -21,11 +19,24 @@ type BlogPostParams = {
   };
 };
 
-export async function generateMetadata({ params }: BlogPostParams) {
+export async function generateMetadata({
+  params,
+}: BlogPostParams): Promise<Metadata> {
   const post = await BlogService.getPost(params.slug);
+  const tags = post.metadata.tags?.map(({ title }) => title) || [];
 
   return {
     title: `${post.title} | Mario Villacreses`,
+    keywords: ["blog", "software engineer"].concat(tags),
+    description: post.metadata.teaser,
+    openGraph: {
+      type: "website",
+      url: `https://mariovillacreses.com/blog/post/${params.slug}`,
+      title: post.title,
+      siteName: "Mario Villacreses",
+      description: post.metadata.teaser,
+      images: post.metadata.banner.imgix_url,
+    },
   };
 }
 
