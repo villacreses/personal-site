@@ -8,9 +8,10 @@ export interface GlobalData {
   };
 }
 
-export interface CosmicEnt<T extends {}> {
+export interface CosmicEnt<T extends {} = {}> {
   id?: string;
   type?: string;
+  slug?: string;
   title: string;
   created_at?: string;
   published_at?: string;
