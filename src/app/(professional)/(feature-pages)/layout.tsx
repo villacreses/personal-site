@@ -1,23 +1,23 @@
-import { Markdown, StandardHeader } from "@/components";
+import { StandardHeader } from "@/components";
 import { PageService } from "@/lib/cosmic";
 import { headers } from "next/headers";
 import { PropsWithChildren } from "react";
 
-const usePageSlug = () => {
+const getPageSlug = () => {
   const path = headers().get("x-current-path");
   const slug = path!.slice(1);
   return slug;
 };
 
 export async function generateMetadata() {
-  const slug = usePageSlug();
+  const slug = getPageSlug();
   return await PageService.getPageMetadata(slug);
 }
 
 export default async function FeaturePageLayout({
   children,
 }: PropsWithChildren) {
-  const slug = usePageSlug();
+  const slug = getPageSlug();
   const content = await PageService.getPageHeadingContent(slug);
 
   return (
