@@ -16,6 +16,7 @@ const components: MarkdownComponents = {
 
 export default async function Home() {
   const author = await BlogService.getAuthor("Mario Villacreses");
+  console.log("au", author);
 
   return (
     <main className="grow">
@@ -23,7 +24,7 @@ export default async function Home() {
         <div>
           <header className="mb-3">
             <CosmicImage
-              src={author.metadata.image!.imgix_url}
+              src={author.metadata.image!}
               alt={`A picture of ${author.title}`}
               height={144}
               width={144}
