@@ -1,0 +1,11 @@
+.container {
+  @apply grid gap-x-2 gap-y-4 mx-auto w-full justify-center;
+
+  grid-template-columns: repeat(auto-fill, 160px);
+
+  @media (min-width: theme('screens.sm')) {
+    & {
+      grid-template-columns: repeat(auto-fill, 24px);
+    }
+  }
+}

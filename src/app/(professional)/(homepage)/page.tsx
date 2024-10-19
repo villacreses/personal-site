@@ -5,8 +5,10 @@ import {
   MarkdownComponents,
   SocialLinks,
 } from "@/components";
-import { homepageMain, homepageLead } from "./content";
-import { BlogService } from "@/lib/cosmic";
+import { BlogService, PageService } from "@/lib/cosmic";
+
+import styles from "./homepage.module.css";
+import { classNames } from "@/lib/utils";
 
 const components: MarkdownComponents = {
   p({ node, ...props }) {
@@ -15,7 +17,10 @@ const components: MarkdownComponents = {
 };
 
 export default async function Home() {
-  const author = await BlogService.getAuthor("Mario Villacreses");
+  const [author, content] = await Promise.all([
+    BlogService.getAuthor("Mario Villacreses"),
+    PageService.getPageHeadingContent("home"),
+  ]);
 
   return (
     <main className="grow">
@@ -23,7 +28,7 @@ export default async function Home() {
         <div>
           <header className="mb-3">
             <CosmicImage
-              src={author.metadata.image!.imgix_url}
+              src={author.metadata.image!}
               alt={`A picture of ${author.title}`}
               height={144}
               width={144}
@@ -41,11 +46,11 @@ export default async function Home() {
           <Credentials />
           <hr />
         </div>
-        <p className="text-gray-600 dark:text-gray-400 text-xl my-6">
-          {homepageLead}
-        </p>
-        <Markdown className="prose-color max-w-[60ch]" components={components}>
-          {homepageMain}
+        <Markdown
+          className={classNames([styles.description, "prose-color"])}
+          components={components}
+        >
+          {content.description}
         </Markdown>
         <SocialLinks />
       </article>

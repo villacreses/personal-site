@@ -1,0 +1,15 @@
+.description {
+  @apply max-w-[60ch];
+}
+
+.description p {
+  @apply pb-4;
+}
+
+.description p:first-of-type {
+  @apply text-gray-600 dark:text-gray-400 text-xl mt-6 mb-2;
+}
+
+.description p:last-of-type {
+  @apply font-semibold
+}

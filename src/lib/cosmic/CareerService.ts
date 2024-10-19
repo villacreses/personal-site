@@ -5,6 +5,7 @@ import {
   TSchoolCredential,
   TWorkEntry,
 } from ".";
+import { Experience } from "../types";
 
 const jobProps = `{
   metadata {
@@ -25,6 +26,11 @@ const jobProps = `{
     }
   }
 }`;
+
+type THomePageCredential = {
+  type: Experience;
+  value: string;
+};
 
 export class CareerService {
   static async getJobs() {
@@ -48,13 +54,78 @@ export class CareerService {
         objects: schoolCredentials,
       }: { objects: CosmicEnt<TSchoolCredential>[] } =
         await CosmicClient.objects
-          .find({ type: "school-credentials" })
+          .find({
+            type: "school-credentials",
+            sort: "-metadata.graduation_date",
+          })
           .props("title, metadata")
           .depth(1);
 
       return schoolCredentials;
     } catch (error) {
       console.log("Error fetching all school credentials:", error);
+      return Promise.resolve([]);
+    }
+  }
+
+  static async getHomepageCredentials(): Promise<THomePageCredential[]> {
+    try {
+      const jobsPromise: Promise<THomePageCredential[]> = Promise.resolve(
+        CosmicClient.objects
+          .find({
+            type: "jobs",
+            "metadata.end_date": { $exists: false },
+            sort: "-metadata.end_date",
+          })
+          .props("title"),
+      )
+        .then(({ objects }: { objects: CosmicEnt<{}>[] }) =>
+          objects.map(({ title }) => ({
+            value: title,
+            type: Experience.JOB,
+          })),
+        )
+        .catch(() => [
+          {
+            value: "Freelance Software Developer",
+            type: Experience.JOB,
+          },
+        ]);
+
+      const educationPromise: Promise<THomePageCredential> = Promise.resolve(
+        CosmicClient.objects
+          .findOne({
+            type: "school-credentials",
+            "metadata.graduation_date": { $ne: null },
+            sort: "-metadata.graduation_date",
+          })
+          .props("title")
+          .depth(1),
+      ).then(({ object }: { object: CosmicEnt }) => ({
+        value: object.title,
+        type: Experience.EDUCATION,
+      }));
+
+      const locationPromise: Promise<THomePageCredential> = Promise.resolve(
+        CosmicClient.objects
+          .findOne({
+            type: "location",
+          })
+          .props("slug,title"),
+      ).then(({ object }: { object: CosmicEnt }) => ({
+        value: object.title,
+        type: Experience.LOCATION,
+      }));
+
+      const [jobs, education, location] = await Promise.all([
+        jobsPromise,
+        educationPromise,
+        locationPromise,
+      ]);
+
+      return jobs.concat([education, location]);
+    } catch (error) {
+      console.log("Error fetching school credential:", error);
       return Promise.resolve([]);
     }
   }

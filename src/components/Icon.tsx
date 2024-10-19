@@ -11,7 +11,8 @@ import {
   faCodepen,
   faHackerNews,
   faFacebook,
-  faXTwitter
+  faXTwitter,
+  IconDefinition,
 } from "@fortawesome/free-brands-svg-icons";
 
 import {
@@ -37,14 +38,17 @@ import {
   faSun,
   faMoon,
 } from "@fortawesome/free-solid-svg-icons";
+import { Experience } from "@/lib/types";
 
-export enum ExperienceCategory {
-  JOBS = "JOBS",
-  HACKATHON = "HACKATHON",
-  EDUCATION = "EDUCATION",
-}
+const expIconMap: Record<Experience, IconDefinition> = {
+  JOB: faSuitcase,
+  HACKATHON: faHourglass,
+  EDUCATION: faGraduationCap,
+  LOCATION: faLocationDot,
+};
 
-export const iconMap = {
+export const iconMap: Record<string, IconDefinition> = {
+  ...expIconMap,
   github: faGithub,
   linkedin: faLinkedin,
   stackoverflow: faStackOverflow,
@@ -73,9 +77,6 @@ export const iconMap = {
   moon: faMoon,
   facebook: faFacebook,
   twitter: faXTwitter,
-  [ExperienceCategory.JOBS]: faSuitcase,
-  [ExperienceCategory.HACKATHON]: faHourglass,
-  [ExperienceCategory.EDUCATION]: faGraduationCap,
 } as const;
 
 export type IconID = keyof typeof iconMap;

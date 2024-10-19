@@ -1,51 +1,68 @@
 "use client";
 
-import Link from "next/link";
+import Link, { LinkProps } from "next/link";
 import { usePathname } from "next/navigation";
 import { Icon, IconID } from ".";
 import { CSSProperties, FC } from "react";
 
+import styles from "./ShareButtons.module.css";
+import { classNames } from "@/lib/utils";
+
 const ROOT_URL = "https://mariovillacreses.com";
 
 const commonStyles = {
-  width: 24,
-  height: 22,
   backgroundSize: 22,
   borderRadius: 3,
 };
 
-type RootShareButtonProps = {
+interface RootShareButtonProps extends LinkProps {
+  className?: string;
   href: string;
   ariaLabel: string;
   iconId: IconID;
   color?: CSSProperties["color"];
   backgroundColor?: CSSProperties["backgroundColor"];
-};
+  containerBackgroundColor?: CSSProperties["backgroundColor"];
+}
 
 const RootShareButton: FC<RootShareButtonProps> = ({
   href,
   ariaLabel,
   iconId,
-  color = "white",
+  color,
   backgroundColor,
-}) => (
-  <div style={{ backgroundColor: "white", ...commonStyles }}>
-    <Link
-      target="_blank"
-      href={href}
-      className="inline-block flex justify-center items-center hover:opacity-80"
-      style={{
-        color,
-        backgroundColor,
-        ...commonStyles,
-      }}
-      title={ariaLabel}
-      aria-label={ariaLabel}
-    >
-      <Icon iconId={iconId} className="text-md" />
-    </Link>
-  </div>
-);
+  containerBackgroundColor = "white",
+  className,
+  ...linkProps
+}) => {
+  const linkClassNames = classNames([
+    "inline-block flex justify-center items-center gap-1.5 px-3 py-2 sm:py-1 hover:opacity-80",
+    className,
+  ]);
+
+  return (
+    <div style={{ backgroundColor: containerBackgroundColor, ...commonStyles }}>
+      <Link
+        target="_blank"
+        href={href}
+        className={linkClassNames}
+        style={{
+          color,
+          backgroundColor,
+          ...commonStyles,
+        }}
+        title={ariaLabel}
+        aria-label={ariaLabel}
+        {...linkProps}
+      >
+        <Icon iconId={iconId} className="text-md" />
+        <span className="sm:hidden text-xs font-normal whitespace-nowrap">
+          {ariaLabel}
+        </span>
+      </Link>
+    </div>
+  );
+};
 
 const useEncodedURL = () => {
   const pathname = usePathname();
@@ -67,6 +84,7 @@ export const ShareButtonFacebook = () => {
       ariaLabel="Share on Facebook"
       iconId="facebook"
       backgroundColor="rgb(8, 102, 255)"
+      color="white"
     />
   );
 };
@@ -80,6 +98,7 @@ export const ShareButtonTwitter = () => {
       ariaLabel="Share on X"
       iconId="twitter"
       backgroundColor="#222"
+      color="white"
     />
   );
 };
@@ -99,6 +118,7 @@ export const ShareButtonEmail = ({ author }: { author: string }) => {
       ariaLabel="Share post by email"
       iconId="envelope"
       backgroundColor="#555"
+      color="white"
     />
   );
 };
@@ -107,24 +127,25 @@ export const CopyToClipboardButton = () => {
   const pathname = usePathname();
 
   return (
-    <a
+    <RootShareButton
       href="#"
-      aria-label="Copy URL to Clipboard"
-      title="Copy URL to Clipboard"
+      ariaLabel="Copy to Clipboard"
+      iconId="link"
+      backgroundColor="transparent"
+      containerBackgroundColor="transparent"
+      className="border border-gray-300 dark:border-white dark:border-opacity-30 sm:border-none"
       onClick={(evt) => {
         evt.preventDefault();
         navigator.clipboard.writeText(ROOT_URL + pathname).then(() => {
           console.log("Copied to clipboard!");
         });
       }}
-    >
-      <Icon iconId="link" className="text-md [&:not(:hover)]:prose-color" />
-    </a>
+    />
   );
 };
 
 export const BlogPostShareButtons = ({ author }: { author: string }) => (
-  <ul className="flex flex-row gap-2">
+  <ul className={styles.container}>
     <li>
       <ShareButtonFacebook />
     </li>
