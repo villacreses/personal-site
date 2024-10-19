@@ -1,18 +1,22 @@
+import { PageService } from "@/lib/cosmic";
 import { PropsWithChildren } from "react";
+import { Markdown } from ".";
 
-export function StandardHeader({
-  children,
+export async function StandardHeader({
   className,
   title,
-}: PropsWithChildren<{ className?: string; title?: string }>) {
+  description,
+}: PropsWithChildren<{
+  className?: string;
+  title: string;
+  description: string;
+}>) {
   const classes = className || "mb-12";
 
   return (
     <header className={classes}>
-      {!!title && (
-        <h1 className="text-4xl font-extrabold text-center mb-5">{title}</h1>
-      )}
-      {children}
+      <h1 className="text-4xl font-extrabold text-center mb-5">{title}</h1>
+      <Markdown className="text-sm">{description}</Markdown>
       <hr />
     </header>
   );
