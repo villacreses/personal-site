@@ -20,6 +20,7 @@ import {
   faHourglass,
   faEnvelope,
   faClock,
+  faFilePdf,
 } from "@fortawesome/free-regular-svg-icons";
 
 import {
@@ -77,6 +78,7 @@ export const iconMap: Record<string, IconDefinition> = {
   moon: faMoon,
   facebook: faFacebook,
   twitter: faXTwitter,
+  pdf: faFilePdf,
 } as const;
 
 export type IconID = keyof typeof iconMap;
