@@ -96,15 +96,23 @@ export class CareerService {
         CosmicClient.objects
           .findOne({
             type: "school-credentials",
-            "metadata.graduation_date": { $ne: null },
+            "metadata.graduation_date": {
+              $lte: new Date().toISOString().slice(0, 10),
+            },
             sort: "-metadata.graduation_date",
           })
-          .props("title")
+          .props("title, metadata.graduation_date")
           .depth(1),
-      ).then(({ object }: { object: CosmicEnt }) => ({
-        value: object.title,
-        type: Experience.EDUCATION,
-      }));
+      ).then(
+        ({
+          object,
+        }: {
+          object: CosmicEnt<TSchoolCredential>;
+        }): THomePageCredential => ({
+          value: object.title,
+          type: Experience.EDUCATION,
+        }),
+      );
 
       const locationPromise: Promise<THomePageCredential> = Promise.resolve(
         CosmicClient.objects

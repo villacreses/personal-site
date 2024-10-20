@@ -64,6 +64,7 @@ export type TWorkEntry = {
 };
 
 export type TSchoolCredential = {
+  credential: string;
   school_name: string;
   graduation_date: string;
   location: string;
