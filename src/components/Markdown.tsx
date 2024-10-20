@@ -2,15 +2,28 @@ import Link from "next/link";
 import { ComponentProps, ReactNode } from "react";
 import MarkdownBase from "react-markdown";
 
+import styles from "./Markdown.module.css";
+import { classNames } from "@/lib/utils";
+
 export type MarkdownProps = ComponentProps<typeof MarkdownBase>;
 export type MarkdownComponents = MarkdownProps["components"];
 
 const defaultComponents: MarkdownComponents = {
   ul({ node, ...props }) {
-    return <ul className="list-disc mt-2 pl-8 prose" {...props} />;
+    return (
+      <ul
+        className={classNames([styles["md-list"], "list-disc mt-2 prose"])}
+        {...props}
+      />
+    );
   },
   ol({ node, ...props }) {
-    return <ol className="list-decimal mt-2 pl-8 prose" {...props} />;
+    return (
+      <ol
+        className={classNames([styles["md-list"], "list-decimal mt-2 prose"])}
+        {...props}
+      />
+    );
   },
   li({ node, ...props }) {
     return <li className="mb-3" {...props} />;

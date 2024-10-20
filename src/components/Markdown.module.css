@@ -1,0 +1,7 @@
+.md-list {
+  @apply pl-4;
+}
+
+p+.md-list {
+  @apply pl-8;
+}
