@@ -1,6 +1,4 @@
-import { ComponentProps, CSSProperties, FC } from "react";
-import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ComponentProps, CSSProperties } from "react";
 import {
   faGithub,
   faHackerrank,
@@ -14,7 +12,6 @@ import {
   faXTwitter,
   IconDefinition,
 } from "@fortawesome/free-brands-svg-icons";
-
 import {
   faFolder,
   faHourglass,
@@ -22,7 +19,6 @@ import {
   faClock,
   faFilePdf,
 } from "@fortawesome/free-regular-svg-icons";
-
 import {
   faBars,
   faExternalLinkAlt,
@@ -40,6 +36,9 @@ import {
   faMoon,
 } from "@fortawesome/free-solid-svg-icons";
 import { Experience } from "@/lib/types";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
 
 const expIconMap: Record<Experience, IconDefinition> = {
   JOB: faSuitcase,
@@ -98,35 +97,3 @@ export interface IconLinkProps extends ComponentProps<typeof Link> {
   slug: IconID;
   iconProps?: IconProps;
 }
-
-export const Icon: FC<IconPropsWithId> = ({
-  iconId,
-  containerStyles,
-  size,
-  style,
-  className,
-  ...props
-}) => {
-  const sizeStyles = size ? { height: size, width: size } : {};
-
-  return (
-    <FontAwesomeIcon
-      icon={iconMap[iconId]}
-      style={{ ...style, ...sizeStyles }}
-      className={className}
-      {...props}
-    />
-  );
-};
-
-export const IconLink: FC<IconLinkProps> = ({
-  href,
-  label,
-  slug,
-  iconProps,
-  ...linkProps
-}) => (
-  <Link href={href} title={label} aria-label={label} {...linkProps}>
-    <Icon iconId={slug} {...iconProps} />
-  </Link>
-);
