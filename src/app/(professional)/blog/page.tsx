@@ -1,15 +1,23 @@
 import { BlogPostPreview, StandardHeader } from "@/components";
 import { BlogService, PageService } from "@/lib/cosmic";
 
+const PAGE_SLUG = "blog";
+
+export async function generateMetadata() {
+  return await PageService.getPageMetadata(PAGE_SLUG);
+}
+
 export default async function BlogHome() {
-  const content = await PageService.getPageHeadingContent("blog");
-  const posts = await BlogService.getAllPosts();
+  const [heading, posts] = await Promise.all([
+    PageService.getPageHeadingContent(PAGE_SLUG),
+    BlogService.getAllPosts(),
+  ]);
 
   return (
     <main className="max-w-[85ch] w-full mx-auto">
       <StandardHeader
-        title={content.title!}
-        description={content.description!}
+        title={heading.title!}
+        description={heading.description!}
       />
       <div className="flex flex-col gap-14">
         {posts.map((post) => (

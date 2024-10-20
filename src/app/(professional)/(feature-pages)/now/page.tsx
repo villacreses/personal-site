@@ -1,8 +1,17 @@
-import { Icon, Markdown } from "@/components";
-import { getNowContent } from "@/lib/cosmic";
+import { Icon, Markdown, StandardHeader } from "@/components";
+import { PageService, getNowContent } from "@/lib/cosmic";
+
+const PAGE_SLUG = "now";
+
+export async function generateMetadata() {
+  return await PageService.getPageMetadata(PAGE_SLUG);
+}
 
 export default async function NowPage() {
-  const { entries, last_modified } = await getNowContent();
+  const [{ entries, last_modified }, heading] = await Promise.all([
+    getNowContent(),
+    PageService.getPageHeadingContent(PAGE_SLUG),
+  ]);
 
   const dateDisplayed = last_modified.toLocaleString("default", {
     month: "long",
@@ -11,6 +20,10 @@ export default async function NowPage() {
 
   return (
     <>
+      <StandardHeader
+        title={heading.title!}
+        description={heading.description!}
+      />
       <article>
         <h2 className="text-2xl font-semibold">
           So what am I currently doing?
