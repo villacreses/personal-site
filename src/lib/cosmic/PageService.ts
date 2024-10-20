@@ -32,7 +32,7 @@ export class PageService {
   static async getPageMetadata(slug: string) {
     const res = await PageService.getPageContent<{
       seo_description: string;
-    }>(slug, ["slug", "title", "metadata.seo_description"]);
+    }>(slug, ["title", "metadata.seo_description"]);
 
     const title = res && `${res.title} | Mario Villacreses`;
     const metadata: Metadata = {
@@ -40,6 +40,7 @@ export class PageService {
       description: res?.metadata.seo_description,
       openGraph: res && {
         type: "website",
+        url: `https://mariovillacreses.com/${slug}`,
         title,
         description: res.metadata.seo_description,
       },
