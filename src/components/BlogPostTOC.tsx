@@ -1,6 +1,8 @@
 import Markdown from "react-markdown";
 import { MarkdownComponents, ToggleSectionProps } from ".";
 
+import styles from "./blogpost.module.css";
+
 interface BlogPostTOCProps extends ToggleSectionProps {
   className?: string;
   children: string;
@@ -10,7 +12,7 @@ const components: MarkdownComponents = {
   ul: function ul({ node, className = "ml-3", ...props }) {
     return <ul className={className} {...props} />;
   },
-  li: function li({ node, className = "my-3", ...props }) {
+  li: function li({ node, className = "my-2", ...props }) {
     return <li className={className} {...props} />;
   },
 };
@@ -18,9 +20,9 @@ const components: MarkdownComponents = {
 const format = (content: string) =>
   content
     .split("\n")
-    .filter((line) => line[0] === "#")
+    .filter((line) => line[0] === "#" && !line.startsWith("###"))
     .map((line, idx) => {
-      const replaced = line.replace("## ", "- ").replace("#", "  ");
+      const replaced = line.replace("# ", "- ").replaceAll("#-", "  -");
       const heading = replaced.substring(replaced.indexOf("- ") + 2);
       const prefix = replaced.substring(0, replaced.indexOf("-") + 1);
       const output = `${prefix} [${heading}](#mdh-${idx})`;
@@ -39,7 +41,9 @@ export const BlogPostTOC = ({ children }: BlogPostTOCProps) => {
           Table of Contents
         </summary>
         <nav className="border-l ml-4 mt-1 lg:py-0.5">
-          <Markdown components={components}>{content}</Markdown>
+          <Markdown className={styles["toc-root"]} components={components}>
+            {content}
+          </Markdown>
         </nav>
       </details>
       <hr className="lg:hidden mx-0" />
