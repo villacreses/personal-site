@@ -37,10 +37,8 @@ const useDarkMode = () => {
   }, []);
 
   useEffect(() => {
-    if (root.current && isDark !== null) {
-      if (root.current.hasAttribute("data-theme")) {
-        root.current.setAttribute("data-theme", isDark ? "dark" : "light");
-      }
+    if (isDark !== null) {
+      root.current?.setAttribute("data-theme", isDark ? "dark" : "light");
     }
   }, [isDark]);
 
