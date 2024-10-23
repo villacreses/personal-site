@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { classNames } from "@/lib/utils";
 import TopNavbar from "@/components/TopNavbar";
 import PageFooter from "@/components/PageFooter";
+import { DarkModeProvider } from "@/hooks";
 
 import "./aria.css";
 import "./globals.css";
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
   description: "Personal website for Mario Villacreses",
   authors: { name: "Mario Villacreses" },
   keywords: ["portfolio", "software engineer"],
-  generator: 'Next.js',
+  generator: "Next.js",
   openGraph: {
     type: "website",
     url: "https://mariovillacreses.com/",
@@ -38,9 +39,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={bodyClassnames}>
-        <TopNavbar />
-        {children}
-        <PageFooter />
+        <DarkModeProvider>
+          <TopNavbar />
+          {children}
+          <PageFooter />
+        </DarkModeProvider>
       </body>
     </html>
   );

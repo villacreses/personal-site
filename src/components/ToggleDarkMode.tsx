@@ -1,49 +1,21 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { Suspense } from "react";
 import { Icon } from ".";
-import { useMediaQuery } from "@/hooks";
+import { useDarkModeToggle } from "@/hooks";
 
-const useDarkModeToggle = () => {
-  const match = useMediaQuery("(prefers-color-scheme: dark)");
-  const root = useRef<HTMLHtmlElement | null>();
+const fallback = <div className="w-6 h-8" />;
 
-  const [isDark, setIsDark] = useState(match);
-
-  const toggle = useCallback(() => {
-    setIsDark((prev) => !prev);
-  }, []);
-
-  useEffect(() => {
-    root.current = document.querySelector("html");
-  }, []);
-
-  useEffect(() => {
-    if (match !== isDark) {
-      setIsDark(match);
-    }
-  }, [match]);
-
-  useEffect(() => {
-    if (root.current && isDark !== null) {
-      if (root.current.hasAttribute("data-theme") || isDark !== match) {
-        root.current.setAttribute("data-theme", isDark ? "dark" : "light");
-      }
-    }
-  }, [isDark]);
-
-  return {
-    isDark,
-    toggle,
-  } as const;
-};
-
-export function ToggleDarkMode() {
+function ToggleDarkModeBase() {
   const { isDark, toggle } = useDarkModeToggle();
+
+  if (isDark === null) {
+    return fallback;
+  }
 
   return (
     <button
       type="button"
       className="text-3xl sm:text-2xl"
-      onClick={toggle}
+      onClick={() => toggle()}
       title="Toggle dark mode"
       aria-label="Toggle dark mode"
     >
@@ -51,3 +23,9 @@ export function ToggleDarkMode() {
     </button>
   );
 }
+
+export const ToggleDarkMode = () => (
+  <Suspense fallback={fallback}>
+    <ToggleDarkModeBase />
+  </Suspense>
+);
