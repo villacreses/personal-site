@@ -116,7 +116,7 @@ export function Menu({ id, children }: MenuProps) {
     document
       .querySelector("body")
       ?.toggleAttribute("data-menuopen", menuState.menuOpen);
-  });
+  }, [menuState.menuOpen]);
 
   return (
     <MenuContextProvider value={menuState}>{children}</MenuContextProvider>

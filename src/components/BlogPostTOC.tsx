@@ -1,7 +1,5 @@
-"use client";
-
 import Markdown from "react-markdown";
-import { MarkdownComponents, ToggleSectionProps, ToggleSection } from ".";
+import { MarkdownComponents, ToggleSectionProps } from ".";
 
 interface BlogPostTOCProps extends ToggleSectionProps {
   className?: string;
@@ -9,8 +7,6 @@ interface BlogPostTOCProps extends ToggleSectionProps {
 }
 
 const components: MarkdownComponents = {
-  // "use server";
-
   ul: function ul({ node, className = "ml-3", ...props }) {
     return <ul className={className} {...props} />;
   },
