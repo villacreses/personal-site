@@ -43,9 +43,12 @@ export async function generateMetadata({
 function ArticleMarkdown({ children }: { children: string }) {
   let headingCounter = 0;
   return (
-    <div id="markdown" className="flex flex-col-reverse lg:gap-6 lg:flex-row">
+    <div
+      id="markdown"
+      className="flex flex-1 flex-col-reverse lg:gap-6 lg:flex-row"
+    >
       <Markdown
-        className={classNames([styles.md_root, "max-w-[70ch]"])}
+        className={classNames([styles.md_root, "max-w-[70ch] lg:flex-1"])}
         components={{
           h1({ node, className = "text-3xl font-bold mt-11", ...props }) {
             return (
