@@ -8,7 +8,7 @@ export function BlogPostPreview({
   post: CosmicEntWithSlug<TPostWithCalcData>;
 }) {
   return (
-    <article className="flex flex-col mx-auto gap-y-2 gap-x-6 max-w-[400px] xs:flex-row xs:max-w-[725px]">
+    <article className="flex flex-col gap-y-2 gap-x-6 max-w-[400px] xs:flex-row xs:max-w-[725px]">
       <CosmicImage
         src={post.metadata.banner}
         alt={post.metadata.banner_alt_text}

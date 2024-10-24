@@ -4,11 +4,13 @@ import MarkdownBase from "react-markdown";
 
 import styles from "./Markdown.module.css";
 import { classNames } from "@/lib/utils";
+import { CodeBlock } from "./MarkdownCode";
 
 export type MarkdownProps = ComponentProps<typeof MarkdownBase>;
 export type MarkdownComponents = MarkdownProps["components"];
 
 const defaultComponents: MarkdownComponents = {
+  code: CodeBlock,
   ul({ node, ...props }) {
     return (
       <ul

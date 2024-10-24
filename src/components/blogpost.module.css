@@ -6,7 +6,9 @@
   @apply text-neutral-500 dark:text-neutral-400 text-xl tracking-wide italic first:mt-0;
 }
 
-.md_root > p {
+.md_root>p,
+.md_root>ol,
+.md_root>ul {
   @apply mt-5;
 }
 
