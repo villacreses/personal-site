@@ -7,11 +7,10 @@ import {
   Markdown,
 } from "@/components";
 import { BlogService } from "@/lib/cosmic";
-import { classNames } from "@/lib/utils";
 import { BlogPostMetadata } from "@/components";
 import { Metadata } from "next";
 
-import styles from "@/components/blogpost.module.css";
+import styles from "@/components/Markdown.module.css";
 
 type BlogPostParams = {
   params: {
@@ -48,46 +47,19 @@ function ArticleMarkdown({ children }: { children: string }) {
       className="flex flex-1 flex-col-reverse lg:gap-6 lg:flex-row"
     >
       <Markdown
-        className={classNames([styles.md_root, "max-w-[70ch] lg:flex-1"])}
+        className={styles.blogpost}
         components={{
-          h1({ node, className = "text-3xl font-bold mt-11", ...props }) {
-            return (
-              <h2
-                id={`mdh-${headingCounter++}`}
-                className={className}
-                {...props}
-              />
-            );
+          h1({ node, ...props }) {
+            return <h2 id={`mdh-${headingCounter++}`} {...props} />;
           },
-          h2({ node, className = "text-2xl font-medium mt-7", ...props }) {
-            return (
-              <h3
-                id={`mdh-${headingCounter++}`}
-                className={className}
-                style={{ scrollMarginTop: 100 }}
-                {...props}
-              />
-            );
+          h2({ node, ...props }) {
+            return <h3 id={`mdh-${headingCounter++}`} {...props} />;
           },
-          h3({ node, className = "text-md font-medium mt-5", ...props }) {
-            return (
-              <h4
-                className={className}
-                style={{ scrollMarginTop: 100 }}
-                {...props}
-              />
-            );
+          h3({ node, ...props }) {
+            return <h4 {...props} />;
           },
           p({ node, className = "prose-color", ...props }) {
             return <p className={className} {...props} />;
-          },
-          blockquote({ node, className = "", ...props }) {
-            return (
-              <blockquote
-                className={classNames([className, styles.quote])}
-                {...props}
-              />
-            );
           },
         }}
       >
