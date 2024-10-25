@@ -20,10 +20,8 @@ export function BlogPostPreview({
         <h2 className="text-xl font-bold tracking-wider">
           <Link href={`/blog/post/${post.slug}`}>{post.title}</Link>
         </h2>
-        <dl>
-          <BlogPostMetadata post={post} />
-        </dl>
-        <Markdown className="prose-color font-light mt-1.5">
+        <BlogPostMetadata post={post} />
+        <Markdown className="prose-color font-light mt-1.5 text-sm">
           {post.metadata.teaser}
         </Markdown>
         <BubbleList items={post.metadata.tags?.map(({ title }) => title)} />

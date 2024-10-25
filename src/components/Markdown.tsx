@@ -12,45 +12,27 @@ export type MarkdownComponents = MarkdownProps["components"];
 const defaultComponents: MarkdownComponents = {
   code: CodeBlock,
   ul({ node, ...props }) {
-    return (
-      <ul
-        className={classNames([styles["md-list"], "list-disc mt-2 prose"])}
-        {...props}
-      />
-    );
+    return <ul className="prose" {...props} />;
   },
   ol({ node, ...props }) {
-    return (
-      <ol
-        className={classNames([styles["md-list"], "list-decimal mt-2 prose"])}
-        {...props}
-      />
-    );
-  },
-  li({ node, ...props }) {
-    return <li className="mb-3" {...props} />;
+    return <ol className="prose" {...props} />;
   },
   a({ node, href = "#", ...props }) {
     return <Link href={href} {...props} />;
-  },
-  h1({
-    node,
-    className = "text-4xl font-extrabold text-center mb-5",
-    ...props
-  }) {
-    return <h1 className={className} {...props} />;
-  },
-  em({ node, className = "mr-0.5", ...props }) {
-    return <em className={className} {...props} />;
   },
   p({ node, className = "prose", ...props }) {
     return <p className={className} {...props} />;
   },
 };
 
-export function Markdown({ components, ...props }: MarkdownProps): ReactNode {
+export function Markdown({
+  components,
+  className,
+  ...props
+}: MarkdownProps): ReactNode {
   return (
     <MarkdownBase
+      className={classNames([styles.markdown_root, className])}
       components={{ ...defaultComponents, ...components }}
       {...props}
     />

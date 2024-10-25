@@ -1,7 +1,7 @@
 import Markdown from "react-markdown";
 import { MarkdownComponents, ToggleSectionProps } from ".";
 
-import styles from "./blogpost.module.css";
+import styles from "./Markdown.module.css";
 
 interface BlogPostTOCProps extends ToggleSectionProps {
   className?: string;

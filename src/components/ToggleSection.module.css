@@ -14,14 +14,21 @@
   }
 }
 
-li.entry p:first-child {
-  @apply font-semibold;
-}
 
-li.entry p:only-child {
-  @apply font-medium;
-}
+li {
+  &.entry {
+    p {
+      &:first-child {
+        @apply font-semibold;
+      }
 
-li.entry p:not(:first-child) {
-  @apply text-sm;
+      &:only-child {
+        @apply font-medium;
+      }
+
+      &:not(:first-child) {
+        @apply text-sm;
+      }
+    }
+  }
 }
