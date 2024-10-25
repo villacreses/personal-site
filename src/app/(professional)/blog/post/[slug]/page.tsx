@@ -91,20 +91,7 @@ export default async function BlogPost({ params }: BlogPostParams) {
           <h1 className="text-4xl font-extrabold tracking-wide">
             {post.title}
           </h1>
-          <div className="flex flex-row mt-3 mb-6 items-center">
-            <CosmicImage
-              src={author?.metadata.image!}
-              alt={`An image of the author, ${author.title}`}
-              height={36}
-              width={36}
-              className="mr-3 rounded-full medium-zoom-image"
-            />
-            <dl className="flex flex-col flex-grow">
-              <dt className="sr-only">Author</dt>
-              <dd className="prose-color">{author.title}</dd>
-              <BlogPostMetadata post={post} />
-            </dl>
-          </div>
+          <BlogPostMetadata post={post} includeAuthor />
           <BlogPostShareButtons author={author.title} />
         </header>
         <ArticleMarkdown>{post.metadata.content}</ArticleMarkdown>

@@ -19,7 +19,7 @@ export default async function BlogHome() {
         title={heading.title!}
         description={heading.description!}
       />
-      <div className="flex flex-col gap-14">
+      <div className="flex flex-col gap-14 items-center sm:items-start">
         {posts.map((post) => (
           <BlogPostPreview key={post.slug} post={post} />
         ))}
