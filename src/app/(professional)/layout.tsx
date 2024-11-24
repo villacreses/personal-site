@@ -28,7 +28,8 @@ export const metadata: Metadata = {
 const bodyClassnames = classNames([
   inter.className,
   "flex flex-col h-screen",
-  "px-6 m-auto max-w-7xl sm:px-14 md:px-24 lg:px-32",
+  "m-auto max-w-7xl",
+  "px-4 xxs:px-6 sm:px-14 md:px-24 lg:px-32",
 ]);
 
 export default function RootLayout({

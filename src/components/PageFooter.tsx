@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ComponentProps } from "react";
-import Markdown from "react-markdown";
+import { Markdown } from "@/components";
 
 const content = `
 &copy; 2024 Mario Villacreses

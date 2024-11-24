@@ -9,6 +9,10 @@ import { CodeBlock } from "./MarkdownCode";
 export type MarkdownProps = ComponentProps<typeof MarkdownBase>;
 export type MarkdownComponents = MarkdownProps["components"];
 
+const shouldOpenInNewWindow = (href: string) =>
+  !(href.charAt(0) === "#" || href.charAt(0) === "/") ||
+  href.indexOf("/docs") === 0;
+
 const defaultComponents: MarkdownComponents = {
   code: CodeBlock,
   ul({ node, ...props }) {
@@ -18,7 +22,8 @@ const defaultComponents: MarkdownComponents = {
     return <ol className="prose" {...props} />;
   },
   a({ node, href = "#", ...props }) {
-    return <Link href={href} {...props} />;
+    const target = shouldOpenInNewWindow(href) ? "_blank" : undefined;
+    return <Link href={href} target={target} {...props} />;
   },
   p({ node, className = "prose", ...props }) {
     return <p className={className} {...props} />;
