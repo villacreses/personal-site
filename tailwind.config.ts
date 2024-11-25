@@ -14,7 +14,6 @@ const config: Config = {
         xxs: "485px",
         "2xs": "485px",
         "3xs": "365px",
-        "4xs": "320px",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

@@ -1,4 +1,3 @@
-import { PageService } from "@/lib/cosmic";
 import { PropsWithChildren } from "react";
 import { Markdown } from ".";
 
