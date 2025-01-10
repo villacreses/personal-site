@@ -1,0 +1,1 @@
+export { getNotionPageMarkdown } from "./client";
