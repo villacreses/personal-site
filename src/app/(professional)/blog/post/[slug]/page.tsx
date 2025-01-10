@@ -1,16 +1,10 @@
 import Link from "next/link";
-import {
-  BlogPostBanner,
-  BlogPostShareButtons,
-  BlogPostTOC,
-  CosmicImage,
-  Markdown,
-} from "@/components";
-import { BlogService } from "@/lib/cosmic";
+import { BlogPostTOC, Markdown } from "@/components";
 import { BlogPostMetadata } from "@/components";
 import { Metadata } from "next";
 
 import styles from "@/components/Markdown.module.css";
+import { getBlog, getNotionPageMarkdown } from "@/lib/notion";
 
 type BlogPostParams = {
   params: {
@@ -18,26 +12,27 @@ type BlogPostParams = {
   };
 };
 
-export async function generateMetadata({
-  params,
-}: BlogPostParams): Promise<Metadata> {
-  const post = await BlogService.getPost(params.slug);
-  const tags = post.metadata.tags?.map(({ title }) => title) || [];
+// export async function generateMetadata({
+//   params,
+// }: BlogPostParams): Promise<Metadata> {
+//   const postData = await getBlog().then(blog => blog.filter(({slug}) => slug === params.slug))
+//   const post = await BlogService.getPost(params.slug);
+//   const tags = post.metadata.tags?.map(({ title }) => title) || [];
 
-  return {
-    title: `${post.title} | Mario Villacreses`,
-    keywords: ["blog", "software engineer"].concat(tags),
-    description: post.metadata.teaser,
-    openGraph: {
-      type: "website",
-      url: `https://mariovillacreses.com/blog/post/${params.slug}`,
-      title: post.title,
-      siteName: "Mario Villacreses",
-      description: post.metadata.teaser,
-      images: post.metadata.banner.imgix_url,
-    },
-  };
-}
+//   return {
+//     title: `${post.title} | Mario Villacreses`,
+//     keywords: ["blog", "software engineer"].concat(tags),
+//     description: post.metadata.teaser,
+//     openGraph: {
+//       type: "website",
+//       url: `https://mariovillacreses.com/blog/post/${params.slug}`,
+//       title: post.title,
+//       siteName: "Mario Villacreses",
+//       description: post.metadata.teaser,
+//       images: post.metadata.banner.imgix_url,
+//     },
+//   };
+// }
 
 function ArticleMarkdown({ children }: { children: string }) {
   let headingCounter = 0;
@@ -76,13 +71,14 @@ function ArticleMarkdown({ children }: { children: string }) {
 }
 
 export default async function BlogPost({ params }: BlogPostParams) {
-  const post = await BlogService.getPost(params.slug);
-  const author = post.metadata.author!;
+  const blog = await getBlog();
+  const post = blog.filter(({ slug }) => slug === params.slug)[0];
+  const markdown = await getNotionPageMarkdown(post.id);
+  console.log("m", markdown);
 
   return (
     <main className="max-w-7xl">
       <article id="blog-post">
-        <BlogPostBanner post={post} className="mb-5" />
         <header className="mb-10">
           <p className="text-sm mb-1">
             <Link href="/blog">{"Mario's Blog"}</Link>
@@ -92,9 +88,8 @@ export default async function BlogPost({ params }: BlogPostParams) {
             {post.title}
           </h1>
           <BlogPostMetadata post={post} includeAuthor />
-          <BlogPostShareButtons author={author.title} />
         </header>
-        <ArticleMarkdown>{post.metadata.content}</ArticleMarkdown>
+        <ArticleMarkdown>{markdown}</ArticleMarkdown>
       </article>
     </main>
   );

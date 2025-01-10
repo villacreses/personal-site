@@ -1,5 +1,6 @@
 import { BlogPostPreview, StandardHeader } from "@/components";
-import { BlogService, PageService } from "@/lib/cosmic";
+import { PageService } from "@/lib/cosmic";
+import { getBlog } from "@/lib/notion";
 
 const PAGE_SLUG = "blog";
 
@@ -8,10 +9,12 @@ export async function generateMetadata() {
 }
 
 export default async function BlogHome() {
-  const [heading, posts] = await Promise.all([
+  const [heading, blog] = await Promise.all([
     PageService.getPageHeadingContent(PAGE_SLUG),
-    BlogService.getAllPosts(),
+    getBlog(),
   ]);
+
+  console.log("blog", blog);
 
   return (
     <main className="max-w-[85ch] w-full mx-auto">
@@ -19,8 +22,8 @@ export default async function BlogHome() {
         title={heading.title!}
         description={heading.description!}
       />
-      <div className="flex flex-col gap-14 items-center sm:items-start">
-        {posts.map((post) => (
+      <div className="flex flex-col gap-8 items-start mx-auto">
+        {blog.map((post) => (
           <BlogPostPreview key={post.slug} post={post} />
         ))}
       </div>
