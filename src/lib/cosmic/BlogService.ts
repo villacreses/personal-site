@@ -96,7 +96,7 @@ export class BlogService {
     }
   }
 
-  static async getAuthor(title: string): Promise<CosmicEntWithSlug<Author>> {
+  static async getAuthor(title: string) {
     try {
       const { object: author }: { object: CosmicEntWithSlug<Author> } =
         await Promise.resolve(
@@ -109,10 +109,10 @@ export class BlogService {
             .depth(1),
         );
 
-      return author;
+      return { name: author.title, image: author.metadata.image } as const;
     } catch (error) {
       console.log("Error in fetching author data:", error);
-      return Promise.resolve({} as CosmicEntWithSlug<Author>);
+      return Promise.resolve({ name: "Mario Villacreses", image: undefined });
     }
   }
 }
