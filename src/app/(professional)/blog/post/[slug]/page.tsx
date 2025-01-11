@@ -1,16 +1,9 @@
 import Link from "next/link";
 import { BlogPostTOC, Markdown } from "@/components";
 import { BlogPostMetadata } from "@/components";
-import { Metadata } from "next";
 
 import styles from "@/components/Markdown.module.css";
 import { getBlog, getNotionPageMarkdown } from "@/lib/notion";
-
-type BlogPostParams = {
-  params: {
-    slug: string;
-  };
-};
 
 // export async function generateMetadata({
 //   params,
@@ -33,6 +26,18 @@ type BlogPostParams = {
 //     },
 //   };
 // }
+
+export async function generateStaticParams() {
+  return await getBlog().then((blog) =>
+    blog.map(({ slug }) => ({
+      slug,
+    })),
+  );
+}
+
+type BlogPostParams = {
+  params: Promise<Awaited<ReturnType<typeof generateStaticParams>>[number]>;
+};
 
 function ArticleMarkdown({ children }: { children: string }) {
   let headingCounter = 0;
@@ -71,8 +76,11 @@ function ArticleMarkdown({ children }: { children: string }) {
 }
 
 export default async function BlogPost({ params }: BlogPostParams) {
-  const blog = await getBlog();
-  const post = blog.filter(({ slug }) => slug === params.slug)[0];
+  const post = await Promise.all([params, getBlog()]).then(
+    ([{ slug }, blog]) =>
+      blog.filter(({ slug: testSlug }) => testSlug === slug)[0],
+  );
+
   const markdown = await getNotionPageMarkdown(post.id);
 
   return (
