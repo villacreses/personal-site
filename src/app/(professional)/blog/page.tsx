@@ -14,8 +14,6 @@ export default async function BlogHome() {
     getBlog(),
   ]);
 
-  console.log("blog", blog);
-
   return (
     <main className="max-w-[85ch] w-full mx-auto">
       <StandardHeader

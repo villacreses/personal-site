@@ -74,17 +74,16 @@ export default async function BlogPost({ params }: BlogPostParams) {
   const blog = await getBlog();
   const post = blog.filter(({ slug }) => slug === params.slug)[0];
   const markdown = await getNotionPageMarkdown(post.id);
-  console.log("m", markdown);
 
   return (
     <main className="max-w-7xl">
       <article id="blog-post">
-        <header className="mb-10">
+        <header className="mb-7 lg:mb-2">
           <p className="text-sm mb-1">
             <Link href="/blog">{"Mario's Blog"}</Link>
             <span className="px-1.5">/</span>
           </p>
-          <h1 className="text-4xl font-extrabold tracking-wide">
+          <h1 className="text-5xl font-extrabold tracking-wide">
             {post.title}
           </h1>
           <BlogPostMetadata post={post} includeAuthor />
