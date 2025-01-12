@@ -35,7 +35,7 @@ export function CodeBlock({
   if (isInline) {
     return <code style={inlineStyles}>{children}</code>;
   }
-  console.log(language, isInline);
+
   return (
     <Prism
       style={a11yDark}

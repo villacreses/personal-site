@@ -1,42 +1,47 @@
 import Link from "next/link";
-import {
-  BlogPostBanner,
-  BlogPostShareButtons,
-  BlogPostTOC,
-  CosmicImage,
-  Markdown,
-} from "@/components";
-import { BlogService } from "@/lib/cosmic";
+import { BlogPostTOC, Markdown } from "@/components";
 import { BlogPostMetadata } from "@/components";
-import { Metadata } from "next";
 
 import styles from "@/components/Markdown.module.css";
+import { getBlog, getNotionPageMarkdown } from "@/lib/notion";
+import { Metadata } from "next";
 
 type BlogPostParams = {
-  params: {
-    slug: string;
-  };
+  params: Promise<Awaited<ReturnType<typeof generateStaticParams>>[number]>;
 };
+
+const getPost = async (params: BlogPostParams["params"]) =>
+  await Promise.all([params, getBlog()]).then(
+    ([{ slug }, blog]) =>
+      blog.filter(({ slug: testSlug }) => testSlug === slug)[0],
+  );
 
 export async function generateMetadata({
   params,
 }: BlogPostParams): Promise<Metadata> {
-  const post = await BlogService.getPost(params.slug);
-  const tags = post.metadata.tags?.map(({ title }) => title) || [];
+  const post = await getPost(params);
+  const tags = post.tags || [];
 
   return {
     title: `${post.title} | Mario Villacreses`,
     keywords: ["blog", "software engineer"].concat(tags),
-    description: post.metadata.teaser,
+    description: post.description,
     openGraph: {
       type: "website",
-      url: `https://mariovillacreses.com/blog/post/${params.slug}`,
+      url: `https://mariovillacreses.com/blog/post/${post.slug}`,
       title: post.title,
       siteName: "Mario Villacreses",
-      description: post.metadata.teaser,
-      images: post.metadata.banner.imgix_url,
+      description: post.description,
     },
   };
+}
+
+export async function generateStaticParams() {
+  return await getBlog().then((blog) =>
+    blog.map(({ slug }) => ({
+      slug,
+    })),
+  );
 }
 
 function ArticleMarkdown({ children }: { children: string }) {
@@ -76,25 +81,23 @@ function ArticleMarkdown({ children }: { children: string }) {
 }
 
 export default async function BlogPost({ params }: BlogPostParams) {
-  const post = await BlogService.getPost(params.slug);
-  const author = post.metadata.author!;
+  const post = await getPost(params);
+  const markdown = await getNotionPageMarkdown(post.id);
 
   return (
     <main className="max-w-7xl">
       <article id="blog-post">
-        <BlogPostBanner post={post} className="mb-5" />
-        <header className="mb-10">
+        <header className="mb-7 lg:mb-2">
           <p className="text-sm mb-1">
             <Link href="/blog">{"Mario's Blog"}</Link>
             <span className="px-1.5">/</span>
           </p>
-          <h1 className="text-4xl font-extrabold tracking-wide">
+          <h1 className="text-5xl font-extrabold tracking-wide">
             {post.title}
           </h1>
           <BlogPostMetadata post={post} includeAuthor />
-          <BlogPostShareButtons author={author.title} />
         </header>
-        <ArticleMarkdown>{post.metadata.content}</ArticleMarkdown>
+        <ArticleMarkdown>{markdown}</ArticleMarkdown>
       </article>
     </main>
   );

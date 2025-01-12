@@ -1,12 +1,14 @@
 import Link from "next/link";
 import { ComponentProps, ReactNode } from "react";
-import MarkdownBase from "react-markdown";
+import ReactMarkdown from "react-markdown";
+
+import rehypeRaw from "rehype-raw";
 
 import styles from "./Markdown.module.css";
 import { classNames } from "@/lib/utils";
 import { CodeBlock } from "./MarkdownCode";
 
-export type MarkdownProps = ComponentProps<typeof MarkdownBase>;
+export type MarkdownProps = ComponentProps<typeof ReactMarkdown>;
 export type MarkdownComponents = MarkdownProps["components"];
 
 const shouldOpenInNewWindow = (href: string) =>
@@ -28,6 +30,10 @@ const defaultComponents: MarkdownComponents = {
   p({ node, className = "prose", ...props }) {
     return <p className={className} {...props} />;
   },
+  div({ node, className, ...props }) {
+    const divClass = className === "callout" ? styles.callout : className;
+    return <div className={divClass} {...props} />;
+  },
 };
 
 export function Markdown({
@@ -36,7 +42,8 @@ export function Markdown({
   ...props
 }: MarkdownProps): ReactNode {
   return (
-    <MarkdownBase
+    <ReactMarkdown
+      rehypePlugins={[rehypeRaw]}
       className={classNames([styles.markdown_root, className])}
       components={{ ...defaultComponents, ...components }}
       {...props}

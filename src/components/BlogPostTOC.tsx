@@ -32,7 +32,9 @@ const format = (content: string) =>
     .join("\n");
 
 // External div is required for sticky to work
-export const BlogPostTOC = ({ children }: BlogPostTOCProps) => {
+export const BlogPostTOC = ({ children = "" }: BlogPostTOCProps) => {
+  if (!children.length) return null;
+
   const content = format(children);
   return (
     <div className="lg:mt-16 lg:text-sm">

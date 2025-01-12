@@ -1,36 +1,46 @@
-import { TPostWithCalcData, CosmicEntWithSlug } from "@/lib/cosmic";
+import { BlogService, TImage } from "@/lib/cosmic";
 import { FC, Fragment, PropsWithChildren } from "react";
 import { CosmicImage } from ".";
+import { BlogPostListing } from "@/lib/notion";
+import { formatBlogPostDate } from "@/lib/utils";
 
 type BlogPostMetadataProps = {
-  post: CosmicEntWithSlug<TPostWithCalcData>;
+  authorName?: string;
   includeAuthor?: boolean;
+  post: BlogPostListing;
+};
+
+type AuthorImageWrapperProps = {
+  includeAuthor?: boolean;
+  authorImage?: TImage;
+  post: BlogPostListing;
 };
 
 const FixedMetadata: FC<Pick<BlogPostMetadataProps, "post">> = ({ post }) => (
-  <div className="flex flex-row text-sm text-neutral-500 dark:text-neutral-400">
+  <div className="flex flex-row text-xs text-neutral-500 dark:text-neutral-400">
     <dt className="sr-only">Publish date</dt>
     <dd>
-      <time dateTime={post.metadata.published_date}>{post.metadata.date}</time>
+      <time dateTime={post.datePublished}>
+        {formatBlogPostDate(post.datePublished!)}
+      </time>
     </dd>
     <div aria-hidden="true" className="mx-1.5">
       &#x2022;
     </div>
     <dt className="sr-only">Estimated reading time</dt>
-    <dd>{post.metadata.readingTime} minute read</dd>
+    <dd>{post.readingTime} minute read</dd>
   </div>
 );
 
-const AuthorImageWrapper: FC<PropsWithChildren<BlogPostMetadataProps>> = ({
-  children,
-  includeAuthor,
-  post,
-}) =>
-  includeAuthor && post.metadata.author ? (
+const AuthorImageWrapper: FC<
+  PropsWithChildren<AuthorImageWrapperProps>
+> = async ({ children, includeAuthor, authorImage }) => {
+  const author = await BlogService.getAuthor("Mario Villacreses");
+  return includeAuthor && authorImage ? (
     <div className="flex flex-row mt-3 mb-6 items-center">
       <CosmicImage
-        src={post.metadata.author.metadata.image!}
-        alt={`An image of the author, ${post.metadata.author.title}`}
+        src={authorImage}
+        alt={`An image of the author, ${author.name}`}
         height={36}
         width={36}
         className="mr-3 rounded-full medium-zoom-image"
@@ -40,18 +50,25 @@ const AuthorImageWrapper: FC<PropsWithChildren<BlogPostMetadataProps>> = ({
   ) : (
     <Fragment>{children}</Fragment>
   );
+};
 
-export const BlogPostMetadata: FC<BlogPostMetadataProps> = ({
-  post,
+export const BlogPostMetadata: FC<BlogPostMetadataProps> = async ({
   includeAuthor,
+  authorName = "Mario Villacreses",
+  post,
 }) => {
+  const author = await BlogService.getAuthor(authorName);
   return (
-    <AuthorImageWrapper post={post} includeAuthor={includeAuthor}>
+    <AuthorImageWrapper
+      post={post}
+      includeAuthor={includeAuthor}
+      authorImage={author.image}
+    >
       <dl className="flex flex-col flex-grow">
-        {includeAuthor && post.metadata.author && (
+        {includeAuthor && (
           <>
             <dt className="sr-only">Author</dt>
-            <dd className="prose-color">{post.metadata.author?.title}</dd>
+            <dd className="prose-color">{author.name}</dd>
           </>
         )}
         <FixedMetadata post={post} />

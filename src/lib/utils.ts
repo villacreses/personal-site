@@ -26,8 +26,16 @@ export const KEY_CODES = {
 
 export const getReadingTime = (content: string) => {
   const WORDS_PER_MINUTE = 200;
-  const minutes = Math.round(
-    Number(content.match(/\w+/g)?.length) / WORDS_PER_MINUTE,
-  );
+  const minutes = content.length
+    ? Math.round(Number(content.match(/\w+/g)?.length) / WORDS_PER_MINUTE)
+    : 0;
   return isNaN(minutes) ? "unknown" : minutes || "< 1";
 };
+
+export function formatBlogPostDate(datestring: string) {
+  return new Date(datestring).toLocaleString("default", {
+    month: "long",
+    year: "numeric",
+    day: "numeric",
+  });
+}
