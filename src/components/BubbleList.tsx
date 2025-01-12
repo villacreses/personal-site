@@ -1,5 +1,5 @@
 const className =
-  "rounded-full inline-block bg-blue-800/20 dark:bg-gray-400/20 text-xs py-0.5 px-2 mr-1.5 font-medium leading-4";
+  "rounded-full inline-block bg-blue-800/20 dark:bg-gray-400/20 text-xs py-0.5 px-2 mr-1.5 mb-2 font-medium leading-4";
 
 export const BubbleList = ({ items = [] }: { items?: string[] }) => {
   if (!items.length) return null;
