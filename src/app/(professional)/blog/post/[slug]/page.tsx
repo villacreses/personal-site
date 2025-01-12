@@ -4,28 +4,37 @@ import { BlogPostMetadata } from "@/components";
 
 import styles from "@/components/Markdown.module.css";
 import { getBlog, getNotionPageMarkdown } from "@/lib/notion";
+import { Metadata } from "next";
 
-// export async function generateMetadata({
-//   params,
-// }: BlogPostParams): Promise<Metadata> {
-//   const postData = await getBlog().then(blog => blog.filter(({slug}) => slug === params.slug))
-//   const post = await BlogService.getPost(params.slug);
-//   const tags = post.metadata.tags?.map(({ title }) => title) || [];
+type BlogPostParams = {
+  params: Promise<Awaited<ReturnType<typeof generateStaticParams>>[number]>;
+};
 
-//   return {
-//     title: `${post.title} | Mario Villacreses`,
-//     keywords: ["blog", "software engineer"].concat(tags),
-//     description: post.metadata.teaser,
-//     openGraph: {
-//       type: "website",
-//       url: `https://mariovillacreses.com/blog/post/${params.slug}`,
-//       title: post.title,
-//       siteName: "Mario Villacreses",
-//       description: post.metadata.teaser,
-//       images: post.metadata.banner.imgix_url,
-//     },
-//   };
-// }
+const getPost = async (params: BlogPostParams["params"]) =>
+  await Promise.all([params, getBlog()]).then(
+    ([{ slug }, blog]) =>
+      blog.filter(({ slug: testSlug }) => testSlug === slug)[0],
+  );
+
+export async function generateMetadata({
+  params,
+}: BlogPostParams): Promise<Metadata> {
+  const post = await getPost(params);
+  const tags = post.tags || [];
+
+  return {
+    title: `${post.title} | Mario Villacreses`,
+    keywords: ["blog", "software engineer"].concat(tags),
+    description: post.description,
+    openGraph: {
+      type: "website",
+      url: `https://mariovillacreses.com/blog/post/${post.slug}`,
+      title: post.title,
+      siteName: "Mario Villacreses",
+      description: post.description,
+    },
+  };
+}
 
 export async function generateStaticParams() {
   return await getBlog().then((blog) =>
@@ -34,10 +43,6 @@ export async function generateStaticParams() {
     })),
   );
 }
-
-type BlogPostParams = {
-  params: Promise<Awaited<ReturnType<typeof generateStaticParams>>[number]>;
-};
 
 function ArticleMarkdown({ children }: { children: string }) {
   let headingCounter = 0;
@@ -76,11 +81,7 @@ function ArticleMarkdown({ children }: { children: string }) {
 }
 
 export default async function BlogPost({ params }: BlogPostParams) {
-  const post = await Promise.all([params, getBlog()]).then(
-    ([{ slug }, blog]) =>
-      blog.filter(({ slug: testSlug }) => testSlug === slug)[0],
-  );
-
+  const post = await getPost(params);
   const markdown = await getNotionPageMarkdown(post.id);
 
   return (

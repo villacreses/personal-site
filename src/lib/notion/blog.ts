@@ -1,9 +1,5 @@
 import { cache } from "react";
-import {
-  getNotionPageMarkdown,
-  getNotionPageReadingTime,
-  notion,
-} from "./client";
+import { getNotionPageReadingTime, notion } from "./client";
 import { NotionPagePropType, NotionPageObject } from "./types";
 
 type BlogEntryListing = NotionPageObject<{
@@ -17,15 +13,18 @@ type BlogEntryListing = NotionPageObject<{
 // See here for inspiration:
 // https://github.com/samuelkraft/notion-blog-nextjs/blob/master/lib/notion.js
 
-export const getBlog = cache(async () => {
-  const response = await notion.databases.query({
-    database_id: process.env.NOTION_DBID_BLOG as string,
-  });
-
-  return await Promise.all(
-    (response.results as BlogEntryListing[]).map(formatBlogpostMetadata),
-  );
-});
+export const getBlog = cache(
+  async () =>
+    await notion.databases
+      .query({
+        database_id: process.env.NOTION_DBID_BLOG as string,
+      })
+      .then(({ results }) =>
+        Promise.all(
+          (results as BlogEntryListing[]).map(formatBlogpostMetadata),
+        ),
+      ),
+);
 
 async function formatBlogpostMetadata(blogEntry: BlogEntryListing) {
   const publishedDatestring =

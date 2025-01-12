@@ -69,6 +69,14 @@
       @apply text-neutral-500 dark:text-neutral-400 text-xl tracking-wide first:mt-0;
     }
   }
+
+  details {
+    @apply pl-4 mt-3 mb-2;
+
+    summary {
+      @apply -ml-3.5 font-medium;
+    }
+  }
 }
 
 .callout {
@@ -82,10 +90,10 @@
   }
 
   ul ul {
-    @apply my-3;
+    @apply my-0;
   }
 
   li ul li {
-    @apply text-sm;
+    @apply text-sm my-1;
   }
 }

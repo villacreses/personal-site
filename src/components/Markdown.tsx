@@ -31,10 +31,7 @@ const defaultComponents: MarkdownComponents = {
     return <p className={className} {...props} />;
   },
   div({ node, className, ...props }) {
-    console.log("cl", className);
-
-    const divClass = className === 'callout' ? styles.callout : className
-    
+    const divClass = className === "callout" ? styles.callout : className;
     return <div className={divClass} {...props} />;
   },
 };
