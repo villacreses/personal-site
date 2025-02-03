@@ -1,6 +1,6 @@
 import { cache } from "react";
 import { getNotionPageReadingTime, notion } from "./client";
-import { NotionPagePropType, NotionPageObject } from "./types";
+import { NotionPagePropType, NotionPageObject, pageProp } from "./types";
 
 type BlogEntryListing = NotionPageObject<{
   Name: NotionPagePropType<"title">;
@@ -13,22 +13,20 @@ type BlogEntryListing = NotionPageObject<{
 // See here for inspiration:
 // https://github.com/samuelkraft/notion-blog-nextjs/blob/master/lib/notion.js
 
-const PUBLISH_DATE_STR = "Published Date";
-
 export const getBlog = cache(
   async () =>
     await notion.databases
       .query({
         database_id: process.env.NOTION_DBID_BLOG as string,
         filter: {
-          property: PUBLISH_DATE_STR,
+          property: pageProp.PUBLISHED_DATE,
           date: {
             is_not_empty: true,
           },
         },
         sorts: [
           {
-            property: PUBLISH_DATE_STR,
+            property: pageProp.PUBLISHED_DATE,
             direction: "descending",
           },
         ],

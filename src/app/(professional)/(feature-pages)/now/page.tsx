@@ -1,5 +1,6 @@
-import { Icon, Markdown, StandardHeader } from "@/components";
+import { Icon, InlineLink, Markdown, StandardHeader } from "@/components";
 import { PageService, getNowContent } from "@/lib/cosmic";
+import { getNowEntries } from "@/lib/notion";
 
 const PAGE_SLUG = "now";
 
@@ -8,15 +9,14 @@ export async function generateMetadata() {
 }
 
 export default async function NowPage() {
-  const [{ entries, last_modified }, heading] = await Promise.all([
-    getNowContent(),
+  const [nowEntries, heading] = await Promise.all([
+    getNowEntries(),
     PageService.getPageHeadingContent(PAGE_SLUG),
   ]);
 
-  const dateDisplayed = last_modified.toLocaleString("default", {
-    month: "long",
-    year: "numeric",
-  });
+  const lastModified = nowEntries
+    .map(({ lastEdited }) => new Date(lastEdited))
+    .sort((a, b) => b.getTime() - a.getTime())[0];
 
   return (
     <>
@@ -30,17 +30,27 @@ export default async function NowPage() {
         </h2>
         <p className="text-xs mt-2 italic prose-color">
           <span className="mr-1.5">Last updated:</span>
-          <time dateTime={last_modified.toJSON()}>{dateDisplayed}</time>
+          <time dateTime={lastModified.toJSON()}>
+            {lastModified.toLocaleString("default", {
+              month: "long",
+              year: "numeric",
+            })}
+          </time>
         </p>
-        {entries.map(({ title, metadata: { icon_id, content } }) => (
-          <section key={title}>
+        {nowEntries.map(({ heading, iconId, markdown }) => (
+          <section key={heading}>
             <h3 className="font-bold uppercase tracking-widest mt-8 mb-3 flex flex-row items-center">
-              <Icon iconId={icon_id} height="1.4em" className="mr-2" />
-              <span>{title}</span>
+              <Icon iconId={iconId} height="1.4em" className="mr-2" />
+              <span>{heading}</span>
             </h3>
-            <Markdown className="ml-3">{content}</Markdown>
+            <Markdown className="ml-3">{markdown}</Markdown>
           </section>
         ))}
+        <p className="">
+          You can check out my{" "}
+          <InlineLink href="/reading">reading log</InlineLink> to keep up with
+          everything I've read.
+        </p>
       </article>
     </>
   );

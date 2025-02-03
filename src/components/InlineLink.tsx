@@ -19,13 +19,13 @@ const IconArrowUpRight = () => (
   </svg>
 );
 
-const ArrowRight = () => (
-  <Icon
-    iconId="rightArrow"
-    size={14}
-    className="ml-0.5 transition-default group-hover:translate-x-1"
-  />
-);
+// const ArrowRight = () => (
+//   <Icon
+//     iconId="rightArrow"
+//     size={14}
+//     className="ml-0.5 transition-default group-hover:translate-x-1"
+//   />
+// );
 
 type InlineLinkProps = Omit<ComponentProps<typeof Link>, "className">;
 
@@ -35,14 +35,14 @@ export const InlineLink: FC<PropsWithChildren<InlineLinkProps>> = ({
   ...props
 }) => {
   const className = classNames([
-    "flex flex-row group transition-default",
+    "inline-flex flex-row group transition-default",
     target !== "_blank" && "items-center",
   ]);
 
   return (
     <Link className={className} target={target} {...props}>
       {children + " "}
-      {target === "_blank" ? <IconArrowUpRight /> : <ArrowRight />}
+      {target === "_blank" && <IconArrowUpRight />}
     </Link>
   );
 };
