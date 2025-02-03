@@ -1,6 +1,11 @@
 import { cache } from "react";
 import { getNotionPageReadingTime, notion } from "./client";
-import { NotionPagePropType, NotionPageObject, pageProp } from "./types";
+import {
+  NotionPagePropType,
+  NotionPageObject,
+  pageProp,
+  pageType,
+} from "./types";
 
 type BlogEntryListing = NotionPageObject<{
   Name: NotionPagePropType<"title">;
@@ -19,10 +24,20 @@ export const getBlog = cache(
       .query({
         database_id: process.env.NOTION_DBID_BLOG as string,
         filter: {
-          property: pageProp.PUBLISHED_DATE,
-          date: {
-            is_not_empty: true,
-          },
+          and: [
+            {
+              property: pageProp.PAGE_TYPE,
+              select: {
+                equals: pageType.NOW,
+              },
+            },
+            {
+              property: pageProp.PUBLISHED_DATE,
+              date: {
+                is_not_empty: true,
+              },
+            },
+          ],
         },
         sorts: [
           {

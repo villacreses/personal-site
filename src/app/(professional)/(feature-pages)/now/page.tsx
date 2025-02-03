@@ -49,7 +49,7 @@ export default async function NowPage() {
         <p className="">
           You can check out my{" "}
           <InlineLink href="/reading">reading log</InlineLink> to keep up with
-          everything I've read.
+          everything {"I've"} read.
         </p>
       </article>
     </>

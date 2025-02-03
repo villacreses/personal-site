@@ -5,7 +5,8 @@ import {
   ToggleSection,
 } from "@/components";
 import styles from "@/components/ToggleSection.module.css";
-import { PageService, getReadingLogs } from "@/lib/cosmic";
+import { PageService } from "@/lib/cosmic";
+import { getReadingEntries } from "@/lib/notion";
 
 const markdownComponents: MarkdownComponents = {
   p({ node, className, ...props }) {
@@ -23,10 +24,12 @@ export async function generateMetadata() {
 }
 
 export default async function ReadingPage() {
-  const [{ current, byYear }, heading] = await Promise.all([
-    getReadingLogs(),
+  const [entries, heading] = await Promise.all([
+    getReadingEntries(),
     PageService.getPageHeadingContent(PAGE_SLUG),
   ]);
+
+  const [current, ...byYear] = entries;
 
   return (
     <>
@@ -34,18 +37,14 @@ export default async function ReadingPage() {
         title={heading.title!}
         description={heading.description!}
       />
-      {current?.metadata.content && (
-        <section>
-          <h2 className="section-header mb-4">Currently reading</h2>
-          <Markdown components={markdownComponents}>
-            {current.metadata.content}
-          </Markdown>
-        </section>
-      )}
       <section>
-        {byYear.map(({ title: year, metadata: { content } }) => (
+        <h2 className="section-header mb-4">{current.heading}</h2>
+        <Markdown components={markdownComponents}>{current.markdown}</Markdown>
+      </section>
+      <section>
+        {byYear.map(({ heading: year, markdown }) => (
           <ToggleSection key={year} title={year}>
-            {content}
+            {markdown}
           </ToggleSection>
         ))}
       </section>

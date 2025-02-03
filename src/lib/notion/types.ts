@@ -6,12 +6,14 @@ type ExtractTypes<T> = T extends { type: infer U } ? U : never;
 export enum pageProp {
   PUBLISHED_DATE = "Published Date",
   PAGE_TYPE = "Type",
-  SORT_ORDER = "Sort Order"
+  SORT_ORDER = "Sort Order",
+  TITLE = "Name",
 }
 
 export enum pageType {
   BLOG = "Blog",
   NOW = "Now",
+  READING = "Reading",
 }
 
 type NotionPropertyUnion = ValueOf<PageObjectResponse["properties"]>;
