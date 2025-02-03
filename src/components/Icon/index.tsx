@@ -11,6 +11,8 @@ export const Icon: FC<IconPropsWithId> = ({
   className,
   ...props
 }) => {
+  if (!iconMap[iconId]) return null;
+
   const sizeStyles = size ? { height: size, width: size } : {};
 
   return (
